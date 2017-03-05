@@ -24,7 +24,8 @@ string stored at 0x2400.  So we break at `check_password` and examine
 memory at that location:
 
 
-```2400: 2575 2c6a 7138 4900 0000 0000 0000 0000 %u,jq8I.........
+```
+2400: 2575 2c6a 7138 4900 0000 0000 0000 0000 %u,jq8I.........
 ```
 
 And behold, the password: `%u,jq8I`.
