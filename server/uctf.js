@@ -26,16 +26,15 @@ uCTF.prototype.save = function(){
 
 uCTF.prototype.new_user = function(){
     var new_uuid = uuid();
-    console.log(new_uuid);
     while(this.users[new_uuid]) new_uuid = uuid.v4();
-    this.users[new_uuid] = {"solved":{}};
+    this.users[new_uuid] = {"solved":{}, "points":0};
     this.save();
     return new_uuid;
 }
 
 uCTF.prototype.check = function(id, cid, answer, note){
     if(this.challenges[cid]['answer'] == answer){
-	console.log("CORRECT!");
+	if(!this.users[id].solved[cid]) this.users[id].points += this.challenges[cid].points; 
 	this.users[id].solved[cid] = {"answer":answer,"note":note};
 	this.save();
 	return true;

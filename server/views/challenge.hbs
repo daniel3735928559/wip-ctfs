@@ -1,4 +1,6 @@
 <div class="container">
+<h4><a href="/{{uid}}">Challenges</a></h4>
+
 <h4>{{challenge.name}}</h4>
 
 <p>{{challenge.description}}</p>
@@ -26,7 +28,7 @@
 </div>
 <div class="form-group">
 <label for="note">Note: </label>
-<input class="form-control col-sm-3" type="text" name="note" id="note" />
+<textarea class="form-control col-sm-3" rows="5" cols="80" name="note" id="note"x>{{@root.solution.note}}</textarea>
 </div>
 <div class="form-group">
 <input class="form-control" type="submit" value="Submit" />
