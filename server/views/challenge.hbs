@@ -1,14 +1,35 @@
-<h4>{{name}}</h4>
+<div class="container">
+<h4>{{challenge.name}}</h4>
 
-<p>Description: {{description}}</p>
+<p>{{challenge.description}}</p>
 
+{{#if challenge.files}}
 <p>Files:
-
-<ul>
-{{#each files}}<li><a href="/files/{{this}}">{{this}}</a></li>{{/each}}
-</ul>
+<ul>{{#each challenge.files}}<li><a href="/files/{{this}}">{{this}}</a></li>{{/each}}</ul>
 </p>
+{{/if}}
 
+{{#if challenge.links}}
+<p>Links:
+<ul>{{#each challenge.links}}<li><a href="{{this}}">{{this}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+
+{{#if result}}
+<p>{{result}}</p>
+{{/if}}
+
+<div class="form-group">
 <form onsubmit="submit()">
-<input type="text" id="answer" /> <input type="submit" value="Submit" />
+<label for="answer">Flag: </label>
+<input class="form-control col-sm-3" type="text" name="answer" id="answer" />
+</div>
+<div class="form-group">
+<label for="note">Note: </label>
+<input class="form-control col-sm-3" type="text" name="note" id="note" />
+</div>
+<div class="form-group">
+<input class="form-control" type="submit" value="Submit" />
 </form>
+</div>
+</div>

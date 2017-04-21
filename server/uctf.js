@@ -18,7 +18,6 @@ var uCTF = function(){
 	    if(this.challenges[j].category == this.categories[i]) this.cbc[this.categories[i]].push(this.challenges[j]);
 	}
     }
-    console.log(this.cbc);
 }
 
 uCTF.prototype.save = function(){
@@ -36,7 +35,9 @@ uCTF.prototype.new_user = function(){
 
 uCTF.prototype.check = function(id, cid, answer, note){
     if(this.challenges[cid]['answer'] == answer){
+	console.log("CORRECT!");
 	this.users[id].solved[cid] = {"answer":answer,"note":note};
+	this.save();
 	return true;
     }
     return false;

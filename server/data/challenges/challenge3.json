@@ -3,6 +3,6 @@
   "category":"advanced",
   "points":200,
   "description":"This is yet another test",
-  "files":[],
+  "links":["127.0.0.1:2222"],
   "answer":"!"
 }
