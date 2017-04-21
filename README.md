@@ -1,14 +1,7 @@
-# CTF writeups
+# CTF
 
-This is a respository for select CTF writeups.  I am going back through my solutions and will update this repository with code and writeups as I get through them.
+This is a respository for select CTF data including: 
 
-# Current writeups: 
-
-None yet!
-
-# Writeups in progress: 
-
-* microcorruption.com levels 1-17
-* cryptopals.com sets 1-6
-* pwnable.tw challenges 1-2
-
+* [writeups]: Writeups of select CTFs I have done
+* [challenges]: CTF challenges I have created (that have already been used)
+* [server]: A very small, very simple CTF server

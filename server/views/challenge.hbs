@@ -1,0 +1,14 @@
+<h4>{{name}}</h4>
+
+<p>Description: {{description}}</p>
+
+<p>Files:
+
+<ul>
+{{#each files}}<li><a href="/files/{{this}}">{{this}}</a></li>{{/each}}
+</ul>
+</p>
+
+<form onsubmit="submit()">
+<input type="text" id="answer" /> <input type="submit" value="Submit" />
+</form>

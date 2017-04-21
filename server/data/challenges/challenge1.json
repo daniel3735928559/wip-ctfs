@@ -1,0 +1,8 @@
+{
+  "name":"Test challenge 1",
+  "category":"basic",
+  "points":10,
+  "description":"This is a test",
+  "files":[],
+  "answer":"hello"
+}
