@@ -1,11 +1,17 @@
-<style type="text/css">.btn-space { margin-right: 5px; }</style>
+<style type="text/css">.btn-space { margin-right: 5px; margin-bottom: 5px;}</style>
 <div class="container">
 <h1>Challenges</h1><br />
-User ID: <b>{{uid}}</b> (save this ID to access your page later.  Distribute it to anyone on your team.<br /> 
-Points: <b>{{user.points}}</b>
+<p>{{config.intro}}</p>
+<p>User details:
+<ul>
+<li>ID: <b>{{uid}}</b></li> 
+<li>Points: <b>{{user.points}}</b></li>
+</ul>
+</p>
 {{#each challenges}}
   <div class="row">
-  <div class="col-md-2"><h4>{{@key}}</h4></div>
+  <div class="col-md-1"><h4>{{@key}}</h4></div>
+  <div class="col-md-10">
   {{#each this}}
     <a href="/{{@root.uid}}/{{cid}}">
       <div class="col-md-2 btn btn-space {{#solved @root.user cid}}{{/solved}}">
@@ -13,6 +19,7 @@ Points: <b>{{user.points}}</b>
       </div>
     </a>
   {{/each}}
+  </div>
   </div>
   <br />
 {{/each}}

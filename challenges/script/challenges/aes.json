@@ -1,0 +1,8 @@
+{
+  "name":"aes",
+  "category":"crypto",
+  "points":10,
+  "description":"secretsaresecret",
+  "files":["flag.aes-256-cbc"],
+  "answer":"flag{aksjdnkjqqiwuoaQIOWDOQIF}"
+}

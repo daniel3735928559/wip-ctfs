@@ -1,0 +1,8 @@
+{
+  "name":"diff",
+  "category":"file",
+  "points":30,
+  "description":"One of the files in v1 differs from the corresponding file in v2.  Its sha256sum is the flag.",
+  "files":["v1.tar.gz","v2.tar.gz"],
+  "answer":"flag{598a0476874c96a030b22c66ccc39ee1808b47f7a2944ddd602f62cfb9079902}"
+}

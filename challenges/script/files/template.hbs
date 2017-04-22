@@ -1,0 +1,98 @@
+<div class="container">
+<h4><a href="/{{uid}}">Challenges</a></h4>
+
+<h4>{{challenge.name}}</h4>
+
+<p>{{challenge.description}}</p>
+
+{{#if challenge.files}}
+<p>Files:
+<ul>{{#each challenge.files}}<li><a href="/files/{{this}}">{{this}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+
+{{#if challenge.links}}
+<p>Links:
+<ul>{{#each challenge.links}}<li><a href="{{this}}">{{this}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+
+{{#if challenge.apples}}
+<p>Something else:
+<ul>{{#each challenge.apples}}<li><a href="{{this}}">{{this}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+{{#if challenge.bananas}}
+<p>Something else:
+<ul>{{#each challenge.bananas}}
+<li>
+<a href="{{this}}">{{this}}</a>
+</li>{{/each}}</ul>
+</p>
+{{/if}}
+{{#if challenge.cherries}}
+<p>Something else:
+<ul>{{#each challenge.cherries}}<li>
+<a href="{{config.where}}">{{this}}
+</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+{{#if challenge.durians}}
+<p>Something else:
+<ul>{{#each challenge.durians}}
+<li><a href="{{config.source}}">
+{{{config.dragonfruit}}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+{{#if challenge.elderberries}}
+<p>Something else:
+<ul>
+{{#each challenge.elderberries}}<li>
+<a href="{{this}}">{{this}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+{{#if challenge.figs}}
+<p>Something else:
+<ul>
+{{#each challenge.figs}}
+<li><a href="{{this}}">{{this}}</a></li>{{/each}}</ul>
+</p>
+{{/if}}
+{{#if challenge.grapes}}
+<p>
+Something else:
+<ul>
+{{#each challenge.grapes}}<li>
+<a href="{{this}}">
+{{this}}
+</a></li>
+{{/each}}
+</ul>
+</p>
+{{/if}}
+{{#if challenge.honeydewmelons}}
+<p>Something else:
+<ul
+>{{#each challenge.honeydewmelons}}
+<li><a 
+href="{{this}}"
+>{{this}}
+</a>
+</li
+>{{/each}}
+</ul>
+</p>
+{{/if}}
+
+
+{{#if result}}
+<p>{{result}}</p>
+{{/if}}
+
+<div class="form-group row">
+<form onsubmit="submit()">
+<div class="col-md-4"><input class="form-control" type="text" name="answer" id="answer" /></div>
+<input class="btn btn-primary col-md-2" type="submit" value="Submit flag" />
+</form>
+</div>
+</div>

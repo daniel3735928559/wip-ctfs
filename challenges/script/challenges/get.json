@@ -1,0 +1,8 @@
+{
+  "name":"GET",
+  "category":"web",
+  "points":30,
+  "description":"Download a list of files.  Take the contents of all the files listed in the manifest, download all of their contents, and output all the contents in sorted order, one line per file.  The flag is the SHA256 of this output.",
+  "files":["get_manifest"],
+  "answer":"flag{2ed7aee83d77e5bb82f1fc5b04b3dbf8aca0a44a152b330c6efad513ae0bf8f5}"
+}

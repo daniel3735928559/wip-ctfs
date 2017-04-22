@@ -1,0 +1,8 @@
+{
+  "name":"strings",
+  "category":"re",
+  "points":10,
+  "description":"Find the password to get a shell from the program",
+  "files":["su0"],
+  "answer":"flag{SOOPERSEEKRITP455W00RD!!11!}"
+}

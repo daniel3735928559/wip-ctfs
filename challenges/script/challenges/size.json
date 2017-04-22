@@ -1,0 +1,8 @@
+{
+  "name":"size",
+  "category":"file",
+  "points":30,
+  "description":"Find the largest file: The sha256sum of the largest file in the archive is the flag.",
+  "files":["size.tar.xz"],
+  "answer":"flag{fc0781243c938761e0eb01dbc4ac784641bcd1ebfce5f02546623ed7e69bb48d}"
+}

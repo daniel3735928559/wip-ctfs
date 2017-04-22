@@ -1,13 +1,15 @@
 var fs = require('fs');
 var uuid = require('uuid/v4');
 
-var uCTF = function(){
-    this.users = JSON.parse(fs.readFileSync('data/users.json','utf-8'));
-    this.categories = JSON.parse(fs.readFileSync('data/categories.json','utf-8'));
+var uCTF = function(data){
+    this.data = data;
+    this.users = JSON.parse(fs.readFileSync(data+'/users.json','utf-8'));
+    this.config = JSON.parse(fs.readFileSync(data+'/config.json','utf-8'));
+    this.categories = this.config.categories;
     this.challenges = [];
-    var files = fs.readdirSync('data/challenges/');
+    var files = fs.readdirSync(data+'/challenges/');
     for(var i = 0; i < files.length; i++){
-	var d = JSON.parse(fs.readFileSync('data/challenges/'+files[i],'utf-8'));
+	var d = JSON.parse(fs.readFileSync(data+'/challenges/'+files[i],'utf-8'));
 	d.cid = i;
 	this.challenges.push(d);
     }
@@ -17,11 +19,14 @@ var uCTF = function(){
 	for(var j = 0; j < this.challenges.length; j++){
 	    if(this.challenges[j].category == this.categories[i]) this.cbc[this.categories[i]].push(this.challenges[j]);
 	}
+	this.cbc[this.categories[i]] = this.cbc[this.categories[i]].sort(function(a1,a2){
+	    return a1.points < a2.points ? -1 : (a1.points > a2.points ? 1 : 0);
+	});
     }
 }
 
 uCTF.prototype.save = function(){
-    fs.writeFileSync('data/users.json',JSON.stringify(this.users), {"encoding":"utf-8"});
+    fs.writeFileSync(this.data+'/users.json',JSON.stringify(this.users), {"encoding":"utf-8"});
 }
 
 uCTF.prototype.new_user = function(){
@@ -32,10 +37,10 @@ uCTF.prototype.new_user = function(){
     return new_uuid;
 }
 
-uCTF.prototype.check = function(id, cid, answer, note){
+uCTF.prototype.check = function(id, cid, answer){
     if(this.challenges[cid]['answer'] == answer){
 	if(!this.users[id].solved[cid]) this.users[id].points += this.challenges[cid].points; 
-	this.users[id].solved[cid] = {"answer":answer,"note":note};
+	this.users[id].solved[cid] = {"answer":answer};
 	this.save();
 	return true;
     }

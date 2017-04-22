@@ -1,0 +1,8 @@
+{
+  "name":"handlebars",
+  "category":"web",
+  "points":20,
+  "description":"The flag is the Javascript variable in the provided HandlebarsJS template that is not HTML escaped when it is placed into the HTML.",
+  "files":["template.hbs"],
+  "answer":"flag{config.dragonfruit}"
+}

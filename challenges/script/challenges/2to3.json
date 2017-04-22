@@ -1,0 +1,8 @@
+{
+  "name":"2to3",
+  "category":"file",
+  "points":10,
+  "description":"This file uses python2 print syntax.  Change it to use python3's syntax, e.g. print(\"hello\").  The flag is the sha256sum of the result.",
+  "files":["print2.py"],
+  "answer":"flag{662ac43c7e26c8f0483e9c28bc7833e04c73b1e511ec10685efa0793ddc370dc}"
+}

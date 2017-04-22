@@ -1,0 +1,7 @@
+{
+  "name":"AAAAAAAAAAAA",
+  "category":"re",
+  "points":10,
+  "description":"The flag is the sha256sum of 88888888 A's",
+  "answer":"flag{9add1c4a132cc329286e7b8444cccaa2754043834ce71f91f7974d3306999093}"
+}
