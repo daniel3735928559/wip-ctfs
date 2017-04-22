@@ -1,0 +1,7 @@
+{
+  "name":"brute",
+  "category":"web",
+  "points":40,
+  "description":"The flag is an integer 0-1000",
+  "answer":"flag{598}"
+}
