@@ -1,5 +1,5 @@
 {
-"intro":"Welcome to the scripting CTF.  All challenges can be solved with a one-line bash script.  All flags are of the form flag{...}.",
+"intro":"Welcome to the scripting CTF.  All challenges can be solved with a one-line bash script.  All flags are of the form flag{...}.  Mind your newlines when computing hashes.",
 "categories":["file","web","re","crypto"]
 }
 

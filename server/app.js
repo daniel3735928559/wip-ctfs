@@ -5,14 +5,11 @@ var app = express();
 var data = 'data';
 var port = 8080;
 
-if(process.argv.length > 4)
-    console.log(process.argv[0] + " <data folder> <port>")
-if(process.argv.length >= 3)
-    data = process.argv[2];
-if(process.argv.length >= 4)
-    port = parseInt(process.argv[3]);
-
+if(process.argv.length > 5) console.log(process.argv[0] + " <data folder> <port> [reset]")
+if(process.argv.length >= 3) data = process.argv[2];
+if(process.argv.length >= 4) port = parseInt(process.argv[3]);
 var ctf = new uctf(data);
+if(process.argv.length >= 5 && process.argv[4] == "reset"){ ctf.users = {}; ctf.save(); } 
 
 var solved_helper = function(user, cid){
     if(user.solved[cid])
@@ -52,6 +49,4 @@ app.get('/:id/:cid', function(req, res){
 	res.redirect("/"+req.params.id);
 });
 
-app.listen(port, function () {
-    console.log('CTF is running on port '+port)
-});
+app.listen(port, function(){ console.log('CTF is running on port '+port) });

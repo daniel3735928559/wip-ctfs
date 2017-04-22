@@ -38,4 +38,4 @@ Micro CTF server: Get a CTF up and running quickly
 
 * Run `npm install`.
 
-* Run `node app.js <path to CTF directory> <port>`
+* Run `node app.js <path to CTF directory> <port>`, or, if you'd like to remove all your users and start afresh, run `node app.js <path to CTF directory> <port> reset`
