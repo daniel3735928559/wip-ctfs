@@ -1,19 +1,27 @@
 # uCTF
 
-The world's smallest CTF server
+Micro CTF server: Get a CTF up and running quickly
 
 ## Usage
 
-* Create separate JSON files for each of your challenges (with any filenames) and place them in `data/challenges/`.
+* Ensure you have NodeJS and npm installed.  
 
-* Create a JSON array of category names and place them in `data/categories.json`.
+* Create a directory for your CTF with the following files: 
 
-* Run `npm install`.
+  * `users.json` whose contents should start as `{}`
 
-* Run `node app.js`
+  * `config.json` whose contents should look like: 
 
-## Challenge format
+```
+{
+  "intro":"<Text on the dashboard page of your CTF>",
+  "categories":["<category1>","<category2>",...]
+}
+```
 
+  * `challenges/`.
+
+* Create separate JSON files for each of your challenges (with any filenames) and place them in the `challenges/` folder.  Each of these should be formatted as: 
 
 ```
 {
@@ -27,3 +35,7 @@ The world's smallest CTF server
 }
 
 ```
+
+* Run `npm install`.
+
+* Run `node app.js <path to CTF directory> <port>`
