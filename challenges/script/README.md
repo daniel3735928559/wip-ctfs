@@ -17,6 +17,7 @@ Web:
 * Find all links in an HTML page
 * Find the name of the variable in the handlebars template that is not HTML-escaped
 * Convert a string to String.fromCharCode(1,2,3) format
+* Brute-force an HTTP GET parameter
 
 Reverse engineering: 
 
