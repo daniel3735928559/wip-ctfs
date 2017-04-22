@@ -26,7 +26,7 @@ var uCTF = function(data){
 }
 
 uCTF.prototype.save = function(){
-    fs.writeFileSync(this.data+'/users.json',JSON.stringify(this.users), {"encoding":"utf-8"});
+    fs.writeFileSync(this.data+'/users.json', JSON.stringify(this.users), {"encoding":"utf-8"});
 }
 
 uCTF.prototype.new_user = function(){

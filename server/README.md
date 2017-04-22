@@ -1,6 +1,8 @@
 # uCTF
 
-Micro CTF server: Get a CTF up and running quickly
+Micro CTF server: Quickly get a CTF up and running in 6 easy steps!
+
+Micro CTF server is built on NodeJS and Express in less than 100 lines of Javascript.
 
 ## Usage
 
