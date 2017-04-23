@@ -47,5 +47,5 @@ Micro CTF server is built on NodeJS and Express in less than 100 lines of Javasc
 To run the script challenges in this repository as a CTF on port 8080, do: 
 
 ```
-node app.js ../challenges/scripts/ 8080 reset
+node app.js ../challenges/script/ 8080 reset
 ```

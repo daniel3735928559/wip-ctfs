@@ -4,5 +4,6 @@
   "points":10,
   "description":"Find the password to get a shell from the program",
   "files":["su0"],
-  "answer":"flag{SOOPERSEEKRITP455W00RD!!11!}"
+  "answer":"flag{SOOPERSEEKRITP455W00RD!!11!}",
+  "solution":"strings su0 |grep -C3 -i password"
 }

@@ -3,5 +3,6 @@
   "category":"web",
   "points":40,
   "description":"The flag is an integer 0-1000",
-  "answer":"flag{598}"
+  "answer":"flag{598}",
+  "solution":"curl -s 'http://localhost:8080/283966c1-d49d-496c-bbf3-9581635f2ba8/4?answer=flag\\{[0-1000]\\}' > /dev/null"
 }

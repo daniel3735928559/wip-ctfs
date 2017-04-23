@@ -1,8 +1,9 @@
 {
-  "name":"diff",
+  "name":"sha",
   "category":"file",
   "points":30,
   "description":"One of the files in shas does not have a sha1sum matching that in the provided file.  The flag is its actual sha1sum",
   "files":["shas.sha1sums","shas.tar.gz"],
-  "answer":"flag{d680c0dda7e7e6b3f5bb2573807acd03f17bd6fb}"
+  "answer":"flag{d680c0dda7e7e6b3f5bb2573807acd03f17bd6fb}",
+  "solution":"diff -y --suppress-common-lines <(sha1sum shas/*) shas.sha1sums |awk '{print $1}'"
 }

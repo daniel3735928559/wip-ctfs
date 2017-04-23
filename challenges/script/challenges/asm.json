@@ -4,5 +4,6 @@
   "points":20,
   "description":"Assemble the shellcode into binary.  The flag is the hex content of this binary.  For example, if the bytes of the file are 0x2b, 0x11, 0xd4, then the flag is 2b11d4",
   "files":["sc.s"],
-  "answer":"flag{e8feff66586605000200006650c3}"
+  "answer":"flag{e8fcffffff58050002000050c3}",
+  "solution":"nasm -f bin sc.s -o /dev/stdout | hexdump -v -e '1/1 \"%02x\"'"
 }

@@ -1,8 +1,9 @@
 {
   "name":"size",
   "category":"file",
-  "points":30,
+  "points":40,
   "description":"Find the largest file: The sha256sum of the largest file in the archive is the flag.",
   "files":["size.tar.xz"],
-  "answer":"flag{fc0781243c938761e0eb01dbc4ac784641bcd1ebfce5f02546623ed7e69bb48d}"
+  "answer":"flag{fc0781243c938761e0eb01dbc4ac784641bcd1ebfce5f02546623ed7e69bb48d}",
+  "solution":"find . -type f | while read x; do echo $x $(stat -c '%s' $x); done | sort -n -k 2 | tail -n 1 | awk '{print $1}' | xargs sha256sum"
 }

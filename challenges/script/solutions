@@ -1,7 +1,0 @@
-grep -Hnri '^[a-z]{10}$' .
-cat files/template.hbs |grep {{{
-openssl enc -k 'secretsaresecret' -d -a -aes-256-cbc -in ../files/flag.aes-256-cbc -out /dev/stdout
-nasm -f bin -o /dev/stdout sc.s | hexdump -v -e '1/1 "%02x"'
-for x in `ls`; do printf $x" "; stat -c '%s' $x; done | sort -n -k 2 | awk '{print $1}' | sha256sum
-cat print2.py | sed 's/ /(/;s/$/)/'|sha256sum
-

@@ -1,8 +1,9 @@
 {
   "name":"loc",
   "category":"file",
-  "points":20,
+  "points":40,
   "description":"Count the number of lines of code in the provided source archive.  This includes lines in .js files or in files with no extension, and excludes all blank lines and all files in /lib.  The number of lines matching these criteria is the flag.",
   "files":["spy-master.zip"],
-  "answer":"flag{3475}"
+  "answer":"flag{3475}",
+  "solution":"(find ./ -type f -name '*.js'; find ./ -type f -not -name '*.*') | grep -v lib | xargs cat | grep -v '^[ \t]*$' | wc -l"
 }

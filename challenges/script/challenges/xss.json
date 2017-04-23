@@ -3,5 +3,6 @@
   "category":"web",
   "points":20,
   "description":"Write javascript to construct the string <pre>this is a fancy string I don't even know what to say</pre> without using any quotes.  So, for example, String.fromCharCode(30,31,32).  The flag is the sha1sum of this Javascript.",
-  "answer":"flag{88fb25af16cd7aa39239950a4f073ef54746f682}"
+  "answer":"flag{88fb25af16cd7aa39239950a4f073ef54746f682}",
+  "solution":"x=$(echo -n this is a fancy string I don\\'t even know what to say | hexdump -e '1/1 \"%d,\"'|sed 's/,$//'); printf 'String.fromCharCode('$x')' | sha1sum"
 }

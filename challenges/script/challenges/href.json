@@ -4,5 +4,6 @@
   "points":20,
   "description":"Create a file with every target URL of every link in the provided page, in the order in which they appear in the page.  The md5sum of this file is the flag.",
   "files":["li.html"],
-  "answer":"flag{916c7505591882aaea1b047686bb374e}"
+  "answer":"flag{916c7505591882aaea1b047686bb374e}",
+  "solution":"cat li.html | sed 's/</\n</g;s/>/>\n/g' | grep href | sed 's/.*=\"//;s/\".*//'|md5sum"
 }
