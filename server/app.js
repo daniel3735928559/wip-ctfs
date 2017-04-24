@@ -20,11 +20,11 @@ var solved_helper = function(user, cid){
 app.engine('hbs', express_hbs({extname:'hbs', defaultLayout:'main.hbs',helpers:{"solved":solved_helper}}));
 app.set('view engine', 'hbs');
 app.use('/files', express.static(data+'/files'));
-app.get('/', function(req, res){ res.redirect('/' + ctf.new_user()); });
+app.get('/new', function(req, res){ res.redirect('/' + ctf.new_user()); });
 
 app.get('/favicon.ico', function(req, res){ res.status(404).send('Not found'); });
 
-app.get('/:id/', function(req, res){
+app.get('/:id?/', function(req, res){
     res.render('home',{
 	"uid":req.params.id,
 	"config":ctf.config,

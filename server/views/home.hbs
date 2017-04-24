@@ -2,6 +2,7 @@
 <div class="container">
 <h1>Challenges</h1><br />
 <p>{{config.intro}}</p>
+{{#if user}}
 <p>User details:
 <ul>
 <li>ID: <b>{{uid}}</b></li> 
@@ -23,4 +24,12 @@
   </div>
   <br />
 {{/each}}
+{{else}}
+<p>It seems you do not possess a valid user ID.  You can either use one you already have (e.g. that your team captain generated for your team), or else generate one for yourself/your team now.</p>
+<a href="/new"><div class="btn btn-success col-md-2">Generate a new user</div></a> <div class="col-md-8">Make sure to save your user ID once it is generated.</div>
+<br/><br/>
+<a onclick="window.location.href='/'+document.getElementById('uid').value.trim()" href="#"><div class="btn btn-success col-md-2">Use previous user ID</div></a>
+<div class="col-md-4"><input type="text" class="form-control" id="uid" placeholder="Input your user ID here"></input></div>
+{{/if}}
+
 </div>
