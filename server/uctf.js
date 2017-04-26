@@ -6,19 +6,19 @@ var uCTF = function(data){
     this.users = JSON.parse(fs.readFileSync(data+'/users.json','utf-8'));
     this.config = JSON.parse(fs.readFileSync(data+'/config.json','utf-8'));
     this.categories = this.config.categories;
-    this.challenges = [];
+    this.challenges = {};
+    this.challenges_list = [];
+    this.cbc = {}
     var files = fs.readdirSync(data+'/challenges/');
     for(var i = 0; i < files.length; i++){
 	var d = JSON.parse(fs.readFileSync(data+'/challenges/'+files[i],'utf-8'));
-	d.cid = i;
-	this.challenges.push(d);
+	this.challenges[d.name] = d;
+	this.challenges_list.push(d);
     }
-    this.cbc = {}
     for(var i = 0; i < this.categories.length; i++){
 	this.cbc[this.categories[i]] = [];
-	for(var j = 0; j < this.challenges.length; j++){
-	    if(this.challenges[j].category == this.categories[i]) this.cbc[this.categories[i]].push(this.challenges[j]);
-	}
+	for(var j = 0; j < this.challenges_list.length; j++)
+	    if(this.challenges_list[j].category == this.categories[i]) this.cbc[this.categories[i]].push(this.challenges_list[j]);
 	this.cbc[this.categories[i]] = this.cbc[this.categories[i]].sort(function(a1,a2){
 	    return a1.points < a2.points ? -1 : (a1.points > a2.points ? 1 : 0);
 	});

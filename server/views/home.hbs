@@ -14,8 +14,8 @@
   <div class="col-md-1"><h4>{{@key}}</h4></div>
   <div class="col-md-10">
   {{#each this}}
-    <a href="/{{@root.uid}}/{{cid}}">
-      <div class="col-md-2 btn btn-space {{#solved @root.user cid}}{{/solved}}">
+    <a href="/{{@root.uid}}/{{name}}">
+      <div class="col-md-2 btn btn-space {{#solved @root.user name}}{{/solved}}">
         {{name}}<br /><b>{{points}}</b>
       </div>
     </a>

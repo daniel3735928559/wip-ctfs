@@ -33,15 +33,15 @@ app.get('/:id?/', function(req, res){
 });
 
 app.get('/:id/:cid', function(req, res){
-    var result = false;
-    if(req.query.answer) result = ctf.check(req.params.id,req.params.cid,req.query.answer)? "Correct" : "Incorrect";
-    else if(ctf.users[req.params.id].solved[req.params.cid]) result = "Solved"
-    if(result != "Correct")
+    var status = "Unsolved";
+    if(req.query.answer) status = ctf.check(req.params.id,req.params.cid,req.query.answer)? "Correct" : "Incorrect";
+    else if(ctf.users[req.params.id].solved && ctf.users[req.params.id].solved[req.params.cid]) status = "Solved"
+    if(status != "Correct")
 	res.render('challenge',{
 	    "uid":req.params.id,
 	    "solution":ctf.users[req.params.id].solved[req.params.cid],
 	    "challenge":ctf.challenges[req.params.cid],
-	    "result":result});
+	    "status":status});
     else
 	res.redirect("/"+req.params.id);
 });
