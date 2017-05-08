@@ -1,0 +1,8 @@
+{
+    "name":"millennium",
+    "category":"wmi",
+    "points":40,
+    "description":"In 1000 years, the flag will be in C:/Windows/flag.txt.",
+    "answer":"flag{fqlwienxpwqienakjefpniwenfxwen}",
+    "solution":"Invoke-Expression (gwmi -Namespace 'root\\subscription' -Class CommandLineEventConsumer | ?{$_.Name -match 'Flag'}).CommandLineTemplate; cat c:/windows/flag.txt"
+}

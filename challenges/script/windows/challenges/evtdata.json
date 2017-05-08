@@ -1,0 +1,8 @@
+{
+  "name":"needle in haystack",
+  "category":"events",
+  "points":10,
+  "description":"A flag event happened at some point",
+  "answer":"flag{wqleuhfnweufcnqlwiercaswefw12rslncaw}",
+  "solution":"Get-EventLog -LogName Application | ?{$_.message -like 'flag*'} | %{$_.message}"
+}

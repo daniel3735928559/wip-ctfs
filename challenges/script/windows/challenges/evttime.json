@@ -1,0 +1,8 @@
+{
+  "name":"time traveller",
+  "category":"events",
+  "points":20,
+  "description":"A time traveller placed the flag on the computer",
+  "answer":"flag{pqieuwrlnkasjncfoqerpqiurnkqjnhr}",
+  "solution":"Get-EventLog -LogName Application | sort-object timewritten | select -first 1 | %{$_.Message}"
+}

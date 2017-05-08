@@ -1,0 +1,8 @@
+{
+  "name":"users",
+  "category":"wmi",
+    "points":20,
+  "description":"Da boss knows da flag",
+  "answer":"flag{alweunhrxlwienrclkjshfociweunfcalkefnc}",
+  "solution":"(gwmi Win32_UserAccount | ?{$_.Name -eq \"DaBoss\"}).description"
+}

@@ -1,0 +1,8 @@
+{
+  "name":"boot",
+  "category":"registry",
+  "points":10,
+  "description":"Another flag is a program run at boot time",
+  "answer":"flag{erwjfmlaijenfcaliefnclaiuwenhfkucawfe}",
+  "solution":"(Get-ScheduledJob).name|?{$_ -like 'flag*'}"
+}

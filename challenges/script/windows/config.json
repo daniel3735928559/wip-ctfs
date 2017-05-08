@@ -1,0 +1,5 @@
+{
+"intro":"Welcome to the Windows CTF.  All challenges can be solved with a few lines of Powershell.  All flags are of the form flag{...}.  Mind your newlines when computing hashes.",
+"categories":["file","events","wmi","registry"]
+}
+

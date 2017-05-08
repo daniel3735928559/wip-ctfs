@@ -1,0 +1,8 @@
+{
+  "name":"tagservice",
+  "category":"registry",
+  "points":20,
+  "description":"There is a flag tagged service",
+  "answer":"flag{skdjcnwaiernclaksdjlnfckaaawnlcakiuer834rclnaweic}",
+  "solution":""
+}

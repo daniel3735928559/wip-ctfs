@@ -2,6 +2,7 @@ var fs = require('fs');
 var uuid = require('uuid/v4');
 
 var uCTF = function(data){
+    var self = this;
     this.data = data;
     this.users = JSON.parse(fs.readFileSync(data+'/users.json','utf-8'));
     this.config = JSON.parse(fs.readFileSync(data+'/config.json','utf-8'));
@@ -15,14 +16,12 @@ var uCTF = function(data){
 	this.challenges[d.name] = d;
 	this.challenges_list.push(d);
     }
-    for(var i = 0; i < this.categories.length; i++){
-	this.cbc[this.categories[i]] = [];
-	for(var j = 0; j < this.challenges_list.length; j++)
-	    if(this.challenges_list[j].category == this.categories[i]) this.cbc[this.categories[i]].push(this.challenges_list[j]);
-	this.cbc[this.categories[i]] = this.cbc[this.categories[i]].sort(function(a1,a2){
-	    return a1.points < a2.points ? -1 : (a1.points > a2.points ? 1 : 0);
-	});
-    }
+    this.cbc = this.categories.reduce(function(acc,val){
+	acc[val] = self.challenges_list
+	    .filter(function(v){ return v.category == val})
+	    .sort(function(a1,a2){ return a1.points - a2.points;});
+	return acc;
+    }, {});
 }
 
 uCTF.prototype.save = function(){

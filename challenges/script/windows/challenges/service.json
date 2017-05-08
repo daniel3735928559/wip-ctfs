@@ -1,0 +1,8 @@
+{
+  "name":"flagservice",
+  "category":"registry",
+  "points":10,
+  "description":"There is a flag service",
+  "answer":"flag{slekkncdlawekjfncawieurpcq34r}",
+  "solution":""
+}

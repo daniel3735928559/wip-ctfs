@@ -1,0 +1,8 @@
+{
+  "name":"task",
+  "category":"registry",
+  "points":20,
+  "description":"There's a flag task scheduled with a flag in it",
+  "answer":"flag{lyuerhufcnkasunhfcauewaei324ro7q834p23}",
+  "solution":" (Get-ScheduledTask | ? {$_.TaskName -like 'flag'}).actions.execute"
+}

@@ -1,0 +1,8 @@
+{
+  "name":"logon",
+  "category":"wmi",
+  "points":40,
+  "description":"An executable is set to run when someone logs on",
+  "answer":"flag{askjdfnuernhflxiaseflaiefnpx}",
+  "solution":"$fn=(Get-WmiObject -Class __EventFilter -Namespace 'root\\subscription' |?{$_.query -match \"logon\"}).name; $cn=(gwmi -Class __FilterToConsumerBinding -Namespace 'root\\subscription' |?{$_.filter -match $fn}).consumer -replace '\"','' -replace '.*=',''; (gwmi -Class CommandLineEventConsumer -Namespace 'root\\subscription' | ?{$_.name -match $cn}).executablepath"
+}

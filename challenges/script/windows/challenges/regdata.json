@@ -1,0 +1,8 @@
+{
+  "name":"reg flag",
+  "category":"registry",
+  "points":20,
+  "description":"A flag is in HKCU under a descendant directory (somewhere) called POSHCTF",
+  "answer":"flag{qwlekunhclajfncwgnlaifnclakjnhfcoqwuef}",
+  "solution":"Get-ChildItem -path HKCU:\\SOFTWARE -Recurse | ?{(Get-ItemProperty -Path $_.PsPath) -match \"flag\"}"
+}
