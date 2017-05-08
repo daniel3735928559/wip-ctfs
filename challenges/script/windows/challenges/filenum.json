@@ -1,6 +1,6 @@
 {
   "name":"filenum",
-  "category":"other",
+  "category":"file",
   "points":30,
   "description":"The sum of the property values in the file c:/n.xml is the flag",
   "answer":"flag{31047867}",

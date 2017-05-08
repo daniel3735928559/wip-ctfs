@@ -78,7 +78,7 @@ $evfs = 1..11
 
 1..67 | %{
 $wec = Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Arguments @{Name="Consumer$_"; ExecutablePath = "C:\windows\$(RandStr).exe"; CommandLineTemplate = "C:\windows\$(RandStr).exe"}
-Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$wec; Consumer=$evfs[(Get-Random -minimum 5 -maximum 10)]}
+Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Consumer=$wec; Filter=$evfs[(Get-Random -minimum 5 -maximum 10)]}
 }
 
 # Add WMI Scheduled event
@@ -109,7 +109,7 @@ Set-WmiInstance -Class __FilterToConsumerBinding `
 
 1..6 | %{
 $wec = Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Arguments @{Name="Consumer$(67+$_)"; ExecutablePath = "C:\windows\$(RandStr).exe"; CommandLineTemplate = "C:\windows\$(RandStr).exe"}
-Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$wec; Consumer=$evfs[(Get-Random 1,2,3,5,6,7,8,9)]}
+Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Consumer=$wec; Filter=$evfs[(Get-Random 1,2,3,5,6,7,8,9)]}
 }
 
 
@@ -126,7 +126,7 @@ Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" 
 
 1..25 | %{
 $wec = Set-WmiInstance -Class CommandLineEventConsumer -Namespace "root\subscription" -Arguments @{Name="Consumer$(74+$_)"; ExecutablePath = "C:\windows\$(RandStr).exe"; CommandLineTemplate = "C:\windows\$(RandStr).exe"}
-Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Filter=$wec; Consumer=$evfs[(Get-Random 1,2,3,5,6,7,8,9)]}
+Set-WmiInstance -Class __FilterToConsumerBinding -Namespace "root\subscription" -Arguments @{Comsumer=$wec; Filter=$evfs[(Get-Random 1,2,3,5,6,7,8,9)]}
 }
 
 

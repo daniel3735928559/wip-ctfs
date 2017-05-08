@@ -1,6 +1,6 @@
 {
   "name":"flagservice",
-  "category":"other",
+  "category":"file",
   "points":20,
   "description":"The file C:/o.xml has the flag",
   "answer":"flag{lwaaalnecnapneqory8c73y4ernkicnewwhsacusnzrpaie}",
