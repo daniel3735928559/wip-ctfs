@@ -42,10 +42,16 @@ Micro CTF server is built on NodeJS and Express in less than 100 lines of Javasc
 
 * Run `node app.js <path to CTF directory> <port>`, or, if you'd like to remove all your users and start afresh, run `node app.js <path to CTF directory> <port> reset`
 
-## Example
+## Examples
 
-To run the script challenges in this repository as a CTF on port 8080, do: 
+To run the linux scripting challenges in this repository as a CTF on port 8080, do (from this directory): 
 
 ```
-node app.js ../challenges/script/ 8080 reset
+node app.js ../challenges/script/linux 8080 reset
+```
+
+To run the windows scripting challenges in this repository as a CTF on port 8080, do (from this directory): 
+
+```
+node app.js ../challenges/script/windows 8080 reset
 ```

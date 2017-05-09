@@ -1,8 +1,8 @@
 {
-  "name":"GET",
+  "name":"ip",
   "category":"registry",
   "points":20,
   "description":"There is a task to set an IPv6 address on the computer.  This IPv6 address (unabbreviated) is the flag.",
-  "answer":"flag{f380:0000:0000:f1a6:dead:beef}",
+  "answer":"flag{fe80:0000:0000:f1a6:dead:beef}",
   "solution":""
 }

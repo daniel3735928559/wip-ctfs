@@ -1,5 +1,5 @@
 {
-  "name":"flagservice",
+  "name":"fileobj",
   "category":"file",
   "points":20,
   "description":"The file C:/o.xml has the flag",
