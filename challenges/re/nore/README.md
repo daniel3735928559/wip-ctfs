@@ -165,10 +165,12 @@ fail.
 Further, in the next portion of the code after these 54 bytes back in `sc`, we find that it is xor-decrypting the next 56 bytes with this checksum, so we cannot simply replace the 
 checksumming code either.  It must give a specific answer.  
 
-Since this checksum is in eax, we can cheat, however, and modify the executable to write eax after this has run.  Within the executable, we are now at the address
+Since this checksum is in eax, we can cheat, however, and modify the executable to write eax after this has run.  Within the executable, we are now at the address 54 bytes after the 
+start of the xor-encrypted block, which we concluded started 178 bytes into the executable file.  Thus we can overwrite it thus: 
 
 ```
-$ cat printeax.s 
+$ cat printeax.s
+bits 32
 push eax 
 xor eax,eax 
 xor ebx,ebx 
@@ -181,19 +183,53 @@ int 0x80
 xor eax,eax 
 inc eax 
 int 0x80 
-$ nasm -f bin -o printeax printeax.s 
+$ nasm -f bin -o printeax printeax.s
 $ dd if=printeax of=sc2 bs=1 seek=$((178+54)) conv=notrunc
-29+0 records in
-29+0 records out
-29 bytes copied, 0.000166896 s, 174 kB/s
-$ ./sc2 | hexdump -C
+22+0 records in
+22+0 records out
+22 bytes copied, 0.000210466 s, 105 kB/s
+$ echo ZS | ./sc2|hexdump -e '1/4 "%08x"' -e '"\n"'
+f0154057
 ```
 
-And this will give us the value of eax.  
+And this will give us the proper value of eax after this stage.  So if we replace the entire xor-decryptor portion (starting as we saw above at 0x08048098) and xor-encoded portion 
+(the 54 bytes starting at 0x080480b2) of the code with code that only sets eax to this value and does nothing else, we can win.  In the .text section, 0x08048098 is at offset 0x38.  
+The total size of the portion to be replaced is 
 
-OUTLINE OF THE REST: 
+```
+$ echo $((0x080480b2+54-0x08048098))
+80
+```
 
-Then, we can overwrite the decoder and first stage with `mov eax,VALUE` followed by nops.  This will run the second decoder and the next portion of the code.  
+We note that esi is set to the address of our input.  Since the process consumes two bytes of input, we will need also to increment esi by 2.  
 
-This modified binary, we can happily just debug.  While the next portion takes even more drastic anti-disassembly steps, we can clearly see, stepping through, this code comparing 
-the password four bytes at a time to the actual password.
+So we can use the following snippet:
+
+```
+mov eax,0xf0154057
+inc esi
+inc esi
+times 80-$ nop
+```
+
+Since the decoder starts at an offset of `0x08048098 - 0x08048060 = 0x38` from the start of the .text section, which starts `0x60` into the file, we can write this with: 
+
+```
+$ cat seteax.s
+bits 32
+mov eax,0xf0154057
+inc esi
+inc esi
+times 80-($-$$) nop
+$ nasm -f bin -o seteax seteax.s
+$ cp sc sc3
+'sc' -> 'sc3'
+$ dd if=seteax bs=1 of=sc3 seek=$((0x60+0x38)) conv=notrunc
+80+0 records in
+80+0 records out
+80 bytes copied, 0.000312788 s, 256 kB/s
+```
+
+Then the final (now xor-decrypted) section starts at 0x8048108, within which 0x0804812d is where we see an instruction xoring something with [esi]--ebx specifically.  So we break 
+there.  The first time through, we see ebx is 0x69635549, i.e. `IUci`.  So we know the password start with ZSIUci.  The remaining times through, at this same address, we see the 
+remainder of the password in four-byte increments, eventually giving us the full password.
