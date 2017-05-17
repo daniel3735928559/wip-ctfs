@@ -94,6 +94,8 @@ objdump -d -Mintel manticore_challenge |grep 'call.*exit' | sed 's/:.*//;s/  /0x
 
 Then the hooks we set at these addresses will simply be to abandon the current state.  
 
+## Solution
+
 The complete solution is in solve.sh, with the Manticore calls happening in ans.py, and runs in around 90 seconds: 
 
 ```
