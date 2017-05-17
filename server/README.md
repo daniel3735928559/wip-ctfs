@@ -10,7 +10,13 @@ Micro CTF server is built on NodeJS and Express in less than 100 lines of Javasc
 
 ## Running an existing CTF
 
-To run an existing CTF simply run:
+To run an existing CTF, first (in this directory) run:
+
+```
+npm install
+```
+
+Then:
 
 ```
 node app.js [path to CTF root directory]
