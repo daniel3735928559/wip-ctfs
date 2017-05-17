@@ -582,6 +582,8 @@ Thus:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa60447f00
 ```
 
+### Alternative: 
+
 Worth mentioning also is that, if we wanted a shorter input, we could place the assembled code:
 
 ```
@@ -615,7 +617,7 @@ call #0x454c
 3f40017f1f838f100f12b0124c45
 ```
 
-For a total answer of:
+For a final answer of:
 
 ```
 3f40017f1f838f100f12b0124c45aaaaee43
