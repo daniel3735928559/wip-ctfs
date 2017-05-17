@@ -385,8 +385,6 @@ the argument `0x007f`.  Thus our password will be:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa32453c447f00
 ```
 
-# Writeups in progress:
-
 ## 8.  Santa Cruz
 
 This is an odd one.  It requires a username and password, both between 8 and 16 bytes.
@@ -470,6 +468,9 @@ placed into pc.  Therefore we replace this with the address of the
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017fa0a1a2a3a4a5a6a7a8a9a0aaabacadaeafb0b1b2b3b4b54a44
 cccccccccccccccccccccccccccccccccc
 ```
+
+# Writeups in progress:
+
 
 ## 9.  Addis Ababa
 
