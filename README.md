@@ -1,6 +1,6 @@
 # CTF
 
-This is a respository for select CTF data including: 
+This is a respository for select CTF files including: 
 
 * [writeups]: Writeups of select CTFs I have done
 * [challenges]: CTF challenges I have created (that have already been used)
