@@ -11,7 +11,7 @@ for x in range(8):
         s.send(msg+bytes([c]))
         time.sleep(0.1)
         s1 = s.recv(1024).decode()
-        print(s1)
+        #print(s1)
         if(not 'long' in s1):
             print(bytes([c]))
             msg += bytes([c])
