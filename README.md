@@ -14,12 +14,12 @@ This is a respository for select CTF files including:
     * [nore](challenges/re/nore): Anti-reverse engineering crackme
     * [su](challenges/re/su): Sequence of basic binary exploitation challenges
     * [simple](challenges/re/simple): The simplest possible binary exploitation challenge
-  * [crypto](challenges/crypto): Crypto challenges.
-    * [crime](challenges/crytpo/crime): Compression ratio side channel attack
-    * [ssh](challenges/crytpo/ssh): Decrypting ssh from memory dump
-    * [rotten](challenges/crytpo/rotten): Rotation cipher
-    * [utfm8](challenges/crytpo/utfm8): Unicode
-    * [xor](challenges/crytpo/xor): XOR-decryption
+  * [crypto](challenges/crytpo): Crypto challenges.
+    * [crime](challenges/crypto/crime): Compression ratio side channel attack
+    * [ssh](challenges/crypto/ssh): Decrypting ssh from memory dump
+    * [rotten](challenges/crypto/rotten): Rotation cipher
+    * [utfm8](challenges/crypto/utfm8): Unicode
+    * [xor](challenges/crypto/xor): XOR-decryption
   * [script](challenges/script): Scripting challenges
     * [bash](challenges/script/linux): A complete bash scripting CTF
     * [powershell](challenges/script/windows): A complete PowerShell scripting CTF
