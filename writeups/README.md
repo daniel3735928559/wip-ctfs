@@ -5,7 +5,7 @@ This is a respository for select CTF writeups.  I am going back through my solut
 # Current writeups: 
 
 * [Manticore challenge](manticore_challenge) (https://blog.trailofbits.com/2017/05/15/magic-with-manticore/)
-* [microcorruption.com](microcorruption) ([http://microcorruption.com] levels 2-17)
+* [microcorruption.com](microcorruption) ([http://microcorruption.com] levels 1-17)
 
 # Writeups in progress: 
 
