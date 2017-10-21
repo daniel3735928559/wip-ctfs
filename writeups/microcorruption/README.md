@@ -2,7 +2,9 @@
 
 Here, I will provide my solutions to the challenges on
 [microcorruption.com].  They may be somewhat terse, but I will try to
-make them at least complete.
+make them at least complete.  As the problems get harder, I'll also
+try to include some explanation of the reversing process that leads to
+discovering the vulnerability.
 
 If you are following along to learn, you should note that specific
 values throughout will vary between different users, so the solutions
@@ -1199,5 +1201,589 @@ Since the start of the stack is 3fee, we have:
 # Levels in progress
 
 ## 18. Chernobyl
+
+We run the program.  It declares that it accepts commands of the form
+`access [name] [pin]`.  It seems to run on a loop.  Initial scan of
+the code shows mallocs and printfs.  Maybe more heap and format string
+stuff?
+
+This program is long.  Let us break it down a little.  With the
+assembly in `chernobyl/a.s`, we try for a crude, high-level
+understanding of the program by looking at a very crude (but shell
+scriptable!) approximation of the call graph:
+
+```
+$ cat chernobyl/a.s | grep '<'|grep -v '+'|grep -v '<_'
+...
+```
+
+While this does generate a more bite-sized output, we can trim it down
+further by removing some obvious things: We already know what printf
+and several of the more basic functions do, so after removing those,
+we get the following picture:
+
+```
+4438 <main>
+443a:  b012 664b      call	#0x4b66 <run>
+45ba <walk>
+45c6:  b012 504d      call	#0x4d50 <puts>
+45e8:  b012 4844      call	#0x4448 <printf>
+45fc:  b012 4844      call	#0x4448 <printf>
+460c:  b012 4844      call	#0x4448 <printf>
+4628:  b012 044d      call	#0x4d04 <putchar>
+4630:  b012 044d      call	#0x4d04 <putchar>
+4644:  b012 4844      call	#0x4448 <printf>
+4678 <malloc>
+470e:  b012 504d      call	#0x4d50 <puts>
+471c <free>
+4778 <create_hash_table>
+478c:  b012 7846      call	#0x4678 <malloc>
+47ae:  b012 7846      call	#0x4678 <malloc>
+47b8:  b012 7846      call	#0x4678 <malloc>
+47e8:  b012 7846      call	#0x4678 <malloc>
+480e <hash>
+4832 <add_to_table>
+4866:  b012 d448      call	#0x48d4 <rehash>
+4870:  b012 0e48      call	#0x480e <hash>
+48d4 <rehash>
+490a:  b012 7846      call	#0x4678 <malloc>
+4914:  b012 7846      call	#0x4678 <malloc>
+493e:  b012 7846      call	#0x4678 <malloc>
+4988:  b012 3248      call	#0x4832 <add_to_table>
+499e:  b012 1c47      call	#0x471c <free>
+49ae:  b012 1c47      call	#0x471c <free>
+49b4:  b012 1c47      call	#0x471c <free>
+49cc <get_from_table>
+49de:  b012 0e48      call	#0x480e <hash>
+4a0a:  b012 7c4d      call	#0x4d7c <strcmp>
+4b66 <run>
+4b7c:  b012 7847      call	#0x4778 <create_hash_table>
+4b86:  b012 504d      call	#0x4d50 <puts>
+4b8e:  b012 504d      call	#0x4d50 <puts>
+4b96:  b012 504d      call	#0x4d50 <puts>
+4bb6:  b012 404d      call	#0x4d40 <getsn>
+4c0c:  b012 cc49      call	#0x49cc <get_from_table>
+4c90:  b012 cc49      call	#0x49cc <get_from_table>
+4c9c:  b012 504d      call	#0x4d50 <puts>
+4caa:  b012 4844      call	#0x4448 <printf>
+4cb8:  b012 3248      call	#0x4832 <add_to_table>
+4cc2:  b012 504d      call	#0x4d50 <puts>
+```
+
+So the `run` function should be the main loop.  It looks like it 
+
+A few preliminary questions then, off the cuff and in no particular
+order:
+
+* How many characters are read?
+* Is there a format string vulnerability?
+* It looks like `walk` is never called.
+* What functions does the lock actually support?
+* What is the hash function that is used?
+* Can we perform a heap overflow?
+
+We'll address these in an order more conscious of their dependencies:
+
+
+* How many characters are read?
+
+We break at the `getsn` call in `run`.  At this point, r14 is 0x550.
+Quite large.  Lots of room to work if we need it.
+
+
+* What functions does the lock actually support?
+
+For this, we have to study the run function.
+
+The very simplest proxy for this are the comparisons that are performed in the run function
+
+```
+cat chernobyl/a.s | sed -n '/^[0-9a-f]* <run>/,/<INT>/{/cmp.b/p}'
+4bbe:  7f90 6100      cmp.b	#0x61, r15
+4bce:  7f90 2000      cmp.b	#0x20, r15
+4c04:  7f90 3b00      cmp.b	#0x3b, r15
+4c38:  7f90 6e00      cmp.b	#0x6e, r15
+4c46:  7f90 2000      cmp.b	#0x20, r15
+4c7c:  7f90 3b00      cmp.b	#0x3b, r15
+4cda:  fb90 3b00 0000 cmp.b	#0x3b, 0x0(r11)
+```
+
+So the special bytes, possibly, are:
+
+* 0x61 = a ("access"?)
+* 0x20 = <space> (separator)
+* 0x3b = ; (separator?)
+* 0x6e = n ("new"?)
+
+Indeed, if we try out these a bit, we discover that the full syntax supported seems to be something
+
+```access <user> <pin>;new <user> <pin>```
+
+
+* What is the hash function that is used?
+
+The disassembly of the hash function is this:
+
+```
+480e <hash>
+480e:  0e4f           mov	r15, r14
+4810:  0f43           clr	r15
+4812:  0b3c           jmp	#0x482a <hash+0x1c>
+4814:  6d4e           mov.b	@r14, r13
+4816:  8d11           sxt	r13
+4818:  0d5f           add	r15, r13
+481a:  0f4d           mov	r13, r15
+481c:  0f5f           add	r15, r15
+481e:  0f5f           add	r15, r15
+4820:  0f5f           add	r15, r15
+4822:  0f5f           add	r15, r15
+4824:  0f5f           add	r15, r15
+4826:  0f8d           sub	r13, r15
+4828:  1e53           inc	r14
+482a:  ce93 0000      tst.b	0x0(r14)
+482e:  f223           jnz	#0x4814 <hash+0x6>
+4830:  3041           ret
+```
+
+
+First off, all that arithmetic boils down to: 
+
+
+```
+480e <hash>
+480e:  0e4f           mov	r15, r14
+4810:  0f43           clr	r15                   ;; hash = 0
+4812:  0b3c           jmp	#0x482a <hash+0x1c>   ;; check if empty string
+4814:  6d4e           mov.b	@r14, r13             ;; r13 = current char
+...                                                   ;; hash = 31*(char+hash) (mod 0x10000)
+4828:  1e53           inc	r14                   ;; move on to next char
+482a:  ce93 0000      tst.b	0x0(r14)              ;; check if at end
+482e:  f223           jnz	#0x4814 <hash+0x6>    ;; if not at end, loop
+4830:  3041           ret
+```
+
+Even more concretely, the hash of a string "ABCD" is:
+
+```31^4 A + 31^3 B + 31^2 C + 31 D (mod 0x10000)```
+
+And similarly for longer strings
+
+Complex behaviour ina hash table is often triggered by collisions,
+With our combinatorics hat on, there are 2^16 possible hash function
+outputs, and roughly (due to restricted bytes) 2^24 3-character
+passwords, so we should be able to get many collisions with 3-byte
+passwords, even by brute force.  (With our number theorist hat on,
+observing that 31 is coprime to 0x10000 we expect we might be able to
+literally solve for collisions, but with the small search space this
+may well not be necessary.)
+
+
+
+* It looks like `walk` is never called.
+
+Indeed.  Also, that was not a question.
+
+
+
+* Is there a format string vulnerability?
+
+`printf` takes its argument on the stack.  Let's look at all the call sites:
+
+```
+$ cat chernobyl/a.s |grep -B 1 '<printf>'
+4444:  3040 9c4d      br	#0x4d9c <_unexpected_>
+4448 <printf>
+--
+45e4:  3012 6945      push	#0x4569            ;; "[alloc] [p %x] [n %x] [s %x]\n"
+45e8:  b012 4844      call	#0x4448 <printf>
+--
+45f8:  3012 8b45      push	#0x458b            ;; "{%x} [ "
+45fc:  b012 4844      call	#0x4448 <printf>
+--
+4608:  3012 9445      push	#0x4594            ;; "%x "
+460c:  b012 4844      call	#0x4448 <printf>
+--
+4640:  3012 9845      push	#0x4598            ;; "[freed] [p %x] [n %x] [s %x]\n"
+4644:  b012 4844      call	#0x4448 <printf>
+--
+4ca6:  3012 2f4b      push	#0x4b2f            ;; "Adding user account %s with pin %x"
+4caa:  b012 4844      call	#0x4448 <printf>
+```
+
+All this looks safe.  Unless we can manipulate pc to point to printf
+some other way, the initial answer to this question seems to be "no"
+
+
+* Can we perform a heap overflow?
+
+I guess that's the question, then.
+
+Let's first start by remembering what a heap overflow attack actually
+consists of (as we saw it in Algiers): We need overflow a heap entry
+so that our data populates the metadata stored by the heap at the
+beginning/end of a segment, and then we need to get `free` called on
+that segment.
+
+However, if we look at the call graph approximation above, we see that
+`free` is only ever called by `rehash`.  And `rehash`, in turn, is
+only called from `add_to_table`.  In what circumstances?  Without
+looking at the implementation too carefully, we know that generally
+rehashing is done when a hash table is full.  So maybe the idea is:
+
+* Almost fill up the hash table to the point of triggering a rehash
+
+* Overflow an entry in the hash table (we'll probably want to control
+  which entry this is, so we will have a use for our likely ability to
+  collide hashes after all!)
+
+* Fill the last entry in the hash table so as to trigger a rehash.
+  Hopefully this will cause our overflowed entry to be freed, giving
+  us the (as usual, somewhat restricted) write primitive we want.
+
+Let's start to get an idea of what this entails:
+
+Once the program is initialised, the following structure appears in
+memory:
+
+```
+5000:   0050 1050 1500 0000 0300 0500 1650 2c50   .P.P.........P,P
+5010:   0050 2650 2100 4250 a250 0251 6251 c251   .P&P!.BP.P.QbQ.Q
+5020:   2252 8252 e252 1050 3c50 2100 0000 0000   "R.R.R.P<P!.....
+5030:   0000 0000 0000 0000 0000 0000 2650 9c50   ............&P.P
+5040:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5050:   *
+5090:   0000 0000 0000 0000 0000 0000 3c50 fc50   ............<P.P
+50a0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+50b0:   *
+50f0:   0000 0000 0000 0000 0000 0000 9c50 5c51   .............P\Q
+5100:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5110:   *
+5150:   0000 0000 0000 0000 0000 0000 fc50 bc51   .............P.Q
+5160:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5170:   *
+51b0:   0000 0000 0000 0000 0000 0000 5c51 1c52   ............\Q.R
+51c0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+51d0:   *
+5210:   0000 0000 0000 0000 0000 0000 bc51 7c52   .............Q|R
+5220:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5230:   *
+5270:   0000 0000 0000 0000 0000 0000 1c52 dc52   .............R.R
+5280:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5290:   *
+52d0:   0000 0000 0000 0000 0000 0000 7c52 3c53   ............|R<S
+52e0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+52f0:   *
+5330:   0000 0000 0000 0000 0000 0000 dc52 0050   .............R.P
+5340:   7cf9 0000 0000 0000 0000 0000 0000 0000   |...............
+5350:   *
+```
+
+We can see chunks that are malloced with the usual headers and
+footers.  A first guess might be that these are the metadata (starting
+at 0x5000) and 8 buckets (starting at 0x503c) of the hash table.
+
+We test this out with the command 
+
+```new aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 16```
+
+After which we see: 
+
+```
+5000:   0050 1050 1500 0100 0300 0500 1650 2c50   .P.P.........P,P
+5010:   0050 2650 2100 4250 a250 0251 6251 c251   .P&P!.BP.P.QbQ.Q
+5020:   2252 8252 e252 1050 3c50 2100 0100 0000   "R.R.R.P<P!.....
+5030:   0000 0000 0000 0000 0000 0000 2650 9c50   ............&P.P
+5040:   b500 6161 6161 6161 6161 6161 6161 6161   ..aaaaaaaaaaaaaa
+5050:   6100 1000 0000 0000 0000 0000 0000 0000   a...............
+5060:   *
+5090:   0000 0000 0000 0000 0000 0000 3c50 fc50   ............<P.P
+50a0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+50b0:   *
+50f0:   0000 0000 0000 0000 0000 0000 9c50 5c51   .............P\Q
+5100:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5110:   *
+5150:   0000 0000 0000 0000 0000 0000 fc50 bc51   .............P.Q
+5160:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5170:   *
+51b0:   0000 0000 0000 0000 0000 0000 5c51 1c52   ............\Q.R
+51c0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+51d0:   *
+5210:   0000 0000 0000 0000 0000 0000 bc51 7c52   .............Q|R
+5220:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5230:   *
+5270:   0000 0000 0000 0000 0000 0000 1c52 dc52   .............R.R
+5280:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5290:   *
+52d0:   0000 0000 0000 0000 0000 0000 7c52 3c53   ............|R<S
+52e0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+52f0:   *
+5330:   0000 0000 0000 0000 0000 0000 dc52 0050   .............R.P
+5340:   7cf9 0000 0000 0000 0000 0000 0000 0000   |...............
+5350:   *
+```
+
+So this got filled into the first bucket, but we notice that only 15
+bytes of username were used, and are followed by a null byte and then
+what appears to be the pin.  So let us try to fill up the hash table.
+We break on the `rehash` function and input:
+
+```new a 1;new b 2;new c 3;new d 4;new e 5;new f 6;new g 7;new h 8;new i 9;new j 10```
+
+No rehash is triggered, but we observe the table is now:
+
+```
+5000:   0050 1050 1500 0a00 0300 0500 1650 2c50   .P.P.........P,P
+5010:   0050 2650 2100 4250 a250 0251 6251 c251   .P&P!.BP.P.QbQ.Q
+5020:   2252 8252 e252 1050 3c50 2100 0100 0100   "R.R.R.P<P!.....
+5030:   0100 0100 0100 0100 0200 0200 2650 9c50   ............&P.P
+5040:   b500 6800 0000 0000 0000 0000 0000 0000   ..h.............
+5050:   0000 0800 0000 0000 0000 0000 0000 0000   ................
+5060:   *
+5090:   0000 0000 0000 0000 0000 0000 3c50 fc50   ............<P.P
+50a0:   b500 6700 0000 0000 0000 0000 0000 0000   ..g.............
+50b0:   0000 0700 0000 0000 0000 0000 0000 0000   ................
+50c0:   *
+50f0:   0000 0000 0000 0000 0000 0000 9c50 5c51   .............P\Q
+5100:   b500 6600 0000 0000 0000 0000 0000 0000   ..f.............
+5110:   0000 0600 0000 0000 0000 0000 0000 0000   ................
+5120:   *
+5150:   0000 0000 0000 0000 0000 0000 fc50 bc51   .............P.Q
+5160:   b500 6500 0000 0000 0000 0000 0000 0000   ..e.............
+5170:   0000 0500 0000 0000 0000 0000 0000 0000   ................
+5180:   *
+51b0:   0000 0000 0000 0000 0000 0000 5c51 1c52   ............\Q.R
+51c0:   b500 6400 0000 0000 0000 0000 0000 0000   ..d.............
+51d0:   0000 0400 0000 0000 0000 0000 0000 0000   ................
+51e0:   *
+5210:   0000 0000 0000 0000 0000 0000 bc51 7c52   .............Q|R
+5220:   b500 6300 0000 0000 0000 0000 0000 0000   ..c.............
+5230:   0000 0300 0000 0000 0000 0000 0000 0000   ................
+5240:   *
+5270:   0000 0000 0000 0000 0000 0000 1c52 dc52   .............R.R
+5280:   b500 6200 0000 0000 0000 0000 0000 0000   ..b.............
+5290:   0000 0200 6a00 0000 0000 0000 0000 0000   ....j...........
+52a0:   0000 0000 0a00 0000 0000 0000 0000 0000   ................
+52b0:   *
+52d0:   0000 0000 0000 0000 0000 0000 7c52 3c53   ............|R<S
+52e0:   b500 6100 0000 0000 0000 0000 0000 0000   ..a.............
+52f0:   0000 0100 6900 0000 0000 0000 0000 0000   ....i...........
+5300:   0000 0000 0900 0000 0000 0000 0000 0000   ................
+5310:   *
+5330:   0000 0000 0000 0000 0000 0000 dc52 0050   .............R.P
+5340:   7cf9 0000 0000 0000 0000 0000 0000 0000   |...............
+5350:   *
+```
+
+So in fact, when there are collisions, they these get appended to an
+array inside the bucket.  It appears each entry in this array is 18
+bytes long (16 for username+null terminator, and 2 for pin).  Further,
+each bucket appears to be 0x527c-0x5222 = 90 bytes long--enough for
+exactly five array entries.
+
+We also notice that this input has filled all but one bucket.  So maybe we keep going: 
+
+```new a 1;new b 2;new c 3;new d 4;new e 5;new f 6;new g 7;new h 8;new i 9;new j 10;new k 11;new l 12```
+
+This does indeed trigger a rehash after it tries to add `l`.  Now the heap looks like: 
+
+```
+5000:   0050 1050 1500 0c00 0400 0500 4253 6853   .P.P........BShS
+5010:   0050 3c53 1606 4250 a250 0251 6251 c251   .P<S..BP.P.QbQ.Q
+5020:   2252 8252 e252 1050 3c53 f005 0100 0100   "R.R.R.P<S......
+5030:   0100 0100 0100 0200 0200 0200 2650 3c53   ............&P<S
+5040:   ca05 6800 0000 0000 0000 0000 0000 0000   ..h.............
+5050:   0000 0800 0000 0000 0000 0000 0000 0000   ................
+5060:   *
+5090:   0000 0000 0000 0000 0000 0000 3c50 fc50   ............<P.P
+50a0:   b400 6700 0000 0000 0000 0000 0000 0000   ..g.............
+50b0:   0000 0700 0000 0000 0000 0000 0000 0000   ................
+50c0:   *
+50f0:   0000 0000 0000 0000 0000 0000 3c50 5c51   ............<P\Q
+5100:   b400 6600 0000 0000 0000 0000 0000 0000   ..f.............
+5110:   0000 0600 0000 0000 0000 0000 0000 0000   ................
+5120:   *
+5150:   0000 0000 0000 0000 0000 0000 3c50 bc51   ............<P.Q
+5160:   b400 6500 0000 0000 0000 0000 0000 0000   ..e.............
+5170:   0000 0500 0000 0000 0000 0000 0000 0000   ................
+5180:   *
+51b0:   0000 0000 0000 0000 0000 0000 3c50 1c52   ............<P.R
+51c0:   b400 6400 0000 0000 0000 0000 0000 0000   ..d.............
+51d0:   0000 0400 0000 0000 0000 0000 0000 0000   ................
+51e0:   *
+5210:   0000 0000 0000 0000 0000 0000 3c50 7c52   ............<P|R
+5220:   b400 6300 0000 0000 0000 0000 0000 0000   ..c.............
+5230:   0000 0300 6b00 0000 0000 0000 0000 0000   ....k...........
+5240:   0000 0000 0b00 0000 0000 0000 0000 0000   ................
+5250:   *
+5270:   0000 0000 0000 0000 0000 0000 3c50 dc52   ............<P.R
+5280:   b400 6200 0000 0000 0000 0000 0000 0000   ..b.............
+5290:   0000 0200 6a00 0000 0000 0000 0000 0000   ....j...........
+52a0:   0000 0000 0a00 0000 0000 0000 0000 0000   ................
+52b0:   *
+52d0:   0000 0000 0000 0000 0000 0000 3c50 3c53   ............<P<S
+52e0:   b400 6100 0000 0000 0000 0000 0000 0000   ..a.............
+52f0:   0000 0100 6900 0000 0000 0000 0000 0000   ....i...........
+5300:   0000 0000 0900 0000 0000 0000 0000 0000   ................
+5310:   *
+5330:   0000 0000 0000 0000 0000 0000 3c50 6253   ............<PbS
+5340:   4100 8e53 ee53 4e54 ae54 0e55 6e55 ce55   A..S.SNT.T.UnU.U
+5350:   2e56 8e56 ee56 4e57 ae57 0e58 6e58 ce58   .V.V.VNW.W.XnX.X
+5360:   2e59 3c53 8853 4100 0000 0000 0000 0000   .Y<S.SA.........
+5370:   0100 0100 0100 0100 0100 0100 0100 0100   ................
+5380:   0100 0100 0100 0100 6253 e853 b500 0000   ........bS.S....
+5390:   *
+53e0:   0000 0000 0000 0000 8853 4854 b500 0000   .........SHT....
+53f0:   *
+5440:   0000 0000 0000 0000 e853 a854 b500 0000   .........S.T....
+5450:   *
+54a0:   0000 0000 0000 0000 4854 0855 b500 0000   ........HT.U....
+54b0:   *
+5500:   0000 0000 0000 0000 a854 6855 b500 6c00   .........ThU..l.
+5510:   0000 0000 0000 0000 0000 0000 0000 0c00   ................
+5520:   *
+5560:   0000 0000 0000 0000 0855 c855 b500 6b00   .........U.U..k.
+5570:   0000 0000 0000 0000 0000 0000 0000 0b00   ................
+5580:   *
+55c0:   0000 0000 0000 0000 6855 2856 b500 6a00   ........hU(V..j.
+55d0:   0000 0000 0000 0000 0000 0000 0000 0a00   ................
+55e0:   *
+5620:   0000 0000 0000 0000 c855 8856 b500 6900   .........U.V..i.
+5630:   0000 0000 0000 0000 0000 0000 0000 0900   ................
+5640:   *
+5680:   0000 0000 0000 0000 2856 e856 b500 6800   ........(V.V..h.
+5690:   0000 0000 0000 0000 0000 0000 0000 0800   ................
+56a0:   *
+56e0:   0000 0000 0000 0000 8856 4857 b500 6700   .........VHW..g.
+56f0:   0000 0000 0000 0000 0000 0000 0000 0700   ................
+5700:   *
+5740:   0000 0000 0000 0000 e856 a857 b500 6600   .........V.W..f.
+5750:   0000 0000 0000 0000 0000 0000 0000 0600   ................
+5760:   *
+57a0:   0000 0000 0000 0000 4857 0858 b500 6500   ........HW.X..e.
+57b0:   0000 0000 0000 0000 0000 0000 0000 0500   ................
+57c0:   *
+5800:   0000 0000 0000 0000 a857 6858 b500 6400   .........WhX..d.
+5810:   0000 0000 0000 0000 0000 0000 0000 0400   ................
+5820:   *
+5860:   0000 0000 0000 0000 0858 c858 b500 6300   .........X.X..c.
+5870:   0000 0000 0000 0000 0000 0000 0000 0300   ................
+5880:   *
+58c0:   0000 0000 0000 0000 6858 2859 b500 6200   ........hX(Y..b.
+58d0:   0000 0000 0000 0000 0000 0000 0000 0200   ................
+58e0:   *
+5920:   0000 0000 0000 0000 c858 8859 b500 6100   .........X.Y..a.
+5930:   0000 0000 0000 0000 0000 0000 0000 0100   ................
+5940:   *
+5980:   0000 0000 0000 0000 2859 0050 e4ec 0000   ........(Y.P....
+5990:   *
+```
+
+Now there are 16 buckets, and the previous buckets were all freed.
+This confirms our suspicion that we can trigger a free with too many
+writes to the hash table.  And so if we get more than five collisions
+early on, we can likely overwrite something interesting with that
+free.
+
+Three tasks then remain (supposing this line of thought is right):
+
+* Actually generate the collisions
+
+* Figure out what to overwrite
+
+* Generate particular collisions designed to cause the particular
+  exploitable overwrite
+
+
+Some preliminary thoughts:
+
+* Generate collisions:
+
+We already observed that 3-byte usernames should be enough to get lots of collisions.  We can instead, for simplicity, use usernames consisting of four lower case letters:
+
+Let's try: 
+
+```
+$ cat chernobyl/collide.py
+import itertools
+
+hashtable = {i:[] for i in range(0x10000)}
+letters = map(chr, range(ord('a'),ord('z')+1))
+
+def hashfn(s):
+    return sum([31**(i+1) * c for i,c in enumerate(map(ord,s[::-1]))])%0x10000
+
+# hash all 4-letter names
+for name in ["".join(x) for x in itertools.product(letters, repeat=4)]:
+    hashtable[hashfn(name)].append(name)
+    
+# find the most common hash
+most_common_hash = max(range(0x10000),key=lambda name:len(hashtable[name]))
+
+# show all usernames with that hash
+print(";".join(["new {} 1".format(x) for x in hashtable[most_common_hash]]))
+
+$ python chernobyl/collide.py
+new bsta 1;new dyzc 1;new gaae 1;new iggg 1;new kmmi 1;new mssk 1;new oyym 1;new tgfq 1;new vmls 1;new xsru 1;new zyxw 1
+```
+
+And indeed, if we use the input:
+
+```new bsta 1;new dyzc 1;new gaae 1;new iggg 1;new kmmi 1;new mssk 1;new oyym 1```
+
+then the hash table looks like:
+
+```
+5000:   0050 1050 1500 0700 0300 0500 1650 2c50   .P.P.........P,P
+5010:   0050 2650 2100 4250 a250 0251 6251 c251   .P&P!.BP.P.QbQ.Q
+5020:   2252 8252 e252 1050 3c50 2100 0000 0000   "R.R.R.P<P!.....
+5030:   0700 0000 0000 0000 0000 0000 2650 9c50   ............&P.P
+5040:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5050:   *
+5090:   0000 0000 0000 0000 0000 0000 3c50 fc50   ............<P.P
+50a0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+50b0:   *
+50f0:   0000 0000 0000 0000 0000 0000 9c50 5c51   .............P\Q
+5100:   b500 6273 7461 0000 0000 0000 0000 0000   ..bsta..........
+5110:   0000 0100 6479 7a63 0000 0000 0000 0000   ....dyzc........
+5120:   0000 0000 0100 6761 6165 0000 0000 0000   ......gaae......
+5130:   0000 0000 0000 0100 6967 6767 0000 0000   ........iggg....
+5140:   0000 0000 0000 0000 0100 6b6d 6d69 0000   ..........kmmi..
+5150:   0000 0000 0000 0000 0000 0100 6d73 736b   ............mssk
+5160:   b500 0000 0000 0000 0000 0000 0100 6f79   ..............oy
+5170:   796d 0000 0000 0000 0000 0000 0000 0100   ym..............
+5180:   *
+51b0:   0000 0000 0000 0000 0000 0000 5c51 1c52   ............\Q.R
+51c0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+51d0:   *
+5210:   0000 0000 0000 0000 0000 0000 bc51 7c52   .............Q|R
+5220:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5230:   *
+5270:   0000 0000 0000 0000 0000 0000 1c52 dc52   .............R.R
+5280:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+5290:   *
+52d0:   0000 0000 0000 0000 0000 0000 7c52 3c53   ............|R<S
+52e0:   b500 0000 0000 0000 0000 0000 0000 0000   ................
+52f0:   *
+5330:   0000 0000 0000 0000 0000 0000 dc52 0050   .............R.P
+5340:   7cf9 0000 0000 0000 0000 0000 0000 0000   |...............
+5350:   *
+```
+
+Great.  We have a valid method to generate collisions, and the start
+of the sixth colliding input is what overwrites the chunk metadata.
+So once we decide what to put here, we'll presumably have to search
+specifically for (or solve for?) inputs that collide with our chosen
+values.
+
+* What to overwrite:
+
+If we can in fact leverage this as in Algiers to get an arbitrary
+write, then many possibilities present themselves, but, for example,
+there is no stack randomisation so we should be able to overwrite a
+return pointer on the stack with a shellcode address.  
+
+There were restrictions about the two values following the overwritten
+value in memory needing to be even, but we would guess that through
+appropriately crafted inputs we can make such a condition hold.
 
 ## 19. ???
